@@ -219,7 +219,7 @@ User.hasOne(Premium, {
     allowNull: false,
   },
 });
-Premium.belongsTo(User);*/
+Premium.belongsTo(User);
 
 sequelize
   .sync({ alter: true })
@@ -229,3 +229,4 @@ sequelize
   .catch((error) => {
     console.log(error);
   });
+*/
