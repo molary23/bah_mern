@@ -1,6 +1,7 @@
 // Bring in Models
 const sequelize = require("../config/dbCon"),
   User = require("../models/User"),
+  Verify = require("../models/Verify"),
   Refresh = require("../models/Refresh");
 
 // Define Relationsship between tables
@@ -13,6 +14,16 @@ User.hasMany(Refresh, {
   },
 });
 Refresh.belongsTo(User);
+
+User.hasOne(Verify, {
+  onDelete: "RESTRICT",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Verify.belongsTo(User);
+
 /*
 User.hasOne(Profile, {
   onDelete: "RESTRICT",
