@@ -22,6 +22,10 @@ User.init(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+    phone: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

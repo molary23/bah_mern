@@ -3,3 +3,6 @@
 
 #DB Config
 /config
+
+#env
+.env

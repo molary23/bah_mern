@@ -3,11 +3,13 @@
 const express = require("express"),
   cors = require("cors"),
   corsOptions = require("./util/cors"),
+  bodyParser = require("body-parser"),
   sequelize = require("./config/dbCon");
 require("dotenv").config();
 
 const app = express();
-
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cors(corsOptions));
 
 // Sync Database Relationsship
