@@ -28,4 +28,20 @@ router.route("/:id").get(userController.getUser);
 
 router.route("/add").post(userController.addUser);
 
+/*
+@route PUT api/phone
+@desc Edit user phone
+@access private
+*/
+
+router.route("/phone").put(userController.updatePhone);
+
+/*
+@route PUT api/password
+@desc Edit user password
+@access private
+*/
+
+router.route("/password").put(userController.updatePassword);
+
 module.exports = router;

@@ -2,6 +2,7 @@
 
 const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
+  isEmpty = require("../validator/isEmpty"),
   validateAddUserInput = require("../validator/addUser");
 
 const error = {};
@@ -50,14 +51,59 @@ const addUser = async (req, res) => {
     newUser.password = await bcrypt.hash(password, 10);
     const user = await User.create(newUser);
     res.status(200).json(user);
-  } catch (error) {
+  } catch (err) {
     error.addUser = "Error creating user";
     res.status(400).json(error.add);
   }
 };
 
-const updateUser = async (req, res) => {
-  const { id, username, password, phone } = req.body;
+const updatePhone = async (req, res) => {
+  const { id, phone } = req.body;
+
+  if (isEmpty(phone)) {
+    error.phone = "Phone can't be empty";
+    return res.status(400).json(error.phone);
+  }
+
+  try {
+    const user = await User.update(
+      { phone },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    error.phone = "Error updating phone number";
+    res.status(400).json(`${error.phone} ${err}`);
+  }
 };
 
-module.exports = { getAllUsers, getUser, addUser };
+const updatePassword = async (req, res) => {
+  const { id, password } = req.body;
+
+  if (isEmpty(password)) {
+    error.password = "Password can't be empty";
+    return res.status(400).json(error.password);
+  }
+
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+    const user = await User.update(
+      { password: hashed },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    error.password = "Error updating password";
+    res.status(400).json(error.password);
+  }
+};
+
+module.exports = { getAllUsers, getUser, addUser, updatePhone, updatePassword };
