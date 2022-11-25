@@ -2,8 +2,7 @@
 
 const express = require("express"),
   router = express.Router(),
-  userController = require("../controller/userController"),
-  User = require("../../models/User");
+  userController = require("../controller/userController");
 
 /*
 @route GET api/

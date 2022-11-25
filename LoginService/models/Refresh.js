@@ -15,7 +15,7 @@ RefreshToken.init(
       primaryKey: true,
     },
     token: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
   },

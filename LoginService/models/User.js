@@ -17,10 +17,12 @@ User.init(
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
     },
     username: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      unique: true,
     },
     phone: {
       type: DataTypes.STRING(15),

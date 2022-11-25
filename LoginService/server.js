@@ -2,9 +2,7 @@
 
 const express = require("express"),
   cors = require("cors"),
-  corsOptions = require("./util/cors"),
-  bodyParser = require("body-parser"),
-  sequelize = require("./config/dbCon");
+  corsOptions = require("./util/cors");
 require("dotenv").config();
 
 const app = express();
@@ -17,9 +15,11 @@ require("./util/DBRelationships");
 
 // Import Apis
 const user = require("./router/api/user");
+const auth = require("./router/api/auth");
 
 // Use apis
 app.use("/api/user", user);
+app.use("/api/auth", auth);
 
 const port = process.env.PORT || 6000;
 
