@@ -50,7 +50,7 @@ const handleLogin = async (req, res) => {
 
   const refresh = await RefreshToken.create({
     UserId: user.id,
-    token: JSON.stringify(refreshToken),
+    token: refreshToken,
   });
 
   if (refresh) {
