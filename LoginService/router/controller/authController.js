@@ -4,8 +4,7 @@ const RefreshToken = require("../../models/Refresh");
 const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
   isEmpty = require("../validator/isEmpty"),
-  jwt = require("jsonwebtoken"),
-  cookie = require("cookie-parser");
+  jwt = require("jsonwebtoken");
 
 const error = {};
 

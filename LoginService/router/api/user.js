@@ -5,7 +5,7 @@ const express = require("express"),
   userController = require("../controller/userController");
 
 /*
-@route GET api/
+@route GET api/user/all
 @desc View all users
 @access private
 */
@@ -13,14 +13,14 @@ const express = require("express"),
 router.route("/all").get(userController.getAllUsers);
 
 /*
-@route GET api/:id
+@route GET api/user/:id
 @desc View a user
 @access private
 */
 router.route("/:id").get(userController.getUser);
 
 /*
-@route POST api/
+@route POST api/user/add
 @desc Add a new user
 @access private
 */
@@ -28,7 +28,7 @@ router.route("/:id").get(userController.getUser);
 router.route("/add").post(userController.addUser);
 
 /*
-@route PUT api/phone
+@route PUT api/user/phone
 @desc Edit user phone
 @access private
 */
@@ -36,7 +36,7 @@ router.route("/add").post(userController.addUser);
 router.route("/phone").put(userController.updatePhone);
 
 /*
-@route PUT api/password
+@route PUT api/user/password
 @desc Edit user password
 @access private
 */
