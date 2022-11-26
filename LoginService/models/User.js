@@ -34,7 +34,7 @@ User.init(
     },
     level: {
       type: DataTypes.TINYINT,
-      defaultValue: 1, // 1: admin level 1, 2: admin level 2, 3: admin level 3
+      defaultValue: 1, // 1: admin level 1, 2: admin level 2
     },
     status: {
       type: DataTypes.ENUM("a", "i"), // a: active, i: inactive

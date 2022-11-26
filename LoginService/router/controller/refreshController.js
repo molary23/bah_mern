@@ -1,7 +1,8 @@
 "use strict";
 
 const jwt = require("jsonwebtoken"),
-  Refresh = require("../../models/Refresh");
+  Refresh = require("../../models/Refresh"),
+  User = require("../../models/User");
 
 const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
@@ -11,6 +12,13 @@ const handleRefreshToken = async (req, res) => {
   const checkToken = await Refresh.findOne({
     where: { token: refreshToken },
     attributes: ["token"],
+    include: [
+      {
+        model: User,
+        attributes: ["username", "level"],
+        required: true,
+      },
+    ],
   });
 
   if (!checkToken) return res.sendStatus(403);
@@ -18,13 +26,12 @@ const handleRefreshToken = async (req, res) => {
     refreshToken,
     process.env.REFRESH_TOKEN_SECRET_KEY,
     (err, decoded) => {
-      // create a RefreshView then select token form there to compare
-      if (err || checkToken.username !== decoded.username)
+      if (err || checkToken.User.username !== decoded.userInfo.username)
         return res.sendStatus(403);
       const accessToken = jwt.sign(
-        { username: decoded.username },
+        { username: decoded.userInfo.username, level: checkToken.User.level },
         process.env.ACCESS_TOKEN_SECRET_KEY,
-        { expiresIn: "30s" }
+        { expiresIn: "3m" }
       );
       res.json({ accessToken });
     }

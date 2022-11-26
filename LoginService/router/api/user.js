@@ -2,7 +2,9 @@
 
 const express = require("express"),
   router = express.Router(),
-  userController = require("../controller/userController");
+  userController = require("../controller/userController"),
+  verifyLevels = require("../middleware/verifyLevels"),
+  levelsList = require("../../util/levelsList");
 
 /*
 @route GET api/user/all
@@ -10,14 +12,18 @@ const express = require("express"),
 @access private
 */
 
-router.route("/all").get(userController.getAllUsers);
+router
+  .route("/all")
+  .get(verifyLevels(levelsList.admin), userController.getAllUsers);
 
 /*
 @route GET api/user/:id
 @desc View a user
 @access private
 */
-router.route("/:id").get(userController.getUser);
+router
+  .route("/:id")
+  .get(verifyLevels(levelsList.admin), userController.getUser);
 
 /*
 @route POST api/user/add
@@ -25,7 +31,9 @@ router.route("/:id").get(userController.getUser);
 @access private
 */
 
-router.route("/add").post(userController.addUser);
+router
+  .route("/add")
+  .post(verifyLevels(levelsList.admin), userController.addUser);
 
 /*
 @route PUT api/user/phone
@@ -33,7 +41,12 @@ router.route("/add").post(userController.addUser);
 @access private
 */
 
-router.route("/phone").put(userController.updatePhone);
+router
+  .route("/phone")
+  .put(
+    verifyLevels(levelsList.admin, levelsList.store),
+    userController.updatePhone
+  );
 
 /*
 @route PUT api/user/password
@@ -41,6 +54,11 @@ router.route("/phone").put(userController.updatePhone);
 @access private
 */
 
-router.route("/password").put(userController.updatePassword);
+router
+  .route("/password")
+  .put(
+    verifyLevels(levelsList.admin, levelsList.store),
+    userController.updatePassword
+  );
 
 module.exports = router;
