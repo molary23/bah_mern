@@ -2,18 +2,18 @@
 const sequelize = require("../config/dbCon"),
   User = require("../models/User"),
   Verify = require("../models/Verify"),
-  Refresh = require("../models/Refresh");
+  RefreshToken = require("../models/RefreshToken");
 
 // Define Relationsship between tables
 
-User.hasMany(Refresh, {
+User.hasMany(RefreshToken, {
   onDelete: "RESTRICT",
   hooks: true,
   foreignKey: {
     allowNull: false,
   },
 });
-Refresh.belongsTo(User);
+RefreshToken.belongsTo(User);
 
 User.hasOne(Verify, {
   onDelete: "RESTRICT",

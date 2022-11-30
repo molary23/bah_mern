@@ -1,6 +1,6 @@
 "use strict";
 
-const Refresh = require("../../models/Refresh");
+const RefreshToken = require("../../models/RefreshToken");
 
 const handleLogOut = async (req, res) => {
   const cookies = req.cookies;
@@ -8,7 +8,7 @@ const handleLogOut = async (req, res) => {
 
   const refreshToken = cookies.jwt;
 
-  const checkToken = await Refresh.findOne({
+  const checkToken = await RefreshToken.findOne({
     where: {
       token: refreshToken,
     },
@@ -19,7 +19,7 @@ const handleLogOut = async (req, res) => {
     return res.sendStatus(204);
   }
   // Delete Token from DB
-  const deleteToken = await Refresh.destroy({
+  const deleteToken = await RefreshToken.destroy({
     where: {
       token: refreshToken,
     },

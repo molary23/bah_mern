@@ -1,7 +1,7 @@
 "use strict";
 
 const jwt = require("jsonwebtoken"),
-  Refresh = require("../../models/Refresh"),
+  RefreshToken = require("../../models/RefreshToken"),
   User = require("../../models/User");
 
 const handleRefreshToken = async (req, res) => {
@@ -9,7 +9,12 @@ const handleRefreshToken = async (req, res) => {
 
   if (!cookies?.jwt) return res.sendStatus(401);
   const refreshToken = cookies.jwt;
-  const checkToken = await Refresh.findOne({
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    sameSite: "None",
+    secure: process.env.NODE_ENV !== "production",
+  });
+  const checkToken = await RefreshToken.findOne({
     where: { token: refreshToken },
     attributes: ["token"],
     include: [
@@ -21,21 +26,62 @@ const handleRefreshToken = async (req, res) => {
     ],
   });
 
-  if (!checkToken) return res.sendStatus(403);
-  jwt.verify(
-    refreshToken,
-    process.env.REFRESH_TOKEN_SECRET_KEY,
-    (err, decoded) => {
-      if (err || checkToken.User.username !== decoded.userInfo.username)
+  if (!checkToken) {
+    // Reuse of Refresh token
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET_KEY,
+      async (err, decoded) => {
+        if (err) return res.sendStatus(403);
+        const hackedUser = await User.findOne({
+          where: { username: decoded.username },
+          attributes: ["id"],
+        });
+
+        await RefreshToken.destroy({
+          where: { UserId: hackedUser.id },
+        });
+
         return res.sendStatus(403);
-      const accessToken = jwt.sign(
-        { username: decoded.userInfo.username, level: checkToken.User.level },
-        process.env.ACCESS_TOKEN_SECRET_KEY,
-        { expiresIn: "3m" }
-      );
-      res.json({ accessToken });
-    }
-  );
+      }
+    );
+  } else {
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET_KEY,
+      async (err, decoded) => {
+        if (err) {
+          const deleteToken = await RefreshToken.destroy({
+            where: {
+              token: refreshToken,
+            },
+          });
+        }
+
+        if (err || checkToken.User.username !== decoded.username)
+          return res.sendStatus(403);
+        const accessToken = jwt.sign(
+          { username: decoded.username, level: checkToken.User.level },
+          process.env.ACCESS_TOKEN_SECRET_KEY,
+          { expiresIn: "3m" }
+        );
+        const newRefreshToken = jwt.sign(
+          { username: checkToken.User.username },
+          process.env.REFRESH_TOKEN_SECRET_KEY,
+          { expiresIn: "1d" }
+        );
+
+        res.cookie("jwt", newRefreshToken, {
+          httpOnly: true,
+          sameSite: "none",
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 86400000,
+        });
+
+        res.json({ accessToken });
+      }
+    );
+  }
 };
 
 module.exports = { handleRefreshToken };

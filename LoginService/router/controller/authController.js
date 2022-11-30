@@ -1,6 +1,6 @@
 "use strict";
 
-const RefreshToken = require("../../models/Refresh");
+const RefreshToken = require("../../models/RefreshToken");
 const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
   isEmpty = require("../validator/isEmpty"),
@@ -9,7 +9,8 @@ const User = require("../../models/User"),
 const error = {};
 
 const handleLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const cookies = req.cookies,
+    { username, password } = req.body;
 
   if (isEmpty(username)) {
     error.username = "Username is required";
@@ -42,19 +43,60 @@ const handleLogin = async (req, res) => {
     { expiresIn: "3m" }
   );
 
-  const refreshToken = jwt.sign(
-    { userInfo: { username: username } },
+  const neRefreshToken = jwt.sign(
+    { username: username },
     process.env.REFRESH_TOKEN_SECRET_KEY,
     { expiresIn: "1d" }
   );
 
+  if (cookies?.jwt) {
+    const refreshToken = cookies.jwt;
+    const foundToken = await RefreshToken.findOne({
+      where: { token: refreshToken },
+    });
+    if (!foundToken) {
+      // Delete all refresh token related to user
+      jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET_KEY,
+        async (err, decoded) => {
+          if (err) return res.sendStatus(403);
+          const hackedUser = await User.findOne({
+            where: { username: decoded.username },
+            attributes: ["id"],
+          });
+
+          await RefreshToken.destroy({
+            where: { UserId: hackedUser.id },
+          });
+
+          return res.sendStatus(403);
+        }
+      );
+      res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: process.env.NODE_ENV === "production",
+      });
+    } else {
+      await RefreshToken.destroy({
+        where: { token: refreshToken },
+      });
+      res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: process.env.NODE_ENV === "production",
+      });
+    }
+  }
+
   const refresh = await RefreshToken.create({
     UserId: user.id,
-    token: refreshToken,
+    token: neRefreshToken,
   });
 
   if (refresh) {
-    res.cookie("jwt", refreshToken, {
+    res.cookie("jwt", neRefreshToken, {
       httpOnly: true,
       sameSite: "none",
       secure: process.env.NODE_ENV === "production",
