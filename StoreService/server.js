@@ -3,10 +3,8 @@
 const express = require("express"),
   cors = require("cors"),
   cookieParser = require("cookie-parser"),
-  corsOptions = require("./util/corsOptions"),
-  verifyJWT = require("./router/middleware/verifyJWT"),
-  credentials = require("./router/middleware/credentials");
-require("dotenv").config();
+  corsOptions = require("../general/corsOptions"),
+  credentials = require("../general/credentials");
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -19,7 +17,7 @@ app.use(cookieParser());
 require("./util/DBRelationships");
 
 // Import Apis
-
+/*
 const auth = require("./router/api/auth"),
   user = require("./router/api/user"),
   refresh = require("./router/api/refresh"),
@@ -32,8 +30,8 @@ app.use("/api/refresh", refresh);
 app.use("/api/logout", logout);
 app.use(verifyJWT);
 // Apis that require JWT Authentication
-app.use("/api/user", user);
+app.use("/api/user", user);*/
 
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 6001;
 
 app.listen(port, () => console.log("Server running on port : ", port));
