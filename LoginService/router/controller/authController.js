@@ -3,7 +3,7 @@
 const RefreshToken = require("../../models/RefreshToken");
 const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
-  isEmpty = require("../validator/isEmpty"),
+  isEmpty = require("../../../general/validator/isEmpty"),
   jwt = require("jsonwebtoken");
 
 const error = {};
@@ -38,12 +38,12 @@ const handleLogin = async (req, res) => {
   }
 
   const accessToken = jwt.sign(
-    { userInfo: { username: username, level: user.level } },
+    { userInfo: { username: username, level: user.level, id: user.id } },
     process.env.ACCESS_TOKEN_SECRET_KEY,
     { expiresIn: "3m" }
   );
 
-  const neRefreshToken = jwt.sign(
+  const newRefreshToken = jwt.sign(
     { username: username },
     process.env.REFRESH_TOKEN_SECRET_KEY,
     { expiresIn: "1d" }
@@ -92,11 +92,11 @@ const handleLogin = async (req, res) => {
 
   const refresh = await RefreshToken.create({
     UserId: user.id,
-    token: neRefreshToken,
+    token: newRefreshToken,
   });
 
   if (refresh) {
-    res.cookie("jwt", neRefreshToken, {
+    res.cookie("jwt", newRefreshToken, {
       httpOnly: true,
       sameSite: "none",
       secure: process.env.NODE_ENV === "production",

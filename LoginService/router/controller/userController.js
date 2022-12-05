@@ -2,8 +2,8 @@
 
 const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
-  isEmpty = require("../validator/isEmpty"),
-  validateAddUserInput = require("../validator/addUser");
+  isEmpty = require("../../../general/validator/isEmpty"),
+  validateAddUserInput = require("../../util/validator/addUser");
 
 const error = {};
 
@@ -52,7 +52,7 @@ const addUser = async (req, res) => {
     const user = await User.create(newUser);
     res.status(200).json(user);
   } catch (err) {
-    error.addUser = "Error creating user";
+    error.add = "Error creating user";
     res.status(400).json(error.add);
   }
 };

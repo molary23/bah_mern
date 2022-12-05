@@ -16,7 +16,7 @@ const handleRefreshToken = async (req, res) => {
   });
   const checkToken = await RefreshToken.findOne({
     where: { token: refreshToken },
-    attributes: ["token"],
+    attributes: ["token", "UserId"],
     include: [
       {
         model: User,
@@ -61,7 +61,13 @@ const handleRefreshToken = async (req, res) => {
         if (err || checkToken.User.username !== decoded.username)
           return res.sendStatus(403);
         const accessToken = jwt.sign(
-          { username: decoded.username, level: checkToken.User.level },
+          {
+            userInfo: {
+              username: decoded.username,
+              level: checkToken.User.level,
+              id: checkToken.UserId,
+            },
+          },
           process.env.ACCESS_TOKEN_SECRET_KEY,
           { expiresIn: "3m" }
         );
@@ -71,12 +77,19 @@ const handleRefreshToken = async (req, res) => {
           { expiresIn: "1d" }
         );
 
-        res.cookie("jwt", newRefreshToken, {
-          httpOnly: true,
-          sameSite: "none",
-          secure: process.env.NODE_ENV === "production",
-          maxAge: 86400000,
+        const refresh = await RefreshToken.create({
+          UserId: checkToken.UserId,
+          token: newRefreshToken,
         });
+
+        if (refresh) {
+          res.cookie("jwt", newRefreshToken, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 86400000,
+          });
+        }
 
         res.json({ accessToken });
       }
