@@ -3,9 +3,9 @@
 const { DataTypes, Model } = require("sequelize"),
   sequelize = require("../config/dbCon");
 
-class Product extends Model {}
+class Trash extends Model {}
 
-Product.init(
+Trash.init(
   {
     // Model attributes are defined here
     id: {
@@ -14,19 +14,13 @@ Product.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    product_name: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-      unique: true,
-    },
-    product_quantity: {
+    itemId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
     },
-    status: {
-      type: DataTypes.ENUM("a", "i"), // a: active, i: inactive
-      defaultValue: "a",
+    itemTable: {
+      type: DataTypes.ENUM("c", "p"), // c: category, p: product
+      allowNull: false,
     },
   },
   {
@@ -36,11 +30,11 @@ Product.init(
     // I want createdAt
     createdAt: true,
 
-    // I dont want updatedAt
-    updatedAt: true,
+    // I don't want updatedAt
+    updatedAt: false,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Product", // We need to choose the model name
+    modelName: "Trash", // We need to choose the model name
   }
 );
-module.exports = Product;
+module.exports = Trash;

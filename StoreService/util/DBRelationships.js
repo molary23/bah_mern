@@ -25,7 +25,7 @@ User.hasMany(Product, {
 Product.belongsTo(User);
 
 Category.hasMany(Product, {
-  onDelete: "RESTRICT",
+  onDelete: "CASCADE",
   hooks: true,
   foreignKey: {
     allowNull: false,

@@ -69,7 +69,7 @@ const handleRefreshToken = async (req, res) => {
             },
           },
           process.env.ACCESS_TOKEN_SECRET_KEY,
-          { expiresIn: "3m" }
+          { expiresIn: "30m" }
         );
         const newRefreshToken = jwt.sign(
           { username: checkToken.User.username },
