@@ -8,7 +8,7 @@ class RefreshToken extends Model {}
 RefreshToken.init(
   {
     // Model attributes are defined here
-    tokenid: {
+    tokenId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       autoIncrement: true,

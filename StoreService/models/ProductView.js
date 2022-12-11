@@ -3,43 +3,53 @@
 const { DataTypes, Model } = require("sequelize"),
   sequelize = require("../config/dbCon");
 
-class Product extends Model {}
+class ProductView extends Model {}
 
-Product.init(
+ProductView.init(
   {
     // Model attributes are defined here
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
+    },
+    categoryId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+    },
+    categoryName: {
+      type: DataTypes.STRING(50),
     },
     productName: {
       type: DataTypes.STRING(50),
-      allowNull: false,
     },
     productModel: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+    },
+    productImage: {
+      type: DataTypes.STRING(50),
     },
     productQuantity: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
+    },
+    userId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+    },
+    username: {
+      type: DataTypes.STRING(50),
     },
   },
   {
     // don't forget to enable timestamps!
-    timestamps: true,
+    timestamps: false,
 
     // I want createdAt
-    createdAt: true,
+    createdAt: false,
 
     // I dont want updatedAt
-    updatedAt: true,
+    updatedAt: false,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Product", // We need to choose the model name
+    modelName: "ProductView", // We need to choose the model name
   }
 );
-module.exports = Product;
+ProductView.sync = () => Promise.resolve();
+module.exports = ProductView;

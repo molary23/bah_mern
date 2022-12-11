@@ -2,7 +2,8 @@
 const sequelize = require("../config/dbCon"),
   User = require("../models/User"),
   Category = require("../models/Category"),
-  Product = require("../models/Product");
+  Product = require("../models/Product"),
+  Image = require("../models/Image");
 
 // Define Relationsship between tables
 
@@ -32,6 +33,15 @@ Category.hasMany(Product, {
   },
 });
 Product.belongsTo(Category);
+
+Product.hasMany(Image, {
+  onDelete: "CASCADE",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Image.belongsTo(Product);
 
 /*
 User.hasOne(Profile, {

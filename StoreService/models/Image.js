@@ -3,9 +3,9 @@
 const { DataTypes, Model } = require("sequelize"),
   sequelize = require("../config/dbCon");
 
-class Product extends Model {}
+class Image extends Model {}
 
-Product.init(
+Image.init(
   {
     // Model attributes are defined here
     id: {
@@ -14,18 +14,9 @@ Product.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    productName: {
+    imageName: {
       type: DataTypes.STRING(50),
       allowNull: false,
-    },
-    productModel: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    productQuantity: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
     },
   },
   {
@@ -33,13 +24,13 @@ Product.init(
     timestamps: true,
 
     // I want createdAt
-    createdAt: true,
+    createdAt: false,
 
     // I dont want updatedAt
     updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Product", // We need to choose the model name
+    modelName: "Image", // We need to choose the model name
   }
 );
-module.exports = Product;
+module.exports = Image;

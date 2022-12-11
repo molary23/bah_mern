@@ -11,19 +11,19 @@ const error = {};
 const addCategory = async (req, res) => {
   const newCategory = {};
 
-  if (req.body.categoryName) newCategory.category_name = req.body.categoryName;
+  if (req.body.categoryName) newCategory.categoryName = req.body.categoryName;
   newCategory.UserId = req.id;
 
-  if (isEmpty(newCategory.category_name)) {
+  if (isEmpty(newCategory.categoryName)) {
     error.category = "Category Name is required.";
     res.status(400).json(error.category);
   }
 
   try {
     const [category, created] = await Category.findOrCreate({
-      where: { category_name: newCategory.category_name },
+      where: { categoryName: newCategory.categoryName },
       defaults: {
-        category_name: newCategory.category_name,
+        categoryName: newCategory.categoryName,
         UserId: newCategory.UserId,
       },
     });
@@ -52,7 +52,7 @@ const getAllCategory = async (req, res) => {
       for (let i = 0; i < searchArray.length; i++) {
         if (validator.isAlphanumeric(searchArray[i])) {
           newSearchObj = {
-            category_name: { [Op.substring]: searchArray[i] },
+            categoryName: { [Op.substring]: searchArray[i] },
           };
         }
         newSearchArray.push(newSearchObj);
@@ -64,7 +64,7 @@ const getAllCategory = async (req, res) => {
         where = {
           ...where,
           ...{
-            category_name: { [Op.substring]: searchTerms },
+            categoryName: { [Op.substring]: searchTerms },
           },
         };
       }
@@ -74,7 +74,7 @@ const getAllCategory = async (req, res) => {
   try {
     const allCategory = await Category.findAndCountAll({
       where,
-      attributes: ["category_name", "id", "UserId"],
+      attributes: ["categoryName", "id", "UserId"],
     });
     res.status(200).json(allCategory);
   } catch (error) {
@@ -89,7 +89,7 @@ const getCategory = async (req, res) => {
       where: {
         id,
       },
-      attributes: ["category_name", "id", "UserId"],
+      attributes: ["categoryName", "id", "UserId"],
     });
     res.status(200).json(category);
   } catch (error) {

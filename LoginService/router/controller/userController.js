@@ -75,17 +75,18 @@ const getUser = async (req, res) => {
 const addUser = async (req, res) => {
   const newUser = {};
   let password;
-  if (req.body.username) newUser.username = req.body.username;
-  if (req.body.email) newUser.email = req.body.email;
-  if (req.body.phone) newUser.phone = req.body.phone;
-  if (req.body.password) password = req.body.password;
-  if (req.body.level) newUser.level = req.body.level;
 
   const { errors, isValid } = validateAddUserInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
   }
+
+  if (req.body.username) newUser.username = req.body.username;
+  if (req.body.email) newUser.email = req.body.email;
+  if (req.body.phone) newUser.phone = req.body.phone;
+  if (req.body.password) password = req.body.password;
+  if (req.body.level) newUser.level = req.body.level;
 
   const checkUsername = await User.findOne({
     where: { username: newUser.username },
@@ -100,7 +101,7 @@ const addUser = async (req, res) => {
     where: { email: newUser.email },
   });
 
-  if (checkUsername) {
+  if (checkEmail) {
     error.add = "Email address has been used already";
     return res.status(419).json(error);
   }
