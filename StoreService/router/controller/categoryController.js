@@ -104,7 +104,7 @@ const deleteCategory = async (req, res) => {
   try {
     const category = await Category.update(
       {
-        status: "i",
+        status: "d",
       },
       {
         where: {
@@ -125,7 +125,7 @@ const deleteCategory = async (req, res) => {
       }
     }
   } catch (error) {
-    error.message = "Error deleting Category";
+    error.delete = "Error deleting Category";
     res.status(400).json(error.message);
   }
 };

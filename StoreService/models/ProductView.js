@@ -12,30 +12,16 @@ ProductView.init(
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
     },
-    categoryId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
-    categoryName: {
-      type: DataTypes.STRING(50),
-    },
-    productName: {
-      type: DataTypes.STRING(50),
-    },
-    productModel: {
-      type: DataTypes.STRING(50),
-    },
-    productImage: {
-      type: DataTypes.STRING(50),
-    },
-    productQuantity: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
-    userId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-    },
-    username: {
-      type: DataTypes.STRING(50),
-    },
+    categoryId: DataTypes.INTEGER.UNSIGNED,
+    categoryName: DataTypes.STRING,
+    productName: DataTypes.STRING,
+    productModel: DataTypes.STRING,
+    productImage: DataTypes.STRING,
+    productQuantity: DataTypes.INTEGER.UNSIGNED,
+    productDescription: DataTypes.TEXT,
+    productStatus: DataTypes.STRING,
+    userId: DataTypes.INTEGER.UNSIGNED,
+    username: DataTypes.STRING,
   },
   {
     // don't forget to enable timestamps!

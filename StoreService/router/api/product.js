@@ -9,7 +9,7 @@ const express = require("express"),
 /*
 @route POST api/product/add
 @desc Add new product
-@access private
+@access private - All Admins
 */
 
 router
@@ -22,7 +22,7 @@ router
 /*
 @route GET api/product/all
 @desc view all products
-@access private
+@access private - All Admins
 */
 
 router
@@ -35,7 +35,7 @@ router
 /*
 @route GET api/product/:id
 @desc view a product
-@access private
+@access private - All Admins
 */
 
 router
@@ -43,6 +43,42 @@ router
   .get(
     verifyLevels(levelList.admin, levelList.store),
     productController.getProduct
+  );
+
+/*
+@route DELETE api/product/:id
+@desc view a product
+@access private - Only Main Admin
+*/
+
+router
+  .route("/:id")
+  .delete(verifyLevels(levelList.admin), productController.deleteProduct);
+
+/*
+@route PUT api/product/:id
+@desc Edit a product
+@access private - All Admin
+*/
+
+router
+  .route("/update")
+  .put(
+    verifyLevels(levelList.admin, levelList.store),
+    productController.updateProduct
+  );
+
+/*
+@route PUT api/product/edit-image
+@desc Edit a product Image
+@access private - All Admin
+*/
+
+router
+  .route("/edit-image")
+  .put(
+    verifyLevels(levelList.admin, levelList.store),
+    productController.updateImage
   );
 
 module.exports = router;

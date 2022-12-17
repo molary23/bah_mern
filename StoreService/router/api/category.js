@@ -9,7 +9,7 @@ const express = require("express"),
 /*
 @route POST api/category/add
 @desc Add new category
-@access private
+@access private - All Admins
 */
 
 router
@@ -22,7 +22,7 @@ router
 /*
 @route GET api/category/all
 @desc View All Category
-@access private
+@access private - All Admins
 */
 
 router
@@ -35,7 +35,7 @@ router
 /*
 @route GET api/category/:id
 @desc View a Category
-@access private
+@access private - All Admins
 */
 
 router
@@ -48,7 +48,7 @@ router
 /*
 @route DELETE api/category/:id
 @desc Delete a Category
-@access private
+@access private - Only Main Admin
 */
 
 router

@@ -12,7 +12,9 @@ const Product = require("../../models/Product"),
   isEmpty = require("../../../general/validator/isEmpty"),
   validateImage = require("../../util/validator/validateImage");
 
-const error = {};
+const error = {},
+  uploadDirectory = "/../../../uploads/image/",
+  dirPath = __dirname + uploadDirectory;
 
 const addProduct = async (req, res) => {
   const { errors, isValid } = validateAddProductInput(req.body);
@@ -21,8 +23,6 @@ const addProduct = async (req, res) => {
   }
 
   const newProduct = {},
-    uploadDirectory = "/../../../uploads/image/",
-    dirPath = __dirname + uploadDirectory,
     files = req.files,
     validate = validateImage(files);
 
@@ -40,11 +40,13 @@ const addProduct = async (req, res) => {
   if (req.body.productModel) newProduct.productModel = req.body.productModel;
   if (req.body.productQuantity)
     newProduct.productQuantity = req.body.productQuantity;
+  if (req.body.productDescriptionription)
+    newProduct.productDescription = req.body.productDescriptionription;
   if (req.body.CategoryId) newProduct.CategoryId = req.body.CategoryId;
   newProduct.UserId = req.id;
   const fileExtension = path.extname(files.file.name),
     newImageName = `${newProduct.productName}-${newProduct.productModel}${fileExtension}`,
-    filePath = path.join(__dirname, uploadDirectory, newImageName);
+    filePath = path.join(dirPath, newImageName);
   try {
     const [product, created] = await Product.findOrCreate({
       where: {
@@ -55,6 +57,7 @@ const addProduct = async (req, res) => {
         productName: newProduct.productName,
         productModel: newProduct.productModel,
         productQuantity: newProduct.productQuantity,
+        productDescription: newProduct.productDescription,
         CategoryId: newProduct.CategoryId,
         UserId: newProduct.UserId,
       },
@@ -101,6 +104,7 @@ const getAllProducts = async (req, res) => {
               { categoryName: { [Op.substring]: searchArray[i] } },
               { productName: { [Op.substring]: searchArray[i] } },
               { productModel: { [Op.substring]: searchArray[i] } },
+              { productDescription: { [Op.substring]: searchArray[i] } },
             ],
           };
         }
@@ -118,6 +122,7 @@ const getAllProducts = async (req, res) => {
               { categoryName: { [Op.substring]: searchTerms } },
               { productName: { [Op.substring]: searchTerms } },
               { productModel: { [Op.substring]: searchTerms } },
+              { productDescription: { [Op.substring]: searchTerms } },
             ],
           },
         };
@@ -132,7 +137,7 @@ const getAllProducts = async (req, res) => {
     res.status(200).json(allProducts);
   } catch (err) {
     error.find = "No Products found";
-    res.status(400).json(error);
+    res.status(400).json(`${error}, ${err}`);
   }
 };
 
@@ -151,4 +156,143 @@ const getProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, getAllProducts, getProduct };
+const deleteProduct = async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    const product = await Product.update(
+      {
+        productStatus: "d",
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    if (product) {
+      const item = {
+        itemId: id,
+        itemTable: "p",
+      };
+
+      const trashed = Trash.create(item);
+      if (trashed) {
+        res.sendStatus(202);
+      }
+    }
+  } catch (error) {
+    error.delete = "Error deleting Product";
+    res.status(400).json(error.message);
+  }
+};
+
+const updateProduct = async (req, res) => {
+  const newProduct = {};
+  let id;
+  if (req.body.productId) {
+    id = req.body.productId;
+  } else {
+    error.update = "Product ID not specified";
+    return res.status(400).json(error.update);
+  }
+
+  const { errors, isValid } = validateAddProductInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  if (req.body.CategoryId) newProduct.CategoryId = req.body.CategoryId;
+
+  if (req.body.productName) newProduct.productName = req.body.productName;
+  if (req.body.productModel) newProduct.productModel = req.body.productModel;
+  if (req.body.productQuantity)
+    newProduct.productQuantity = req.body.productQuantity;
+  if (req.body.productDescription)
+    newProduct.productDescription = req.body.productDescription;
+
+  try {
+    const checkProduct = await Product.findOne({
+      where: {
+        [Op.and]: {
+          productName: newProduct.productName,
+          productModel: newProduct.productModel,
+          CategoryId: newProduct.CategoryId,
+        },
+      },
+    });
+
+    if (checkProduct) {
+      error.duplicate =
+        "File with the same name, model and category already exists";
+      return res.status(419).json(error);
+    }
+    const updateProduct = await Product.update(newProduct, {
+      where: {
+        id,
+      },
+    });
+    if (updateProduct) {
+      return res.status(204).json(updateProduct);
+    }
+  } catch (err) {
+    error.update = "Error updating product";
+    return res.status(400).json(`${error}, ${err}`);
+  }
+};
+
+const updateImage = async (req, res) => {
+  const files = req.files,
+    validate = validateImage(files);
+
+  if (!validate.isValid) {
+    return res.status(400).json(validate.errors);
+  }
+  const imageInfo = {};
+
+  if (req.body.imageName) imageInfo.imageName = req.body.imageName;
+  if (req.body.id) imageInfo.ProductId = req.body.id;
+
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdir(dirPath, (err) => {
+      if (err) return res.sendStatus(500);
+    });
+  }
+
+  const filePath = path.join(dirPath, imageInfo.imageName);
+
+  try {
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+    const image = await Image.update(
+      { imageName: imageInfo.imageName },
+      {
+        where: {
+          ProductId: imageInfo.ProductId,
+        },
+      }
+    );
+
+    if (image) {
+      files.file.mv(filePath, (err) => {
+        error.upload = "Error uploading";
+        if (err) return res.status(500).json(error.upload);
+      });
+      return res.sendStatus(200);
+    }
+  } catch (err) {
+    error.find = "Unable to update Image";
+    res.status(400).json(`${error} , ${err}`);
+  }
+};
+
+module.exports = {
+  addProduct,
+  getAllProducts,
+  getProduct,
+  deleteProduct,
+  updateProduct,
+  updateImage,
+};

@@ -88,25 +88,25 @@ const addUser = async (req, res) => {
   if (req.body.password) password = req.body.password;
   if (req.body.level) newUser.level = req.body.level;
 
-  const checkUsername = await User.findOne({
-    where: { username: newUser.username },
-  });
-
-  if (checkUsername) {
-    error.add = "Username has been used already";
-    return res.status(419).json(error);
-  }
-
-  const checkEmail = await User.findOne({
-    where: { email: newUser.email },
-  });
-
-  if (checkEmail) {
-    error.add = "Email address has been used already";
-    return res.status(419).json(error);
-  }
-
   try {
+    const checkUsername = await User.findOne({
+      where: { username: newUser.username },
+    });
+
+    if (checkUsername) {
+      error.add = "Username has been used already";
+      return res.status(419).json(error);
+    }
+
+    const checkEmail = await User.findOne({
+      where: { email: newUser.email },
+    });
+
+    if (checkEmail) {
+      error.add = "Email address has been used already";
+      return res.status(419).json(error);
+    }
+
     newUser.password = await bcrypt.hash(password, 10);
     const user = await User.create(newUser);
     res.status(200).json(user);

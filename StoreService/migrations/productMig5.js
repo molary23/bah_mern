@@ -6,7 +6,7 @@ const view_name = "ProductViews";
 
 const original_query = [
   "SELECT ",
-  "Products.id, Products.CategoryId AS categoryId, Categories.categoryName, Products.productName, Products.productModel, Products.productQuantity, ",
+  "Products.id, Products.CategoryId AS categoryId, Categories.categoryName, Products.productName, Products.productModel, Products.productQuantity, Products.productDescription, Products.productStatus, ",
   "Products.UserId AS userId, Users.username AS username, Images.imageName AS productImage ",
   "FROM Products ",
   "JOIN Users ",
@@ -19,7 +19,7 @@ const original_query = [
 
 const new_query = [
   "SELECT ",
-  "Products.id, Products.CategoryId AS categoryId, Categories.categoryName, Products.productName, Products.productModel, Products.productQuantity, ",
+  "Products.id, Products.CategoryId AS categoryId, Categories.categoryName, Products.productName, Products.productModel, Products.productQuantity, Products.productDescription,Products.productStatus, ",
   "Products.UserId AS userId, Users.username AS username, Images.imageName AS productImage ",
   "FROM Products ",
   "JOIN Users ",

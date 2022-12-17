@@ -27,6 +27,11 @@ Product.init(
       allowNull: false,
       defaultValue: 0,
     },
+    productStatus: {
+      type: DataTypes.ENUM("a", "d"), // a: active, d: deleted
+      defaultValue: "a",
+    },
+    productDescription: DataTypes.TEXT,
   },
   {
     // don't forget to enable timestamps!

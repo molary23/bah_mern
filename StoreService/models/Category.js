@@ -20,7 +20,7 @@ Category.init(
       unique: true,
     },
     status: {
-      type: DataTypes.ENUM("a", "i"), // a: active, i: inactive
+      type: DataTypes.ENUM("a", "d"), // a: active, d: deleted
       defaultValue: "a",
     },
   },
