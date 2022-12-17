@@ -81,7 +81,7 @@ const addProduct = async (req, res) => {
       error.add = "Product Name and Model already exists";
       return res.status(419).json(error.add);
     }
-  } catch (error) {
+  } catch (err) {
     error.add = "Error adding Product";
     res.status(400).json(`${error.add}, ${error}`);
   }
@@ -182,9 +182,9 @@ const deleteProduct = async (req, res) => {
         res.sendStatus(202);
       }
     }
-  } catch (error) {
+  } catch (err) {
     error.delete = "Error deleting Product";
-    res.status(400).json(error.message);
+    res.status(400).json(error);
   }
 };
 

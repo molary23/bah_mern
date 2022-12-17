@@ -1,6 +1,7 @@
 "use strict";
 
 const User = require("../../models/User"),
+  Trash = require("../../models/Trash"),
   { Op } = require("sequelize"),
   bcrypt = require("bcrypt"),
   isEmpty = require("../../../general/validator/isEmpty"),
@@ -165,4 +166,43 @@ const updatePassword = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUser, addUser, updatePhone, updatePassword };
+const deleteUser = async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    const user = await User.update(
+      {
+        status: "d",
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    if (user) {
+      const item = {
+        itemId: id,
+        itemTable: "u",
+      };
+
+      const trashed = Trash.create(item);
+      if (trashed) {
+        res.sendStatus(202);
+      }
+    }
+  } catch (error) {
+    error.delete = "Error deleting User";
+    res.status(400).json(error);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getUser,
+  addUser,
+  updatePhone,
+  updatePassword,
+  deleteUser,
+};

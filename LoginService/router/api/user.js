@@ -61,4 +61,14 @@ router
     userController.updatePassword
   );
 
+/*
+@route DELETE api/user/password
+@desc Delete user 
+@access private
+*/
+
+router
+  .route("/:id")
+  .delete(verifyLevels(levelsList.admin), userController.deleteUser);
+
 module.exports = router;

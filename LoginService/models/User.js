@@ -37,8 +37,8 @@ User.init(
       defaultValue: 1, // 1: admin level 1, 2: admin level 2
     },
     status: {
-      type: DataTypes.ENUM("a", "i"), // a: active, i: inactive
-      defaultValue: "a",
+      type: DataTypes.ENUM("a", "d"), // a: active, d: deleted
+      defaultValue: "d",
     },
   },
   {

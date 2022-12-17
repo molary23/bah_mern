@@ -34,7 +34,7 @@ const addCategory = async (req, res) => {
       error.add = "Category already exists";
       return res.status(419).json(error.add);
     }
-  } catch (error) {
+  } catch (err) {
     error.add = "Error adding Category";
     res.status(400).json(`${error.add}, ${error}`);
   }
@@ -77,7 +77,7 @@ const getAllCategory = async (req, res) => {
       attributes: ["categoryName", "id", "UserId"],
     });
     res.status(200).json(allCategory);
-  } catch (error) {
+  } catch (err) {
     res.sendStatus(400);
   }
 };
@@ -92,7 +92,7 @@ const getCategory = async (req, res) => {
       attributes: ["categoryName", "id", "UserId"],
     });
     res.status(200).json(category);
-  } catch (error) {
+  } catch (err) {
     error.user = "No category found";
     res.status(400).json(error);
   }
@@ -124,9 +124,9 @@ const deleteCategory = async (req, res) => {
         res.sendStatus(202);
       }
     }
-  } catch (error) {
+  } catch (err) {
     error.delete = "Error deleting Category";
-    res.status(400).json(error.message);
+    res.status(400).json(error);
   }
 };
 
