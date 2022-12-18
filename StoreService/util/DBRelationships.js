@@ -1,5 +1,7 @@
+"use strict";
+
 // Bring in Models
-const sequelize = require("../config/dbCon"),
+const sequelize = require("../config/db"),
   User = require("../models/User"),
   Category = require("../models/Category"),
   Product = require("../models/Product"),

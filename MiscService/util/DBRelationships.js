@@ -1,29 +1,44 @@
-"use strict";
 // Bring in Models
 const sequelize = require("../config/db"),
-  User = require("../models/User"),
-  Verify = require("../models/Verify"),
-  RefreshToken = require("../models/RefreshToken");
+  AuditLog = require("../models/AuditLog");
 
 // Define Relationsship between tables
-
-User.hasMany(RefreshToken, {
+/*
+User.hasMany(Category, {
   onDelete: "RESTRICT",
   hooks: true,
   foreignKey: {
     allowNull: false,
   },
 });
-RefreshToken.belongsTo(User);
+Category.belongsTo(User);
 
-User.hasOne(Verify, {
+User.hasMany(Product, {
   onDelete: "RESTRICT",
   hooks: true,
   foreignKey: {
     allowNull: false,
   },
 });
-Verify.belongsTo(User);
+Product.belongsTo(User);
+
+Category.hasMany(Product, {
+  onDelete: "CASCADE",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Product.belongsTo(Category);
+
+Product.hasMany(Image, {
+  onDelete: "CASCADE",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Image.belongsTo(Product);
 
 /*
 User.hasOne(Profile, {

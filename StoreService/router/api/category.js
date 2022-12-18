@@ -55,4 +55,17 @@ router
   .route("/:id")
   .delete(verifyLevels(levelsList.admin), categoryController.deleteCategory);
 
+/*
+@route PUT api/category/:id
+@desc Edit a Category
+@access private - All Admin
+*/
+
+router
+  .route("/update")
+  .put(
+    verifyLevels(levelsList.admin, levelsList.store),
+    categoryController.updateCategory
+  );
+
 module.exports = router;

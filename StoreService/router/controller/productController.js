@@ -10,7 +10,8 @@ const Product = require("../../models/Product"),
   validator = require("validator"),
   validateAddProductInput = require("../../util/validator/addProduct"),
   isEmpty = require("../../../general/validator/isEmpty"),
-  validateImage = require("../../util/validator/validateImage");
+  validateImage = require("../../util/validator/validateImage"),
+  act = require("../../../MiscService/act");
 
 const error = {},
   uploadDirectory = "/../../../uploads/image/",
@@ -66,6 +67,7 @@ const addProduct = async (req, res) => {
     });
 
     if (created) {
+      await act("p", "c", product.id, req.id);
       const image = Image.create({
         imageName: newImageName,
         ProductId: product.id,
@@ -172,6 +174,7 @@ const deleteProduct = async (req, res) => {
     );
 
     if (product) {
+      await act("p", "d", id, req.id);
       const item = {
         itemId: id,
         itemTable: "p",
@@ -189,7 +192,7 @@ const deleteProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  const newProduct = {};
+  const editProduct = {};
   let id;
   if (req.body.productId) {
     id = req.body.productId;
@@ -203,37 +206,38 @@ const updateProduct = async (req, res) => {
     return res.status(400).json(errors);
   }
 
-  if (req.body.CategoryId) newProduct.CategoryId = req.body.CategoryId;
+  if (req.body.CategoryId) editProduct.CategoryId = req.body.CategoryId;
 
-  if (req.body.productName) newProduct.productName = req.body.productName;
-  if (req.body.productModel) newProduct.productModel = req.body.productModel;
+  if (req.body.productName) editProduct.productName = req.body.productName;
+  if (req.body.productModel) editProduct.productModel = req.body.productModel;
   if (req.body.productQuantity)
-    newProduct.productQuantity = req.body.productQuantity;
+    editProduct.productQuantity = req.body.productQuantity;
   if (req.body.productDescription)
-    newProduct.productDescription = req.body.productDescription;
+    editProduct.productDescription = req.body.productDescription;
 
   try {
     const checkProduct = await Product.findOne({
       where: {
         [Op.and]: {
-          productName: newProduct.productName,
-          productModel: newProduct.productModel,
-          CategoryId: newProduct.CategoryId,
+          productName: editProduct.productName,
+          productModel: editProduct.productModel,
+          CategoryId: editProduct.CategoryId,
         },
       },
     });
 
     if (checkProduct) {
       error.duplicate =
-        "File with the same name, model and category already exists";
+        "Product with the same name, model and category already exists";
       return res.status(419).json(error);
     }
-    const updateProduct = await Product.update(newProduct, {
+    const updateProduct = await Product.update(editProduct, {
       where: {
         id,
       },
     });
     if (updateProduct) {
+      await act("p", "u", id, req.id);
       return res.status(204).json(updateProduct);
     }
   } catch (err) {
@@ -276,6 +280,7 @@ const updateImage = async (req, res) => {
     );
 
     if (image) {
+      await act("p", "e", imageInfo.ProductId, req.id);
       files.file.mv(filePath, (err) => {
         error.upload = "Error uploading";
         if (err) return res.status(500).json(error.upload);

@@ -3,42 +3,32 @@
 const { DataTypes, Model } = require("sequelize"),
   sequelize = require("../config/db");
 
-class User extends Model {}
+class AuditLog extends Model {}
 
-User.init(
+AuditLog.init(
   {
     // Model attributes are defined here
-    id: {
+    AuditId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    email: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-      unique: true,
-    },
-    username: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-      unique: true,
-    },
-    phone: {
-      type: DataTypes.STRING(15),
+    Table: {
+      type: DataTypes.STRING(1),
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING,
+    Action: {
+      type: DataTypes.STRING(1),
       allowNull: false,
     },
-    level: {
-      type: DataTypes.TINYINT,
-      defaultValue: 1, // 1: admin level 1, 2: admin level 2
+    ItemId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
     },
-    status: {
-      type: DataTypes.ENUM("a", "i"), // a: active, i: inactive
-      defaultValue: "a",
+    UserId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
     },
   },
   {
@@ -46,13 +36,13 @@ User.init(
     timestamps: true,
 
     // I want createdAt
-    createdAt: true,
+    createdAt: false,
 
     // I dont want updatedAt
     updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "User", // We need to choose the model name
+    modelName: "AuditLog", // We need to choose the model name
   }
 );
-module.exports = User;
+module.exports = AuditLog;

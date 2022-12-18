@@ -1,10 +1,12 @@
 "use strict";
 
+const { ifError } = require("assert");
 const Category = require("../../models/Category"),
   Trash = require("../../models/Trash"),
   { Op } = require("sequelize"),
   validator = require("validator"),
-  isEmpty = require("../../../general/validator/isEmpty");
+  isEmpty = require("../../../general/validator/isEmpty"),
+  act = require("../../../MiscService/act");
 
 const error = {};
 
@@ -29,6 +31,7 @@ const addCategory = async (req, res) => {
     });
 
     if (created) {
+      await act("c", "c", category.id, req.id);
       res.status(200).json(category);
     } else {
       error.add = "Category already exists";
@@ -114,6 +117,7 @@ const deleteCategory = async (req, res) => {
     );
 
     if (category) {
+      await act("c", "d", id, req.id);
       const item = {
         itemId: id,
         itemTable: "c",
@@ -130,4 +134,49 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = { addCategory, getAllCategory, getCategory, deleteCategory };
+const updateCategory = async (req, res) => {
+  if (isEmpty(req.body.categoryId)) {
+    error.update = "Category ID not specified";
+    return res.status(400).json(error.update);
+  }
+
+  if (isEmpty(req.body.categoryName)) {
+    error.update = "Category Name not specified";
+    return res.status(400).json(error.update);
+  }
+
+  const { categoryId, categoryName } = req.body;
+
+  try {
+    const checkCategory = await Category.findOne({
+      where: {
+        categoryName,
+      },
+    });
+
+    if (checkCategory) {
+      error.duplicate = "Category with the same name already exists";
+      return res.status(419).json(error);
+    }
+    const updateProduct = await Category.update(categoryName, {
+      where: {
+        id: categoryId,
+      },
+    });
+    if (updateProduct) {
+      await act("c", "u", categoryId, req.id);
+      return res.status(204).json(updateProduct);
+    }
+  } catch (err) {
+    error.update = "Error updating product";
+    return res.status(400).json(`${error}, ${err}`);
+  }
+};
+
+module.exports = {
+  addCategory,
+  getAllCategory,
+  getCategory,
+  deleteCategory,
+  updateCategory,
+};

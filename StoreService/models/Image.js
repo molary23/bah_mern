@@ -1,7 +1,7 @@
 "use strict";
 
 const { DataTypes, Model } = require("sequelize"),
-  sequelize = require("../config/dbCon");
+  sequelize = require("../config/db");
 
 class Image extends Model {}
 

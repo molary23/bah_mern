@@ -6,7 +6,8 @@ const User = require("../../models/User"),
   bcrypt = require("bcrypt"),
   isEmpty = require("../../../general/validator/isEmpty"),
   validator = require("validator"),
-  validateAddUserInput = require("../../util/validator/addUser");
+  validateAddUserInput = require("../../util/validator/addUser"),
+  act = require("../../../MiscService/act");
 
 const error = {};
 
@@ -110,6 +111,7 @@ const addUser = async (req, res) => {
 
     newUser.password = await bcrypt.hash(password, 10);
     const user = await User.create(newUser);
+    await act("u", "c", user.id, req.id);
     res.status(200).json(user);
   } catch (err) {
     error.add = "Error creating user";
@@ -134,6 +136,7 @@ const updatePhone = async (req, res) => {
         },
       }
     );
+    await act("u", "t", id, req.id);
     res.status(200).json(user);
   } catch (err) {
     error.phone = "Error updating phone number";
@@ -159,6 +162,7 @@ const updatePassword = async (req, res) => {
         },
       }
     );
+    await act("u", "s", id, req.id);
     res.status(200).json(user);
   } catch (err) {
     error.password = "Error updating password";
@@ -182,6 +186,7 @@ const deleteUser = async (req, res) => {
     );
 
     if (user) {
+      await act("u", "d", id, req.id);
       const item = {
         itemId: id,
         itemTable: "u",
