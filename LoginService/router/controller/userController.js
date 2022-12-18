@@ -7,7 +7,7 @@ const User = require("../../models/User"),
   isEmpty = require("../../../general/validator/isEmpty"),
   validator = require("validator"),
   validateAddUserInput = require("../../util/validator/addUser"),
-  act = require("../../../MiscService/act");
+  act = require("../../../MiscService/controllers/act");
 
 const error = {};
 

@@ -1,6 +1,10 @@
 // Bring in Models
 const sequelize = require("../config/db"),
-  AuditLog = require("../models/AuditLog");
+  AuditLog = require("../models/AuditLog"),
+  Product = require("../models/Product"),
+  User = require("../models/User"),
+  Image = require("../models/Image"),
+  Category = require("../models/Category");
 
 // Define Relationsship between tables
 /*

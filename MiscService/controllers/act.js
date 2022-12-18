@@ -1,7 +1,7 @@
 "use strict";
 
-const AuditLog = require("./models/AuditLog"),
-  isEmpty = require("../general/validator/isEmpty");
+const AuditLog = require("../models/AuditLog"),
+  isEmpty = require("../../general/validator/isEmpty");
 
 const act = async (Table, Action, ItemId, UserId) => {
   if (isEmpty(Table) || isEmpty(Action) || isEmpty(ItemId) || isEmpty(UserId)) {

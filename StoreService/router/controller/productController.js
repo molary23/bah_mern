@@ -11,7 +11,7 @@ const Product = require("../../models/Product"),
   validateAddProductInput = require("../../util/validator/addProduct"),
   isEmpty = require("../../../general/validator/isEmpty"),
   validateImage = require("../../util/validator/validateImage"),
-  act = require("../../../MiscService/act");
+  act = require("../../../MiscService/controllers/act");
 
 const error = {},
   uploadDirectory = "/../../../uploads/image/",

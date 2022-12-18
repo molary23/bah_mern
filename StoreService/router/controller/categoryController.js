@@ -6,7 +6,7 @@ const Category = require("../../models/Category"),
   { Op } = require("sequelize"),
   validator = require("validator"),
   isEmpty = require("../../../general/validator/isEmpty"),
-  act = require("../../../MiscService/act");
+  act = require("../../../MiscService/controllers/act");
 
 const error = {};
 

@@ -9,7 +9,8 @@ app.use(express.json());
 // Sync Database Relationsship
 require("./util/DBRelationships");
 
-require("./act");
+require("./controllers/act");
+require("./controllers/cron");
 
 const port = process.env.PORT || 6002;
 

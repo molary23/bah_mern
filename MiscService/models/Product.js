@@ -3,46 +3,48 @@
 const { DataTypes, Model } = require("sequelize"),
   sequelize = require("../config/db");
 
-class AuditLog extends Model {}
+class Product extends Model {}
 
-AuditLog.init(
+Product.init(
   {
     // Model attributes are defined here
-    AuditId: {
+    id: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    Table: {
-      type: DataTypes.STRING(1),
+    productName: {
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
-    Action: {
-      type: DataTypes.STRING(1),
+    productModel: {
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
-    ItemId: {
+    productQuantity: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      defaultValue: 0,
     },
-    UserId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+    productStatus: {
+      type: DataTypes.ENUM("a", "d"), // a: active, d: deleted
+      defaultValue: "a",
     },
+    productDescription: DataTypes.TEXT,
   },
   {
     // don't forget to enable timestamps!
     timestamps: true,
 
     // I want createdAt
-    createdAt: false,
+    createdAt: true,
 
     // I dont want updatedAt
     updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "AuditLog", // We need to choose the model name
+    modelName: "Product", // We need to choose the model name
   }
 );
-module.exports = AuditLog;
+module.exports = Product;
