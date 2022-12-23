@@ -62,7 +62,7 @@ router
 */
 
 router
-  .route("/update")
+  .route("/update/:id")
   .put(
     verifyLevels(levelsList.admin, levelsList.store),
     categoryController.updateCategory

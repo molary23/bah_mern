@@ -193,10 +193,9 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const editProduct = {};
-  let id;
-  if (req.body.productId) {
-    id = req.body.productId;
-  } else {
+  const id = Number(req.params.id);
+
+  if (isEmpty(id)) {
     error.update = "Product ID not specified";
     return res.status(400).json(error.update);
   }
@@ -247,16 +246,26 @@ const updateProduct = async (req, res) => {
 };
 
 const updateImage = async (req, res) => {
+  const imageInfo = {};
+  imageInfo.ProductId = Number(req.params.id);
   const files = req.files,
     validate = validateImage(files);
 
   if (!validate.isValid) {
     return res.status(400).json(validate.errors);
   }
-  const imageInfo = {};
+
+  if (imageInfo.ProductId) {
+    error.update = "Product ID not specified";
+    return res.status(400).json(error);
+  }
+
+  if (req.body.imageName) {
+    error.update = "Image Name not specified";
+    return res.status(400).json(error);
+  }
 
   if (req.body.imageName) imageInfo.imageName = req.body.imageName;
-  if (req.body.id) imageInfo.ProductId = req.body.id;
 
   if (!fs.existsSync(dirPath)) {
     fs.mkdir(dirPath, (err) => {

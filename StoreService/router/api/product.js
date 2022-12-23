@@ -62,7 +62,7 @@ router
 */
 
 router
-  .route("/update")
+  .route("/update/:id")
   .put(
     verifyLevels(levelList.admin, levelList.store),
     productController.updateProduct
@@ -75,7 +75,7 @@ router
 */
 
 router
-  .route("/edit-image")
+  .route("/edit/:id")
   .put(
     verifyLevels(levelList.admin, levelList.store),
     productController.updateImage

@@ -134,18 +134,21 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+//todo  TODO Update an use params of ID
+
 const updateCategory = async (req, res) => {
-  if (isEmpty(req.body.categoryId)) {
+  const id = Number(req.params.id);
+  if (isEmpty(id)) {
     error.update = "Category ID not specified";
     return res.status(400).json(error.update);
   }
 
-  if (isEmpty(req.body.categoryName)) {
+  const categoryName = req.body.categoryName;
+
+  if (isEmpty(categoryName)) {
     error.update = "Category Name not specified";
     return res.status(400).json(error.update);
   }
-
-  const { categoryId, categoryName } = req.body;
 
   try {
     const checkCategory = await Category.findOne({

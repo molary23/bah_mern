@@ -119,8 +119,11 @@ const addUser = async (req, res) => {
   }
 };
 
+//todo  TODO Update an use params of ID
+
 const updatePhone = async (req, res) => {
-  const { id, phone } = req.body;
+  const id = Number(req.params.id),
+    phone = req.body.phone;
 
   if (isEmpty(phone)) {
     error.phone = "Phone can't be empty";
@@ -144,8 +147,10 @@ const updatePhone = async (req, res) => {
   }
 };
 
+//todo  TODO Update an use params of ID
 const updatePassword = async (req, res) => {
-  const { id, password } = req.body;
+  const id = Number(req.params.id),
+    password = req.body.password;
 
   if (isEmpty(password)) {
     error.password = "Password can't be empty";

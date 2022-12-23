@@ -101,10 +101,6 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-div {
-  background-color: red;
-}
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

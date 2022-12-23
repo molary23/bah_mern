@@ -42,7 +42,7 @@ router
 */
 
 router
-  .route("/phone")
+  .route("/phone/:id")
   .put(
     verifyLevels(levelsList.admin, levelsList.store),
     userController.updatePhone
@@ -55,7 +55,7 @@ router
 */
 
 router
-  .route("/password")
+  .route("/password/:id")
   .put(
     verifyLevels(levelsList.admin, levelsList.store),
     userController.updatePassword
