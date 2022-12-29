@@ -6,6 +6,7 @@
   "author": "Hassan A. Adeola",
   "license": "MIT",
   "dependencies": {
+    "@types/cookie-parser": "^1.4.3",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -14,7 +15,7 @@
     "express-json": "^1.0.0",
     "helmet": "^6.0.1",
     "jsonwebtoken": "^9.0.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {
