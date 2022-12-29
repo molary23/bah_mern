@@ -11,6 +11,6 @@ const express = require("express"),
 @access private
 */
 
-router.route("/login").post(authController.handleLogin);
+router.route("/").post(authController.handleLogin);
 
 module.exports = router;

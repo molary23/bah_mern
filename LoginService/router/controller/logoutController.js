@@ -29,6 +29,6 @@ const handleLogOut = async (req, res) => {
     sameSite: "None",
     secure: process.env.NODE_ENV === "production",
   });
-  res.sendStatus(204);
+  res.satus(204).json({ messgae: "Cookies cleared successfully" });
 };
 module.exports = { handleLogOut };
