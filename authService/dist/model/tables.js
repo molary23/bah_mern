@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.tokenTable = exports.productTable = exports.categoryTable = exports.userTable = void 0;
 const db_1 = require("../config/db");
 // Users Table
-exports.userTable = db_1.connection.query("CREATE TABLE IF NOT EXISTS Users (UserId INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL, Email VARCHAR(50) NOT NULL UNIQUE, Username VARCHAR(30) NOT NULL UNIQUE, Phone VARCHAR(15) NOT NULL, Password VARCHAR(255) NOT NULL, Level TINYINT NOT NULL DEFAULT 1, Status  ENUM('a','i') NOT NULL, CreatedAt TIMESTAMP NOT NULL, UpdatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP())", function (err, results, fields) {
+exports.userTable = db_1.connection.query("CREATE TABLE IF NOT EXISTS Users (UserId INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL, Email VARCHAR(50) NOT NULL UNIQUE, Username VARCHAR(30) NOT NULL UNIQUE, Phone VARCHAR(15) NOT NULL, Password VARCHAR(255) NOT NULL, Level TINYINT NOT NULL DEFAULT 1, Status  ENUM('a','i') NOT NULL DEFAULT 'a', CreatedAt TIMESTAMP NOT NULL, UpdatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP())", function (err, results, fields) {
     if (err)
         throw err;
     console.log("Table created"); // results contains rows returned by server

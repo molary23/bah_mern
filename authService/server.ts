@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cookieParser = require("cookie-parser");
-import { connection } from "./config/db";
 import {
   userTable,
   categoryTable,
