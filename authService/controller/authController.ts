@@ -1,28 +1,90 @@
 import { Request, Response } from "express";
 import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { OkPacket } from "mysql2";
 import { connection } from "../config/db";
 import isEmpty from "../util/validator/isEmpty";
-import { ReqError, DBStatus } from "../util/Types";
-import validateAddUserInput from "../util/validator/createUser";
+import { ResponseMessage, DBStatus, DBUser, IUser } from "../util/Types";
+import validateUserLogin from "../util/validator/userLogin";
+import { stringify } from "querystring";
 
-const error: ReqError = {},
+const error: ResponseMessage = {},
+  message: ResponseMessage = {},
   salt: number = 10;
 
-const createUser = async (req: Request, res: Response) => {
-  const { errors, isValid } = validateAddUserInput(req.body);
+export const handleLogin = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+  const { errors, isValid } = validateUserLogin(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
-  let Email: string = req.body.email,
+  const Email: string = req.body.email,
     Username: string = req.body.username,
-    Phone: number | string = req.body.phone,
-    password: string = req.body.password,
-    status: DBStatus = req.body.status,
-    level: number = req.body.level ?? 1;
-  const Password = await bcrypt.hash(password, 10);
+    password: string = req.body.password;
+
+  const sql =
+      "SELECT UserId, Password, Level, Username FROM Users WHERE Username = ? OR Email = ? AND Status = 'a'",
+    values = [Username, Email];
+
+  try {
+    const user = connection.query(
+      sql,
+      values,
+      async function (err: never, results: IUser) {
+        if (err) throw err;
+        if (!results.length) {
+          error.user = "No User with the supplied username or email";
+          return res.status(404).json(error);
+        }
+        const isMatch: boolean = await bcrypt.compare(
+          password,
+          results[0].Password as string
+        );
+        if (!isMatch) {
+          error.password = "Password is incorrect";
+          return res.status(404).json(error);
+        }
+
+        const accessToken = jwt.sign(
+          {
+            userInfo: {
+              username: results[0].Username,
+              level: results[0].Level,
+              id: results[0].UserId,
+            },
+          },
+          process.env.ACCESS_TOKEN_SECRET_KEY!,
+          { expiresIn: "30m" }
+        );
+
+        const newRefreshToken = jwt.sign(
+          { username: results[0].Username },
+          process.env.REFRESH_TOKEN_SECRET_KEY!,
+          { expiresIn: "1d" }
+        );
+
+        //todo  TODO Check if RefreshToken exist and push to DB
+        return res.status(200).json({ at: accessToken, rt: newRefreshToken });
+      }
+    );
+  } catch (err) {
+    return res.sendStatus(400);
+  }
+  /*
+   readById(Email: string, Username: string): Promise<IUser | undefined> {
+    return new Promise((resolve, reject) => {
+      connection.query<IUser[]>(
+        "SELECT * FROM users WHERE Email = ? OR Username = ? AND Status = 'a'",
+        [Email, Username],
+        (err, res) => {
+          if (err) reject(err)
+          else resolve(res?.[0])
+        }
+      )
+    })
+  }*/
 };
 
 /*

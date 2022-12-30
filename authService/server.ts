@@ -14,6 +14,15 @@ const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.json());
+
+const auth = require("./router/api/authRoute"),
+  user = require("./router/api/userRoute");
+
+// Use apis
+// Apis that doesn't require JWT Authentication
+app.use("/api/auth", auth);
+app.use("/api/user", user);
+
 const PORT: string | number = process.env.PORT || 6000;
 
 app.get("/", (req: Request, res: Response) => {

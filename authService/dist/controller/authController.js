@@ -12,18 +12,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.handleLogin = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const createUser_1 = __importDefault(require("../util/validator/createUser"));
-const error = {}, salt = 10;
-const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const { errors, isValid } = (0, createUser_1.default)(req.body);
+const db_1 = require("../config/db");
+const userLogin_1 = __importDefault(require("../util/validator/userLogin"));
+const error = {}, message = {}, salt = 10;
+const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cookies = req.cookies;
+    const { errors, isValid } = (0, userLogin_1.default)(req.body);
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    let Email = req.body.email, Username = req.body.username, Phone = req.body.phone, password = req.body.password, status = req.body.status, level = (_a = req.body.level) !== null && _a !== void 0 ? _a : 1;
-    const Password = yield bcrypt_1.default.hash(password, 10);
+    const Email = req.body.email, Username = req.body.username, password = req.body.password;
+    const sql = "SELECT UserId, Password, Level, Username FROM Users WHERE Username = ? OR Email = ? AND Status = 'a'", values = [Username, Email];
+    try {
+        const user = db_1.connection.query(sql, values, function (err, results) {
+            return __awaiter(this, void 0, void 0, function* () {
+                if (err)
+                    throw err;
+                if (!results.length) {
+                    error.user = "No User with the supplied username or email";
+                    return res.status(404).json(error);
+                }
+                const isMatch = yield bcrypt_1.default.compare(password, results[0].Password);
+                if (!isMatch) {
+                    error.password = "Password is incorrect";
+                    return res.status(404).json(error);
+                }
+                const accessToken = jsonwebtoken_1.default.sign({
+                    userInfo: {
+                        username: results[0].Username,
+                        level: results[0].Level,
+                        id: results[0].UserId,
+                    },
+                }, process.env.ACCESS_TOKEN_SECRET_KEY, { expiresIn: "30m" });
+                const newRefreshToken = jsonwebtoken_1.default.sign({ username: results[0].Username }, process.env.REFRESH_TOKEN_SECRET_KEY, { expiresIn: "1d" });
+                //todo  TODO Check if RefreshToken exist and push to DB
+                return res.status(200).json({ at: accessToken, rt: newRefreshToken });
+            });
+        });
+    }
+    catch (err) {
+        return res.sendStatus(400);
+    }
+    /*
+     readById(Email: string, Username: string): Promise<IUser | undefined> {
+      return new Promise((resolve, reject) => {
+        connection.query<IUser[]>(
+          "SELECT * FROM users WHERE Email = ? OR Username = ? AND Status = 'a'",
+          [Email, Username],
+          (err, res) => {
+            if (err) reject(err)
+            else resolve(res?.[0])
+          }
+        )
+      })
+    }*/
 });
+exports.handleLogin = handleLogin;
 /*
 const handleLogin = async (req, res) => {
   const cookies = req.cookies,

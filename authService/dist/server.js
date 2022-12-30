@@ -11,6 +11,11 @@ const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express_1.default.json());
+const auth = require("./router/api/authRoute"), user = require("./router/api/userRoute");
+// Use apis
+// Apis that doesn't require JWT Authentication
+app.use("/api/auth", auth);
+app.use("/api/user", user);
 const PORT = process.env.PORT || 6000;
 app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");

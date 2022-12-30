@@ -1,3 +1,5 @@
+import { RowDataPacket } from "mysql2";
+
 export type DBObject = {
   DBNAME: string | undefined;
   DBHOST: string | undefined;
@@ -11,7 +13,7 @@ export type DBEnv = {
   production: DBObject;
 };
 
-export interface ReqError {
+export interface ResponseMessage {
   [index: string]: string;
 }
 
@@ -27,3 +29,9 @@ export type DBUser = {
   level: number;
   status: DBStatus;
 };
+
+export type IUser = [
+  {
+    [index: string]: string | number;
+  }
+];
