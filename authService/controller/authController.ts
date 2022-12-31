@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
 import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
@@ -11,7 +11,6 @@ import {
   REFRESH_SECRET_KEY,
 } from "../util/Types";
 import validateUserLogin from "../util/validator/userLogin";
-import { userInfo } from "os";
 
 const error: RegularObject = {},
   message: RegularObject = {},
@@ -37,7 +36,7 @@ export const handleLogin = async (req: Request, res: Response) => {
       where: {
         [Op.or]: { email: username, username },
       },
-      attributes: ["id", "username", "password", "token"],
+      attributes: ["id", "username", "password", "token", "level"],
     });
     if (!user) {
       error.user = "User not found.";
@@ -92,9 +91,7 @@ export const handleLogin = async (req: Request, res: Response) => {
         ...cookieOptions,
         maxAge: 86400000,
       });
-      res.status(200).json({
-        accessToken,
-      });
+      res.status(200).json(accessToken);
     }
   } catch (err) {
     return res.status(400).json(`Error: ${err}`);
@@ -112,6 +109,7 @@ export const handleRefresh = async (req: Request, res: Response) => {
       where: {
         token: { [Op.contains]: refreshToken },
       },
+      attributes: ["token", "id", "username", "level"],
     });
 
     if (!foundUser) {
@@ -188,9 +186,36 @@ export const handleRefresh = async (req: Request, res: Response) => {
           res.status(200).json(accessToken);
         }
       }
-      //todo  TODO Delete Token from Database once used.
     );
   } catch (err) {
     res.status(400).json(`Error: ${err}`);
+  }
+};
+
+export const handleLogout = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(204);
+  const refreshToken = cookies.jwt;
+  const foundUser = await Users.findOne({
+    where: { token: { [Op.contains]: refreshToken } },
+    attributes: ["id", "token"],
+  });
+
+  if (!foundUser) {
+    res.clearCookie("jwt", cookieOptions);
+    return res.sendStatus(204);
+  }
+  let token = foundUser.token.filter((rt) => rt !== refreshToken);
+
+  const saveToken = await Users.update(
+    { token },
+    {
+      where: { id: foundUser.id },
+    }
+  );
+  if (saveToken) {
+    res.clearCookie("jwt", cookieOptions);
+    message.status = "You have been logged out successfully.";
+    return res.status(200).json(message);
   }
 };

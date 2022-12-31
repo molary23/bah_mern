@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleRefresh = exports.handleLogin = void 0;
+exports.handleLogout = exports.handleRefresh = exports.handleLogin = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const sequelize_1 = require("sequelize");
@@ -36,7 +36,7 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             where: {
                 [sequelize_1.Op.or]: { email: username, username },
             },
-            attributes: ["id", "username", "password", "token"],
+            attributes: ["id", "username", "password", "token", "level"],
         });
         if (!user) {
             error.user = "User not found.";
@@ -73,9 +73,7 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
         if (saveToken) {
             res.cookie("jwt", newRefreshToken, Object.assign(Object.assign({}, cookieOptions), { maxAge: 86400000 }));
-            res.status(200).json({
-                accessToken,
-            });
+            res.status(200).json(accessToken);
         }
     }
     catch (err) {
@@ -94,6 +92,7 @@ const handleRefresh = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             where: {
                 token: { [sequelize_1.Op.contains]: refreshToken },
             },
+            attributes: ["token", "id", "username", "level"],
         });
         if (!foundUser) {
             jsonwebtoken_1.default.verify(refreshToken, Types_1.REFRESH_SECRET_KEY, (err, decoded) => __awaiter(void 0, void 0, void 0, function* () {
@@ -136,12 +135,34 @@ const handleRefresh = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 res.cookie("jwt", newRefreshToken, Object.assign(Object.assign({}, cookieOptions), { maxAge: 86400000 }));
                 res.status(200).json(accessToken);
             }
-        })
-        //todo  TODO Delete Token from Database once used.
-        );
+        }));
     }
     catch (err) {
         res.status(400).json(`Error: ${err}`);
     }
 });
 exports.handleRefresh = handleRefresh;
+const handleLogout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cookies = req.cookies;
+    if (!(cookies === null || cookies === void 0 ? void 0 : cookies.jwt))
+        return res.sendStatus(204);
+    const refreshToken = cookies.jwt;
+    const foundUser = yield User_1.Users.findOne({
+        where: { token: { [sequelize_1.Op.contains]: refreshToken } },
+        attributes: ["id", "token"],
+    });
+    if (!foundUser) {
+        res.clearCookie("jwt", cookieOptions);
+        return res.sendStatus(204);
+    }
+    let token = foundUser.token.filter((rt) => rt !== refreshToken);
+    const saveToken = yield User_1.Users.update({ token }, {
+        where: { id: foundUser.id },
+    });
+    if (saveToken) {
+        res.clearCookie("jwt", cookieOptions);
+        message.status = "You have been logged out successfully.";
+        return res.status(200).json(message);
+    }
+});
+exports.handleLogout = handleLogout;
