@@ -5,14 +5,14 @@ exports.config = {
     development: {
         DBUSER: "molary",
         DBPASS: "mcWVaYd@M6b6Q",
-        DBNAME: "bahengine",
-        DBHOST: "127.0.0.1",
+        DBNAME: "bah",
+        DBHOST: "localhost",
     },
     test: {
         DBUSER: "molary",
         DBPASS: "mcWVaYd@M6b6Q",
-        DBNAME: "bahengine",
-        DBHOST: "127.0.0.1",
+        DBNAME: "bah",
+        DBHOST: "localhost",
     },
     production: {
         DBUSER: process.env.DBUSER,

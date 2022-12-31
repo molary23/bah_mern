@@ -11,6 +11,8 @@ const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express_1.default.json());
+// Sync Database Relationsship
+require("./util/DBRelationships");
 const auth = require("./router/api/authRoute"), user = require("./router/api/userRoute");
 // Use apis
 // Apis that doesn't require JWT Authentication

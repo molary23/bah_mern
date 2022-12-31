@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.json());
 
+// Sync Database Relationsship
+require("./util/DBRelationships");
+
 const auth = require("./router/api/authRoute"),
   user = require("./router/api/userRoute");
 
