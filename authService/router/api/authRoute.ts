@@ -5,6 +5,7 @@ import {
   handleLogout,
 } from "../../controller/authController";
 import { verifyJWT } from "../../middleware/verifyJWT";
+import { loginLimiter } from "../../middleware/rateLimit";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ const router = express.Router();
 @access public
 */
 
-router.route("/").post(handleLogin);
+router.route("/").post(loginLimiter, handleLogin);
 
 /*
 @route GET api/auth/refresh

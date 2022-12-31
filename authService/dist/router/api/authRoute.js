@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const authController_1 = require("../../controller/authController");
 const verifyJWT_1 = require("../../middleware/verifyJWT");
+const rateLimit_1 = require("../../middleware/rateLimit");
 const router = express_1.default.Router();
 /*
 @route POST api/auth/
 @desc Login
 @access public
 */
-router.route("/").post(authController_1.handleLogin);
+router.route("/").post(rateLimit_1.loginLimiter, authController_1.handleLogin);
 /*
 @route GET api/auth/refresh
 @desc Refresh Token Rotation

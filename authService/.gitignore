@@ -12,3 +12,6 @@
 
 # All logs
 *.log
+
+#dist folder
+/dist
