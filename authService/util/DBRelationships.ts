@@ -1,13 +1,26 @@
 import { sequelize } from "../config/db";
+import { Users } from "../model/User";
+import { Bins } from "../model/Bin";
+import { Verifies } from "../model/Verify";
 
+Users.hasMany(Bins, {
+  onDelete: "RESTRICT",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Bins.belongsTo(Users);
+
+Users.hasOne(Verifies, {
+  onDelete: "RESTRICT",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Verifies.belongsTo(Users);
 /*
-try {
-  await sequelize.authenticate();
-  console.log("Connection has been established successfully.");
-} catch (error) {
-  console.error("Unable to connect to the database:", error);
-}*/
-
 sequelize
   .sync({ alter: true })
   .then((result: any) => {
@@ -16,3 +29,4 @@ sequelize
   .catch((error: never) => {
     console.log(error);
   });
+*/

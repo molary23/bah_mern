@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
+import { Users } from "../model/User";
 import bcrypt from "bcrypt";
-import { connection } from "../config/db";
+import { sequelize } from "../config/db";
+import { Op } from "sequelize";
 import isEmpty from "../util/validator/isEmpty";
-import { ResponseMessage, DBStatus } from "../util/Types";
+import { RegularObject, DBStatus } from "../util/Types";
 import validateAddUserInput from "../util/validator/createUser";
 
-const error: ResponseMessage = {},
-  message: ResponseMessage = {},
+const error: RegularObject = {},
+  message: RegularObject = {},
   salt: number = 10;
 
 export const createUser = async (req: Request, res: Response) => {
@@ -16,28 +18,45 @@ export const createUser = async (req: Request, res: Response) => {
     return res.status(400).json(errors);
   }
 
-  const Email: string = req.body.email,
-    Username: string = req.body.username,
-    Phone: number | string = req.body.phone,
-    password: string = req.body.password,
-    Status: DBStatus = req.body.status,
-    Level: number = req.body.level ?? 1;
+  const email: string = req.body.email,
+    username: string = req.body.username,
+    phone: number | string = req.body.phone,
+    Password: string = req.body.password,
+    status: DBStatus = req.body.status,
+    level: number = req.body.level;
 
-  const Password = await bcrypt.hash(password, 10);
-
-  const sql =
-      "INSERT INTO Users (Email, Username, Phone, Password, Status, Level) VALUES (?)",
-    values = [Email, Username, Phone, Password, Status, Level];
   try {
-    await connection.query(
-      sql,
-      [values],
-      function (err: never, results: string) {
-        if (err) throw err;
-        message.user = "User created successfully";
-        return res.status(200).json(message);
-      }
-    );
+    const password = await bcrypt.hash(Password, 10);
+    const checkEmail = await Users.findOne({
+      where: {
+        email,
+      },
+    });
+    if (checkEmail) {
+      error.add = "Email address is already taken.";
+      return res.status(419).json(error);
+    }
+    const checkUser = await Users.findOne({
+      where: {
+        username,
+      },
+    });
+    if (checkUser) {
+      error.add = "Username is already taken.";
+      return res.status(419).json(error);
+    }
+    const user = await Users.create({
+      username,
+      email,
+      password,
+      status,
+      level,
+      phone,
+    });
+
+    if (user) {
+      return res.status(200).json(user);
+    }
   } catch (err) {
     res.sendStatus(400);
   }

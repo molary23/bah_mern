@@ -1,4 +1,4 @@
-import { RowDataPacket } from "mysql2";
+import { Secret } from "jsonwebtoken";
 
 export type DBObject = {
   DBNAME: string | undefined;
@@ -13,7 +13,7 @@ export type DBEnv = {
   production: DBObject;
 };
 
-export interface ResponseMessage {
+export interface RegularObject {
   [index: string]: string;
 }
 
@@ -35,3 +35,13 @@ export type IUser = [
     [index: string]: string | number;
   }
 ];
+
+export type CookieObject = {
+  httpOnly: boolean;
+  sameSite: boolean | "strict" | "lax" | "none" | undefined;
+  secure: boolean;
+  maxAge?: number;
+};
+
+export const ACCESS_SECRET_KEY: Secret = process.env.ACCESS_TOKEN_SECRET_KEY!;
+export const REFRESH_SECRET_KEY: Secret = process.env.REFRESH_TOKEN_SECRET_KEY!;

@@ -12,165 +12,136 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleLogin = void 0;
+exports.handleRefresh = exports.handleLogin = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const db_1 = require("../config/db");
+const sequelize_1 = require("sequelize");
+const User_1 = require("../model/User");
+const Types_1 = require("../util/Types");
 const userLogin_1 = __importDefault(require("../util/validator/userLogin"));
-const error = {}, message = {}, salt = 10;
+const error = {}, message = {}, cookieOptions = {
+    httpOnly: true,
+    sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
+};
 const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const cookies = req.cookies;
     const { errors, isValid } = (0, userLogin_1.default)(req.body);
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    const Email = req.body.email, Username = req.body.username, password = req.body.password;
-    const sql = "SELECT UserId, Password, Level, Username FROM Users WHERE Username = ? OR Email = ? AND Status = 'a'", values = [Username, Email];
+    const username = req.body.username, password = req.body.password;
     try {
-        const user = db_1.connection.query(sql, values, function (err, results) {
-            return __awaiter(this, void 0, void 0, function* () {
-                if (err)
-                    throw err;
-                if (!results.length) {
-                    error.user = "No User with the supplied username or email";
-                    return res.status(404).json(error);
-                }
-                const isMatch = yield bcrypt_1.default.compare(password, results[0].Password);
-                if (!isMatch) {
-                    error.password = "Password is incorrect";
-                    return res.status(404).json(error);
-                }
-                const accessToken = jsonwebtoken_1.default.sign({
-                    userInfo: {
-                        username: results[0].Username,
-                        level: results[0].Level,
-                        id: results[0].UserId,
-                    },
-                }, process.env.ACCESS_TOKEN_SECRET_KEY, { expiresIn: "30m" });
-                const newRefreshToken = jsonwebtoken_1.default.sign({ username: results[0].Username }, process.env.REFRESH_TOKEN_SECRET_KEY, { expiresIn: "1d" });
-                //todo  TODO Check if RefreshToken exist and push to DB
-                return res.status(200).json({ at: accessToken, rt: newRefreshToken });
-            });
+        const user = yield User_1.Users.findOne({
+            where: {
+                [sequelize_1.Op.or]: { email: username, username },
+            },
+            attributes: ["id", "username", "password", "token"],
         });
+        if (!user) {
+            error.user = "User not found.";
+            return res.status(404).json(error);
+        }
+        const isMatch = bcrypt_1.default.compare(password, user.password);
+        if (!isMatch) {
+            error.password = "Incorrect password.";
+            return res.status(404).json(error);
+        }
+        const accessToken = jsonwebtoken_1.default.sign({ userInfo: { username: username, level: user.level, id: user.id } }, Types_1.ACCESS_SECRET_KEY, { expiresIn: "30m" }), newRefreshToken = jsonwebtoken_1.default.sign({
+            username: user.username,
+        }, Types_1.REFRESH_SECRET_KEY, { expiresIn: "1d" });
+        let newRefreshTokenArray = !cookies.jwt
+            ? user === null || user === void 0 ? void 0 : user.token
+            : user === null || user === void 0 ? void 0 : user.token.filter((rt) => rt !== cookies.jwt);
+        if (cookies === null || cookies === void 0 ? void 0 : cookies.jwt) {
+            res.clearCookie("jwt", cookieOptions);
+            const refreshToken = cookies.jwt;
+            const foundToken = yield User_1.Users.findOne({
+                where: {
+                    token: { [sequelize_1.Op.contains]: refreshToken },
+                },
+            });
+            if (!foundToken) {
+                newRefreshTokenArray = [];
+            }
+        }
+        const token = [...newRefreshTokenArray, newRefreshToken];
+        const saveToken = yield User_1.Users.update({ token }, {
+            where: {
+                id: user.id,
+            },
+        });
+        if (saveToken) {
+            res.cookie("jwt", newRefreshToken, Object.assign(Object.assign({}, cookieOptions), { maxAge: 86400000 }));
+            res.status(200).json({
+                accessToken,
+            });
+        }
     }
     catch (err) {
-        return res.sendStatus(400);
+        return res.status(400).json(`Error: ${err}`);
     }
-    /*
-     readById(Email: string, Username: string): Promise<IUser | undefined> {
-      return new Promise((resolve, reject) => {
-        connection.query<IUser[]>(
-          "SELECT * FROM users WHERE Email = ? OR Username = ? AND Status = 'a'",
-          [Email, Username],
-          (err, res) => {
-            if (err) reject(err)
-            else resolve(res?.[0])
-          }
-        )
-      })
-    }*/
 });
 exports.handleLogin = handleLogin;
-/*
-const handleLogin = async (req, res) => {
-  const cookies = req.cookies,
-    { username, password } = req.body;
-
-  if (isEmpty(username)) {
-    error.username = "Username is required";
-    return res.status(400).json(error.username);
-  }
-
-  if (isEmpty(password)) {
-    error.password = "Password is required";
-    return res.status(400).json(error.password);
-  }
-
-  const user = await User.findOne({
-    where: { username },
-    attributes: ["level", "id", "password"],
-  });
-
-  if (!user) {
-    error.username = "User not found";
-    return res.status(400).json(error.username);
-  }
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    error.password = "Password is incorrect";
-    return res.status(400).json(error.password);
-  }
-
-  const accessToken = jwt.sign(
-    { userInfo: { username: username, level: user.level, id: user.id } },
-    process.env.ACCESS_TOKEN_SECRET_KEY,
-    { expiresIn: "30m" }
-  );
-
-  const newRefreshToken = jwt.sign(
-    { username: username },
-    process.env.REFRESH_TOKEN_SECRET_KEY,
-    { expiresIn: "1d" }
-  );
-
-  if (cookies?.jwt) {
+const handleRefresh = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cookies = req.cookies;
+    if (!cookies.jwt)
+        return res.sendStatus(401);
     const refreshToken = cookies.jwt;
-    const foundToken = await RefreshToken.findOne({
-      where: { token: refreshToken },
-    });
-    if (!foundToken) {
-      // Delete all refresh token related to user
-      jwt.verify(
-        refreshToken,
-        process.env.REFRESH_TOKEN_SECRET_KEY,
-        async (err, decoded) => {
-          if (err) return res.sendStatus(403);
-          const hackedUser = await User.findOne({
-            where: { username: decoded.username },
-            attributes: ["id"],
-          });
-
-          await RefreshToken.destroy({
-            where: { UserId: hackedUser.id },
-          });
-
-          return res.sendStatus(403);
+    res.clearCookie("jwt", cookieOptions);
+    try {
+        const foundUser = yield User_1.Users.findOne({
+            where: {
+                token: { [sequelize_1.Op.contains]: refreshToken },
+            },
+        });
+        if (!foundUser) {
+            jsonwebtoken_1.default.verify(refreshToken, Types_1.REFRESH_SECRET_KEY, (err, decoded) => __awaiter(void 0, void 0, void 0, function* () {
+                if (err)
+                    return res.sendStatus(401);
+                const hackedUser = yield User_1.Users.update({ token: [] }, {
+                    where: {
+                        username: decoded.username,
+                    },
+                });
+            }));
         }
-      );
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        sameSite: "None",
-        secure: process.env.NODE_ENV === "production",
-      });
-    } else {
-      await RefreshToken.destroy({
-        where: { token: refreshToken },
-      });
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        sameSite: "None",
-        secure: process.env.NODE_ENV === "production",
-      });
+        const newRefreshTokenArray = foundUser === null || foundUser === void 0 ? void 0 : foundUser.token.filter((rt) => rt !== refreshToken);
+        jsonwebtoken_1.default.verify(refreshToken, Types_1.REFRESH_SECRET_KEY, (err, decoded) => __awaiter(void 0, void 0, void 0, function* () {
+            if (err) {
+                const saveOldToken = yield User_1.Users.update({
+                    token: newRefreshTokenArray,
+                }, {
+                    where: {
+                        id: foundUser === null || foundUser === void 0 ? void 0 : foundUser.id,
+                    },
+                });
+            }
+            if (err || (foundUser === null || foundUser === void 0 ? void 0 : foundUser.username) !== decoded.username)
+                return res.sendStatus(401);
+            const accessToken = jsonwebtoken_1.default.sign({
+                userInfo: {
+                    username: decoded.username,
+                    level: foundUser === null || foundUser === void 0 ? void 0 : foundUser.level,
+                    id: foundUser === null || foundUser === void 0 ? void 0 : foundUser.id,
+                },
+            }, Types_1.ACCESS_SECRET_KEY, { expiresIn: "30m" }), newRefreshToken = jsonwebtoken_1.default.sign({ username: foundUser === null || foundUser === void 0 ? void 0 : foundUser.username }, Types_1.REFRESH_SECRET_KEY, { expiresIn: "1d" });
+            const token = [...newRefreshTokenArray, newRefreshToken];
+            const saveToken = yield User_1.Users.update({ token }, {
+                where: {
+                    id: foundUser === null || foundUser === void 0 ? void 0 : foundUser.id,
+                },
+            });
+            if (saveToken) {
+                res.cookie("jwt", newRefreshToken, Object.assign(Object.assign({}, cookieOptions), { maxAge: 86400000 }));
+                res.status(200).json(accessToken);
+            }
+        })
+        //todo  TODO Delete Token from Database once used.
+        );
     }
-  }
-
-  const refresh = await RefreshToken.create({
-    UserId: user.id,
-    token: newRefreshToken,
-  });
-
-  if (refresh) {
-    res.cookie("jwt", newRefreshToken, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 86400000,
-    });
-    res.status(200).json({
-      accessToken,
-    });
-  }
-};
-
-module.exports = { handleLogin };
-*/
+    catch (err) {
+        res.status(400).json(`Error: ${err}`);
+    }
+});
+exports.handleRefresh = handleRefresh;

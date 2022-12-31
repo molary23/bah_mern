@@ -1,9 +1,9 @@
 const validator = require("validator");
 import isEmpty from "./isEmpty";
-import { DBUser, ResponseMessage } from "../Types";
+import { DBUser, RegularObject } from "../Types";
 
 export default function validateAddUserInput(data: DBUser) {
-  let errors: ResponseMessage = {};
+  let errors: RegularObject = {};
 
   data.email = !isEmpty(data.email) ? data.email.toLowerCase() : "";
   data.password = !isEmpty(data.password) ? data.password.toLowerCase() : "";

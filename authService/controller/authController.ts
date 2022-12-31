@@ -1,16 +1,25 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { OkPacket } from "mysql2";
-import { connection } from "../config/db";
+import { Op } from "sequelize";
+import { Users } from "../model/User";
 import isEmpty from "../util/validator/isEmpty";
-import { ResponseMessage, DBStatus, DBUser, IUser } from "../util/Types";
+import {
+  RegularObject,
+  CookieObject,
+  ACCESS_SECRET_KEY,
+  REFRESH_SECRET_KEY,
+} from "../util/Types";
 import validateUserLogin from "../util/validator/userLogin";
-import { stringify } from "querystring";
+import { userInfo } from "os";
 
-const error: ResponseMessage = {},
-  message: ResponseMessage = {},
-  salt: number = 10;
+const error: RegularObject = {},
+  message: RegularObject = {},
+  cookieOptions: CookieObject = {
+    httpOnly: true,
+    sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
+  };
 
 export const handleLogin = async (req: Request, res: Response) => {
   const cookies = req.cookies;
@@ -20,173 +29,168 @@ export const handleLogin = async (req: Request, res: Response) => {
     return res.status(400).json(errors);
   }
 
-  const Email: string = req.body.email,
-    Username: string = req.body.username,
+  const username: string = req.body.username,
     password: string = req.body.password;
 
-  const sql =
-      "SELECT UserId, Password, Level, Username FROM Users WHERE Username = ? OR Email = ? AND Status = 'a'",
-    values = [Username, Email];
-
   try {
-    const user = connection.query(
-      sql,
-      values,
-      async function (err: never, results: IUser) {
-        if (err) throw err;
-        if (!results.length) {
-          error.user = "No User with the supplied username or email";
-          return res.status(404).json(error);
-        }
-        const isMatch: boolean = await bcrypt.compare(
-          password,
-          results[0].Password as string
-        );
-        if (!isMatch) {
-          error.password = "Password is incorrect";
-          return res.status(404).json(error);
-        }
+    const user = await Users.findOne({
+      where: {
+        [Op.or]: { email: username, username },
+      },
+      attributes: ["id", "username", "password", "token"],
+    });
+    if (!user) {
+      error.user = "User not found.";
+      return res.status(404).json(error);
+    }
+    const isMatch = bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      error.password = "Incorrect password.";
+      return res.status(404).json(error);
+    }
+    const accessToken = jwt.sign(
+        { userInfo: { username: username, level: user.level, id: user.id } },
+        ACCESS_SECRET_KEY,
+        { expiresIn: "30m" }
+      ),
+      newRefreshToken = jwt.sign(
+        {
+          username: user.username,
+        },
+        REFRESH_SECRET_KEY,
+        { expiresIn: "1d" }
+      );
 
-        const accessToken = jwt.sign(
-          {
-            userInfo: {
-              username: results[0].Username,
-              level: results[0].Level,
-              id: results[0].UserId,
-            },
-          },
-          process.env.ACCESS_TOKEN_SECRET_KEY!,
-          { expiresIn: "30m" }
-        );
+    let newRefreshTokenArray: string[] = !cookies.jwt
+      ? user?.token
+      : user?.token.filter((rt) => rt !== cookies.jwt);
 
-        const newRefreshToken = jwt.sign(
-          { username: results[0].Username },
-          process.env.REFRESH_TOKEN_SECRET_KEY!,
-          { expiresIn: "1d" }
-        );
+    if (cookies?.jwt) {
+      res.clearCookie("jwt", cookieOptions);
+      const refreshToken: string = cookies.jwt;
+      const foundToken = await Users.findOne({
+        where: {
+          token: { [Op.contains]: refreshToken },
+        },
+      });
 
-        //todo  TODO Check if RefreshToken exist and push to DB
-        return res.status(200).json({ at: accessToken, rt: newRefreshToken });
+      if (!foundToken) {
+        newRefreshTokenArray = [];
+      }
+    }
+    const token = [...newRefreshTokenArray, newRefreshToken];
+    const saveToken = await Users.update(
+      { token },
+      {
+        where: {
+          id: user.id,
+        },
       }
     );
-  } catch (err) {
-    return res.sendStatus(400);
-  }
-  /*
-   readById(Email: string, Username: string): Promise<IUser | undefined> {
-    return new Promise((resolve, reject) => {
-      connection.query<IUser[]>(
-        "SELECT * FROM users WHERE Email = ? OR Username = ? AND Status = 'a'",
-        [Email, Username],
-        (err, res) => {
-          if (err) reject(err)
-          else resolve(res?.[0])
-        }
-      )
-    })
-  }*/
-};
-
-/*
-const handleLogin = async (req, res) => {
-  const cookies = req.cookies,
-    { username, password } = req.body;
-
-  if (isEmpty(username)) {
-    error.username = "Username is required";
-    return res.status(400).json(error.username);
-  }
-
-  if (isEmpty(password)) {
-    error.password = "Password is required";
-    return res.status(400).json(error.password);
-  }
-
-  const user = await User.findOne({
-    where: { username },
-    attributes: ["level", "id", "password"],
-  });
-
-  if (!user) {
-    error.username = "User not found";
-    return res.status(400).json(error.username);
-  }
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    error.password = "Password is incorrect";
-    return res.status(400).json(error.password);
-  }
-
-  const accessToken = jwt.sign(
-    { userInfo: { username: username, level: user.level, id: user.id } },
-    process.env.ACCESS_TOKEN_SECRET_KEY,
-    { expiresIn: "30m" }
-  );
-
-  const newRefreshToken = jwt.sign(
-    { username: username },
-    process.env.REFRESH_TOKEN_SECRET_KEY,
-    { expiresIn: "1d" }
-  );
-
-  if (cookies?.jwt) {
-    const refreshToken = cookies.jwt;
-    const foundToken = await RefreshToken.findOne({
-      where: { token: refreshToken },
-    });
-    if (!foundToken) {
-      // Delete all refresh token related to user
-      jwt.verify(
-        refreshToken,
-        process.env.REFRESH_TOKEN_SECRET_KEY,
-        async (err, decoded) => {
-          if (err) return res.sendStatus(403);
-          const hackedUser = await User.findOne({
-            where: { username: decoded.username },
-            attributes: ["id"],
-          });
-
-          await RefreshToken.destroy({
-            where: { UserId: hackedUser.id },
-          });
-
-          return res.sendStatus(403);
-        }
-      );
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        sameSite: "None",
-        secure: process.env.NODE_ENV === "production",
+    if (saveToken) {
+      res.cookie("jwt", newRefreshToken, {
+        ...cookieOptions,
+        maxAge: 86400000,
       });
-    } else {
-      await RefreshToken.destroy({
-        where: { token: refreshToken },
-      });
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        sameSite: "None",
-        secure: process.env.NODE_ENV === "production",
+      res.status(200).json({
+        accessToken,
       });
     }
-  }
-
-  const refresh = await RefreshToken.create({
-    UserId: user.id,
-    token: newRefreshToken,
-  });
-
-  if (refresh) {
-    res.cookie("jwt", newRefreshToken, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 86400000,
-    });
-    res.status(200).json({
-      accessToken,
-    });
+  } catch (err) {
+    return res.status(400).json(`Error: ${err}`);
   }
 };
 
-module.exports = { handleLogin };
-*/
+export const handleRefresh = async (req: Request, res: Response) => {
+  const cookies = req.cookies;
+
+  if (!cookies.jwt) return res.sendStatus(401);
+  const refreshToken = cookies.jwt;
+  res.clearCookie("jwt", cookieOptions);
+  try {
+    const foundUser = await Users.findOne({
+      where: {
+        token: { [Op.contains]: refreshToken },
+      },
+    });
+
+    if (!foundUser) {
+      jwt.verify(
+        refreshToken,
+        REFRESH_SECRET_KEY,
+        async (err: any, decoded: any) => {
+          if (err) return res.sendStatus(401);
+          const hackedUser = await Users.update(
+            { token: [] },
+            {
+              where: {
+                username: decoded.username,
+              },
+            }
+          );
+        }
+      );
+    }
+
+    const newRefreshTokenArray = foundUser?.token.filter(
+      (rt) => rt !== refreshToken
+    );
+    jwt.verify(
+      refreshToken,
+      REFRESH_SECRET_KEY,
+      async (err: any, decoded: any) => {
+        if (err) {
+          const saveOldToken = await Users.update(
+            {
+              token: newRefreshTokenArray!,
+            },
+            {
+              where: {
+                id: foundUser?.id,
+              },
+            }
+          );
+        }
+        if (err || foundUser?.username !== decoded.username)
+          return res.sendStatus(401);
+
+        const accessToken = jwt.sign(
+            {
+              userInfo: {
+                username: decoded.username,
+                level: foundUser?.level,
+                id: foundUser?.id,
+              },
+            },
+            ACCESS_SECRET_KEY,
+            { expiresIn: "30m" }
+          ),
+          newRefreshToken = jwt.sign(
+            { username: foundUser?.username },
+            REFRESH_SECRET_KEY,
+            { expiresIn: "1d" }
+          );
+
+        const token = [...newRefreshTokenArray!, newRefreshToken];
+        const saveToken = await Users.update(
+          { token },
+          {
+            where: {
+              id: foundUser?.id,
+            },
+          }
+        );
+        if (saveToken) {
+          res.cookie("jwt", newRefreshToken, {
+            ...cookieOptions,
+            maxAge: 86400000,
+          });
+          res.status(200).json(accessToken);
+        }
+      }
+      //todo  TODO Delete Token from Database once used.
+    );
+  } catch (err) {
+    res.status(400).json(`Error: ${err}`);
+  }
+};

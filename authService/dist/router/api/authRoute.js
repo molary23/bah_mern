@@ -12,4 +12,10 @@ const router = express_1.default.Router();
 @access public
 */
 router.route("/").post(authController_1.handleLogin);
+/*
+@route GET api/auth/refresh
+@desc Refresh Token Rotation
+@access private
+*/
+router.route("/refresh").get(authController_1.handleRefresh);
 module.exports = router;

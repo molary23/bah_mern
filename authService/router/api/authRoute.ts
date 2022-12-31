@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-import { handleLogin } from "../../controller/authController";
+import { handleLogin, handleRefresh } from "../../controller/authController";
 
 const router = express.Router();
 
@@ -10,5 +10,13 @@ const router = express.Router();
 */
 
 router.route("/").post(handleLogin);
+
+/*
+@route GET api/auth/refresh
+@desc Refresh Token Rotation
+@access private
+*/
+
+router.route("/refresh").get(handleRefresh);
 
 module.exports = router;

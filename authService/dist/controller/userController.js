@@ -13,26 +13,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
+const User_1 = require("../model/User");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const db_1 = require("../config/db");
 const createUser_1 = __importDefault(require("../util/validator/createUser"));
 const error = {}, message = {}, salt = 10;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     const { errors, isValid } = (0, createUser_1.default)(req.body);
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    const Email = req.body.email, Username = req.body.username, Phone = req.body.phone, password = req.body.password, Status = req.body.status, Level = (_a = req.body.level) !== null && _a !== void 0 ? _a : 1;
-    const Password = yield bcrypt_1.default.hash(password, 10);
-    const sql = "INSERT INTO Users (Email, Username, Phone, Password, Status, Level) VALUES (?)", values = [Email, Username, Phone, Password, Status, Level];
+    const email = req.body.email, username = req.body.username, phone = req.body.phone, Password = req.body.password, status = req.body.status, level = req.body.level;
     try {
-        yield db_1.connection.query(sql, [values], function (err, results) {
-            if (err)
-                throw err;
-            message.user = "User created successfully";
-            return res.status(200).json(message);
+        const password = yield bcrypt_1.default.hash(Password, 10);
+        const checkEmail = yield User_1.Users.findOne({
+            where: {
+                email,
+            },
         });
+        if (checkEmail) {
+            error.add = "Email address is already taken.";
+            return res.status(419).json(error);
+        }
+        const checkUser = yield User_1.Users.findOne({
+            where: {
+                username,
+            },
+        });
+        if (checkUser) {
+            error.add = "Username is already taken.";
+            return res.status(419).json(error);
+        }
+        const user = yield User_1.Users.create({
+            username,
+            email,
+            password,
+            status,
+            level,
+            phone,
+        });
+        if (user) {
+            return res.status(200).json(user);
+        }
     }
     catch (err) {
         res.sendStatus(400);

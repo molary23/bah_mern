@@ -19,9 +19,6 @@ const auth = require("./router/api/authRoute"), user = require("./router/api/use
 app.use("/api/auth", auth);
 app.use("/api/user", user);
 const PORT = process.env.PORT || 6000;
-app.get("/", (req, res) => {
-    res.send("Express + TypeScript Server");
-});
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
