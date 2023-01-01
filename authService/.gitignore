@@ -7,9 +7,6 @@
 #env
 .env
 
-#logs
-/logs
-
 # All logs
 *.log
 

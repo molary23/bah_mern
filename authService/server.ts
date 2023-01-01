@@ -6,6 +6,7 @@ import { CorsOptions } from "cors";
 import { credentials } from "./middleware/credentials";
 import { corsOptions as options } from "./util/corsOptions";
 import { myEmit } from "./logger/emit";
+import { logger } from "./logger";
 
 dotenv.config();
 

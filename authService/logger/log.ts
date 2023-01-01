@@ -8,7 +8,6 @@ const fs = require("fs"),
 export const logEvent = async (message: string, fileName: string) => {
   const filePath: string = path.join(__dirname, "/../logs", fileName),
     folderPath = path.join(__dirname, "/../logs/archives");
-  console.log(filePath, " ", folderPath);
   const stream = new RotationFileStream({
     path: filePath,
     maxTime: "1D",

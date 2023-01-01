@@ -13,7 +13,6 @@ exports.logEvent = void 0;
 const fs = require("fs"), fsPromises = require("fs").promises, { format } = require("date-fns"), path = require("path"), { v4: uuid } = require("uuid"), RotationFileStream = require("node-rotation-file");
 const logEvent = (message, fileName) => __awaiter(void 0, void 0, void 0, function* () {
     const filePath = path.join(__dirname, "/../logs", fileName), folderPath = path.join(__dirname, "/../logs/archives");
-    console.log(filePath, " ", folderPath);
     const stream = new RotationFileStream({
         path: filePath,
         maxTime: "1D",

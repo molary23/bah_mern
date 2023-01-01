@@ -1,4 +1,5 @@
 import { Secret } from "jsonwebtoken";
+import { Request, Response } from "express";
 
 export type DBObject = {
   DBNAME: string | undefined;
@@ -14,7 +15,7 @@ export type DBEnv = {
 };
 
 export interface RegularObject {
-  [index: string]: string;
+  [index: string]: string | number;
 }
 
 export enum DBStatus {
@@ -42,6 +43,12 @@ export type CookieObject = {
   secure: boolean;
   maxAge?: number;
 };
+
+export interface IGetUserAuthInfoRequest extends Request {
+  id: number;
+  username?: string;
+  level?: string; // or any other type
+}
 
 export const ACCESS_SECRET_KEY: Secret = process.env.ACCESS_TOKEN_SECRET_KEY!;
 export const REFRESH_SECRET_KEY: Secret = process.env.REFRESH_TOKEN_SECRET_KEY!;

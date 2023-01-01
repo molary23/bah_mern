@@ -34,7 +34,7 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const user = yield User_1.Users.findOne({
             where: {
-                [sequelize_1.Op.or]: { email: username, username },
+                [sequelize_1.Op.and]: { status: "a", [sequelize_1.Op.or]: { email: username, username } },
             },
             attributes: ["id", "username", "password", "token", "level"],
         });

@@ -1,9 +1,10 @@
 import jwt from "jsonwebtoken";
 import { Response, NextFunction } from "express";
 import { ACCESS_SECRET_KEY } from "../util/Types";
+import { IGetUserAuthInfoRequest } from "../util/Types";
 
 export const verifyJWT = async (
-  req: any,
+  req: IGetUserAuthInfoRequest | any,
   res: Response,
   next: NextFunction
 ) => {

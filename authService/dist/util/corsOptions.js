@@ -4,7 +4,7 @@ exports.corsOptions = void 0;
 const allowedOrigins_1 = require("./allowedOrigins");
 exports.corsOptions = {
     origin: (origin, callback) => {
-        console.log(origin);
+        console.log("Cors Options", origin);
         if (allowedOrigins_1.allowedOrigins.indexOf(origin) !==
             -1 /* Remove this part before Production*/ ||
             !origin) {

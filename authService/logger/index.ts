@@ -3,8 +3,8 @@ import { developmentLogger } from "./development";
 
 let logger: any = null;
 if (process.env.NODE_ENV === "production") {
-  logger = productionLogger();
+  logger = (filename: string) => productionLogger(filename);
 } else if (process.env.NODE_ENV !== "development") {
-  logger = developmentLogger();
+  logger = (filename: string) => developmentLogger(filename);
 }
 export { logger };

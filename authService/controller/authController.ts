@@ -34,7 +34,7 @@ export const handleLogin = async (req: Request, res: Response) => {
   try {
     const user = await Users.findOne({
       where: {
-        [Op.or]: { email: username, username },
+        [Op.and]: { status: "a", [Op.or]: { email: username, username } },
       },
       attributes: ["id", "username", "password", "token", "level"],
     });
