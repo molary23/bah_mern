@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { Users } from "../model/User";
+import { UserImages } from "../model/UserImage";
 import bcrypt from "bcrypt";
+import fs from "fs";
+import path from "path";
 import { sequelize } from "../config/db";
 import { Op } from "sequelize";
 import isEmpty from "../util/validator/isEmpty";
@@ -11,6 +14,7 @@ import {
 } from "../util/Types";
 import validateAddUserInput from "../util/validator/createUser";
 import { Bins } from "../model/Bin";
+import validateImage from "../util/validator/validateImage";
 
 const error: RegularObject = {},
   message: RegularObject = {},
@@ -157,6 +161,93 @@ export const updatePhone = async (req: Request, res: Response) => {
     if (updateUser) {
       message.phone = "User Phone Number updated successfully";
       return res.status(200).json(message);
+    }
+  } catch (err) {
+    res.status(400).json(`Error: ${err}`);
+  }
+};
+
+export const updatePassword = async (req: Request, res: Response) => {
+  const id: number = Number(req.params.id),
+    Password: string = req.body.password;
+
+  if (isEmpty(id)) {
+    error.password = "ID is required";
+    return res.status(400).json(error);
+  }
+
+  if (isEmpty(Password)) {
+    error.password = "Password is required";
+    return res.status(400).json(error);
+  }
+
+  try {
+    const password = await bcrypt.hash(Password, salt);
+    const updateUser = await Users.update(
+      { password },
+      {
+        where: { id },
+      }
+    );
+    if (updateUser) {
+      message.password = "Password changed successfully";
+      return res.status(200).json(message);
+    }
+  } catch (err) {
+    res.status(400).json(`Error: ${err}`);
+  }
+};
+
+export const uploadPhoto = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
+  const uploadDirectory: string = "/../../../uploads/user/",
+    dirPath = path.join(__dirname, uploadDirectory),
+    files = req.files,
+    UserId: number = Number(req.params.id),
+    username: string = req.body.username,
+    validate = validateImage(files);
+
+  if (isEmpty(UserId)) {
+    error.photo = "ID is required";
+    return res.status(400).json(error);
+  }
+
+  if (isEmpty(username)) {
+    error.username = "Username is required";
+    return res.status(400).json(error);
+  }
+
+  if (!validate.isValid) {
+    return res.status(400).json(validate.errors);
+  }
+
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdir(dirPath, (err) => {
+      if (err) return res.sendStatus(500);
+    });
+  }
+
+  const fileExtension = path.extname(files.file.name),
+    image = `${username}${fileExtension}`,
+    filePath = path.join(dirPath, image);
+
+  try {
+    const [fresh, upload] = await UserImages.findOrCreate({
+      where: { UserId },
+      defaults: {
+        image,
+        UserId,
+      },
+    });
+    if (upload || fresh) {
+      files.file.mv(filePath, (err: any) => {
+        error.upload = "Error uploading";
+        if (err) return res.status(500).json(error.upload);
+        message.image = "User image uploaded successfully.";
+        return res.status(200).json(message);
+      });
     }
   } catch (err) {
     res.status(400).json(`Error: ${err}`);

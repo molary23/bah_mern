@@ -46,6 +46,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/busboy@*":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@types/busboy/-/busboy-1.5.0.tgz#62681556cbbd2afc8d2efa6bafaa15602f0838b9"
+  integrity sha512-ncOOhwmyFDW76c/Tuvv9MA9VGYUCn8blzyWmzYELcNGDb0WXWLSmFi7hJq25YdRBYJrmMBB5jZZwUjlJe9HCjQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/connect@*":
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.35.tgz#5fcf6ae445e4021d1fc2219a4873cc73a3bb2ad1"
@@ -73,6 +80,14 @@
   integrity sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==
   dependencies:
     "@types/ms" "*"
+
+"@types/express-fileupload@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@types/express-fileupload/-/express-fileupload-1.4.1.tgz#3388b14dedfa877be43bbe0540dcd5e13e963bca"
+  integrity sha512-sbl865h1Sser6SF+efpw2F/+roGISj+PRIbMcGXbtzgJQCBAeeBmoSo7sPge/mBa22ymCHfFPtHFsag/wUxwfg==
+  dependencies:
+    "@types/busboy" "*"
+    "@types/express" "*"
 
 "@types/express-serve-static-core@^4.17.31":
   version "4.17.31"
@@ -196,6 +211,11 @@ array-flatten@1.1.1:
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==
 
+async@0.1.x:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/async/-/async-0.1.22.tgz#0fc1aaa088a0e3ef0ebe2d8831bab0dcf8845061"
+  integrity sha512-2tEzliJmf5fHNafNwQLJXUasGzQCVctvsNkXmnlELHwypU0p08/rHohYvkqKIjyXpx+0rkrYv6QbhJ+UF4QkBg==
+
 async@^3.2.3:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
@@ -278,6 +298,13 @@ buffer-writer@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-2.0.0.tgz#ce7eb81a38f7829db09c873f2fbb792c0c98ec04"
   integrity sha512-a7ZpuTZU1TRtnwyCNW3I5dc0wWNC3VR9S++Ewyk2HHZdrO3CQJqSpd+95Us590V6AL7JqUAH2IwZ/398PmNFgw==
+
+busboy@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/busboy/-/busboy-1.6.0.tgz#966ea36a9502e43cdb9146962523b92f531f6893"
+  integrity sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==
+  dependencies:
+    streamsearch "^1.1.0"
 
 bytes@3.1.2:
   version "3.1.2"
@@ -648,6 +675,13 @@ event-emitter@^0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
+express-fileupload@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/express-fileupload/-/express-fileupload-1.4.0.tgz#be9d70a881d6c2b1ce668df86e4f89ddbf238ec7"
+  integrity sha512-RjzLCHxkv3umDeZKeFeMg8w7qe0V09w3B7oGZprr/oO2H/ISCgNzuqzn7gV3HRWb37GjRk429CCpSLS2KNTqMQ==
+  dependencies:
+    busboy "^1.6.0"
+
 express-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/express-json/-/express-json-1.0.0.tgz#9fdd53239ad0a6f3e076f54585d8a2243075fb36"
@@ -657,6 +691,15 @@ express-rate-limit@^6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-6.7.0.tgz#6aa8a1bd63dfe79702267b3af1161a93afc1d3c2"
   integrity sha512-vhwIdRoqcYB/72TK3tRZI+0ttS8Ytrk24GfmsxDXK9o9IhHNO5bXRiXQSExPQ4GbaE5tvIS7j1SGrxsuWs+sGA==
+
+express-upload@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/express-upload/-/express-upload-0.1.0.tgz#272781e32e2c075bd3081cb2692a1de00a5b6910"
+  integrity sha512-goXHHA5FsxEXsAMptDjwILksGPu/kCe0hVQiXQ/WRL/LbTIP+B1orm0dY0IegKvmBHJtL1WmNLJfgvQ6wsEP0w==
+  dependencies:
+    async "0.1.x"
+    mkdirp "0.3.x"
+    temp "0.5.x"
 
 express@^4.18.2:
   version "4.18.2"
@@ -844,6 +887,11 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+graceful-fs@~1:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-1.2.3.tgz#15a4806a57547cb2d2dbf27f42e89a8c3451b364"
+  integrity sha512-iiTUZ5vZ+2ZV+h71XAgwCSu6+NAizhFU3Yw8aC/hH5SQ3SnISqEqAek40imAFGtDcwJKNhXvSY+hzIolnLwcdQ==
 
 has-flag@^3.0.0:
   version "3.0.0"
@@ -1186,6 +1234,11 @@ minizlib@^2.1.1:
   dependencies:
     minipass "^3.0.0"
     yallist "^4.0.0"
+
+mkdirp@0.3.x:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
+  integrity sha512-8OCq0De/h9ZxseqzCH8Kw/Filf5pF/vMI6+BH7Lu0jXz2pqYCjTAQRolSxRIi+Ax+oCCjlxoJMP0YQ4XlrQNHg==
 
 mkdirp@^1.0.3:
   version "1.0.4"
@@ -1547,6 +1600,13 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
+rimraf@~2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.1.4.tgz#5a6eb62eeda068f51ede50f29b3e5cd22f3d9bb2"
+  integrity sha512-tzwmX16YQhcFu0T/m0gHBcFKx6yQAg77Z6WWaQSJsUekXYa6yaAmHhrDdmFicgauX/er7GsdN+vRao3mBhA4kQ==
+  optionalDependencies:
+    graceful-fs "~1"
+
 rxjs@^7.0.0:
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.0.tgz#90a938862a82888ff4c7359811a595e14e1e09a4"
@@ -1738,6 +1798,11 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
+streamsearch@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
+  integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
+
 "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
@@ -1798,6 +1863,13 @@ tar@^6.1.11:
     minizlib "^2.1.1"
     mkdirp "^1.0.3"
     yallist "^4.0.0"
+
+temp@0.5.x:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/temp/-/temp-0.5.1.tgz#77ab19c79aa7b593cbe4fac2441768cad987b8df"
+  integrity sha512-Gwc1QWGkf3f3d0y8wNyC9uvVqAsmVdUMPzdiLJDNVAHhlxZmSWlvVZAk1LmZcBuYcmhvJ0oHDVHksghU3VI/0w==
+  dependencies:
+    rimraf "~2.1.4"
 
 text-hex@1.0.x:
   version "1.0.0"

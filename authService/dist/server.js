@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const credentials_1 = require("./middleware/credentials");
 const corsOptions_1 = require("./util/corsOptions");
 const emit_1 = require("./logger/emit");
+const fileUpload = require("express-fileupload");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));
@@ -17,8 +18,10 @@ app.use(cookieParser());
 app.use(express_1.default.json());
 app.use(credentials_1.credentials);
 app.use((0, cors_1.default)(corsOptions_1.corsOptions));
+app.use(fileUpload());
 // Sync Database Relationsship
 require("./util/DBRelationships");
+// Require Api
 const auth = require("./router/api/authRoute"), user = require("./router/api/userRoute");
 // Use apis
 // Apis that doesn't require JWT Authentication

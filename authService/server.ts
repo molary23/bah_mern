@@ -6,7 +6,7 @@ import { CorsOptions } from "cors";
 import { credentials } from "./middleware/credentials";
 import { corsOptions as options } from "./util/corsOptions";
 import { myEmit } from "./logger/emit";
-import { logger } from "./logger";
+import fileUpload = require("express-fileupload");
 
 dotenv.config();
 
@@ -16,10 +16,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(credentials);
 app.use(cors(options as CorsOptions));
+app.use(fileUpload());
 
 // Sync Database Relationsship
 require("./util/DBRelationships");
 
+// Require Api
 const auth = require("./router/api/authRoute"),
   user = require("./router/api/userRoute");
 

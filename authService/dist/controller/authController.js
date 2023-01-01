@@ -42,7 +42,7 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             error.user = "User not found.";
             return res.status(404).json(error);
         }
-        const isMatch = bcrypt_1.default.compare(password, user.password);
+        const isMatch = yield bcrypt_1.default.compare(password, user.password);
         if (!isMatch) {
             error.password = "Incorrect password.";
             return res.status(404).json(error);

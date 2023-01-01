@@ -48,7 +48,14 @@ export interface IGetUserAuthInfoRequest extends Request {
   id: number;
   username?: string;
   level?: string; // or any other type
+  files?: RegularObject | any;
 }
+
+export type NestedRegularObject = {
+  [index: string]: {
+    [index: string]: string | number;
+  };
+};
 
 export const ACCESS_SECRET_KEY: Secret = process.env.ACCESS_TOKEN_SECRET_KEY!;
 export const REFRESH_SECRET_KEY: Secret = process.env.REFRESH_TOKEN_SECRET_KEY!;

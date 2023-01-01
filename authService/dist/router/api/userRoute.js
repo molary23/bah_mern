@@ -31,4 +31,16 @@ router.route("/:id").put(verifyJWT_1.verifyJWT, userController_1.restoreUser);
 @access private
 */
 router.route("/phone/:id").patch(verifyJWT_1.verifyJWT, userController_1.updatePhone);
+/*
+@route POST api/user/password/:id
+@desc update user's password
+@access private
+*/
+router.route("/password/:id").patch(verifyJWT_1.verifyJWT, userController_1.updatePassword);
+/*
+@route POST api/user/photo/:id
+@desc upload user's photo
+@access private
+*/
+router.route("/photo/:id").patch(verifyJWT_1.verifyJWT, userController_1.uploadPhoto);
 module.exports = router;

@@ -12,12 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePhone = exports.restoreUser = exports.deleteUser = exports.createUser = void 0;
+exports.uploadPhoto = exports.updatePassword = exports.updatePhone = exports.restoreUser = exports.deleteUser = exports.createUser = void 0;
 const User_1 = require("../model/User");
+const UserImage_1 = require("../model/UserImage");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const isEmpty_1 = __importDefault(require("../util/validator/isEmpty"));
 const createUser_1 = __importDefault(require("../util/validator/createUser"));
 const Bin_1 = require("../model/Bin");
+const validateImage_1 = __importDefault(require("../util/validator/validateImage"));
 const error = {}, message = {}, salt = 10;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { errors, isValid } = (0, createUser_1.default)(req.body);
@@ -140,3 +144,71 @@ const updatePhone = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.updatePhone = updatePhone;
+const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id), Password = req.body.password;
+    if ((0, isEmpty_1.default)(id)) {
+        error.password = "ID is required";
+        return res.status(400).json(error);
+    }
+    if ((0, isEmpty_1.default)(Password)) {
+        error.password = "Password is required";
+        return res.status(400).json(error);
+    }
+    try {
+        const password = yield bcrypt_1.default.hash(Password, salt);
+        const updateUser = yield User_1.Users.update({ password }, {
+            where: { id },
+        });
+        if (updateUser) {
+            message.password = "Password changed successfully";
+            return res.status(200).json(message);
+        }
+    }
+    catch (err) {
+        res.status(400).json(`Error: ${err}`);
+    }
+});
+exports.updatePassword = updatePassword;
+const uploadPhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const uploadDirectory = "/../../../uploads/user/", dirPath = path_1.default.join(__dirname, uploadDirectory), files = req.files, UserId = Number(req.params.id), username = req.body.username, validate = (0, validateImage_1.default)(files);
+    if ((0, isEmpty_1.default)(UserId)) {
+        error.photo = "ID is required";
+        return res.status(400).json(error);
+    }
+    if ((0, isEmpty_1.default)(username)) {
+        error.username = "Username is required";
+        return res.status(400).json(error);
+    }
+    if (!validate.isValid) {
+        return res.status(400).json(validate.errors);
+    }
+    if (!fs_1.default.existsSync(dirPath)) {
+        fs_1.default.mkdir(dirPath, (err) => {
+            if (err)
+                return res.sendStatus(500);
+        });
+    }
+    const fileExtension = path_1.default.extname(files.file.name), image = `${username}${fileExtension}`, filePath = path_1.default.join(dirPath, image);
+    try {
+        const [fresh, upload] = yield UserImage_1.UserImages.findOrCreate({
+            where: { UserId },
+            defaults: {
+                image,
+                UserId,
+            },
+        });
+        if (upload || fresh) {
+            files.file.mv(filePath, (err) => {
+                error.upload = "Error uploading";
+                if (err)
+                    return res.status(500).json(error.upload);
+                message.image = "User image uploaded successfully.";
+                return res.status(200).json(message);
+            });
+        }
+    }
+    catch (err) {
+        res.status(400).json(`Error: ${err}`);
+    }
+});
+exports.uploadPhoto = uploadPhoto;

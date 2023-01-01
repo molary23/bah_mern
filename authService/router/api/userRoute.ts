@@ -3,7 +3,9 @@ import {
   createUser,
   deleteUser,
   restoreUser,
+  updatePassword,
   updatePhone,
+  uploadPhoto,
 } from "../../controller/userController";
 import { verifyJWT } from "../../middleware/verifyJWT";
 
@@ -40,5 +42,21 @@ router.route("/:id").put(verifyJWT, restoreUser);
 */
 
 router.route("/phone/:id").patch(verifyJWT, updatePhone);
+
+/*
+@route POST api/user/password/:id
+@desc update user's password
+@access private
+*/
+
+router.route("/password/:id").patch(verifyJWT, updatePassword);
+
+/*
+@route POST api/user/photo/:id
+@desc upload user's photo
+@access private
+*/
+
+router.route("/photo/:id").patch(verifyJWT, uploadPhoto);
 
 module.exports = router;

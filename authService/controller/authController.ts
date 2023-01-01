@@ -42,7 +42,7 @@ export const handleLogin = async (req: Request, res: Response) => {
       error.user = "User not found.";
       return res.status(404).json(error);
     }
-    const isMatch = bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       error.password = "Incorrect password.";
       return res.status(404).json(error);
