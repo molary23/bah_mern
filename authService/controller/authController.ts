@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
-import { Users } from "../model/User";
+import { Users } from "../models/User";
 import isEmpty from "../util/validator/isEmpty";
 import {
   RegularObject,

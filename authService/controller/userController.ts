@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { Users } from "../model/User";
-import { UserImages } from "../model/UserImage";
+import { Users } from "../models/User";
+import { UserImages } from "../models/UserImage";
 import bcrypt from "bcrypt";
 import fs from "fs";
 import path from "path";
-import { sequelize } from "../config/db";
-import { Op } from "sequelize";
 import isEmpty from "../util/validator/isEmpty";
 import {
   RegularObject,
@@ -13,7 +11,7 @@ import {
   IGetUserAuthInfoRequest,
 } from "../util/Types";
 import validateAddUserInput from "../util/validator/createUser";
-import { Bins } from "../model/Bin";
+import { Bins } from "../models/Bin";
 import validateImage from "../util/validator/validateImage";
 
 const error: RegularObject = {},

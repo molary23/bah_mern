@@ -1,7 +1,7 @@
 {
   "name": "bahengine",
   "version": "1.0.0",
-  "description": "Bahengine new site using Typescript",
+  "description": "Bahengine new site using Typescript - Auth Service",
   "main": "server.ts",
   "author": "Hassan A. Adeola",
   "license": "MIT",

@@ -1,8 +1,8 @@
 import { sequelize } from "../config/db";
-import { Users } from "../model/User";
-import { Bins } from "../model/Bin";
-import { Verifies } from "../model/Verify";
-import { UserImages } from "../model/UserImage";
+import { Users } from "../models/User";
+import { Bins } from "../models/Bin";
+import { Verifies } from "../models/Verify";
+import { UserImages } from "../models/UserImage";
 
 Users.hasMany(Bins, {
   onDelete: "RESTRICT",
