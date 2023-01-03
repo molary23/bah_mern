@@ -5,22 +5,21 @@ import { Op } from "sequelize";
 import { Users } from "../models/User";
 import isEmpty from "../util/validator/isEmpty";
 import {
-  RegularObject,
   CookieObject,
   ACCESS_SECRET_KEY,
   REFRESH_SECRET_KEY,
+  Err as err,
+  Message as message,
 } from "../util/Types";
 import validateUserLogin from "../util/validator/userLogin";
 
-const error: RegularObject = {},
-  message: RegularObject = {},
-  cookieOptions: CookieObject = {
-    httpOnly: true,
-    sameSite: "none",
-    secure: process.env.NODE_ENV === "production",
-  };
+const cookieOptions: CookieObject = {
+  httpOnly: true,
+  sameSite: "none",
+  secure: process.env.NODE_ENV === "production",
+};
 
-export const handleLogin = async (req: Request, res: Response) => {
+const handleLogin = async (req: Request, res: Response) => {
   const cookies = req.cookies;
   const { errors, isValid } = validateUserLogin(req.body);
 
@@ -39,13 +38,13 @@ export const handleLogin = async (req: Request, res: Response) => {
       attributes: ["id", "username", "password", "token", "level"],
     });
     if (!user) {
-      error.user = "User not found.";
-      return res.status(404).json(error);
+      err.user = "User not found.";
+      return res.status(404).json(err);
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      error.password = "Incorrect password.";
-      return res.status(404).json(error);
+      err.password = "Incorrect password.";
+      return res.status(404).json(err);
     }
     const accessToken = jwt.sign(
         { userInfo: { username: username, level: user.level, id: user.id } },
@@ -93,12 +92,12 @@ export const handleLogin = async (req: Request, res: Response) => {
       });
       res.status(200).json(accessToken);
     }
-  } catch (err) {
-    return res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
-export const handleRefresh = async (req: Request, res: Response) => {
+const handleRefresh = async (req: Request, res: Response) => {
   const cookies = req.cookies;
 
   if (!cookies.jwt) return res.sendStatus(401);
@@ -187,12 +186,12 @@ export const handleRefresh = async (req: Request, res: Response) => {
         }
       }
     );
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 
-export const handleLogout = async (req: Request, res: Response) => {
+const handleLogout = async (req: Request, res: Response) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(204);
   const refreshToken = cookies.jwt;
@@ -219,3 +218,5 @@ export const handleLogout = async (req: Request, res: Response) => {
     return res.status(200).json(message);
   }
 };
+
+export { handleLogin, handleLogout, handleRefresh };

@@ -12,17 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadPhoto = exports.updatePassword = exports.updatePhone = exports.restoreUser = exports.deleteUser = exports.createUser = void 0;
-const User_1 = require("../model/User");
-const UserImage_1 = require("../model/UserImage");
+exports.uploadPhoto = exports.updatePhone = exports.updatePassword = exports.deleteUser = exports.createUser = exports.restoreUser = void 0;
+const User_1 = require("../models/User");
+const UserImage_1 = require("../models/UserImage");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const isEmpty_1 = __importDefault(require("../util/validator/isEmpty"));
+const Types_1 = require("../util/Types");
 const createUser_1 = __importDefault(require("../util/validator/createUser"));
-const Bin_1 = require("../model/Bin");
+const Bin_1 = require("../models/Bin");
 const validateImage_1 = __importDefault(require("../util/validator/validateImage"));
-const error = {}, message = {}, salt = 10;
+const salt = 10;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { errors, isValid } = (0, createUser_1.default)(req.body);
     if (!isValid) {
@@ -37,8 +38,8 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             },
         });
         if (checkEmail) {
-            error.add = "Email address is already taken.";
-            return res.status(419).json(error);
+            Types_1.Err.add = "Email address is already taken.";
+            return res.status(419).json(Types_1.Err);
         }
         const checkUser = yield User_1.Users.findOne({
             where: {
@@ -46,8 +47,8 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             },
         });
         if (checkUser) {
-            error.add = "Username is already taken.";
-            return res.status(419).json(error);
+            Types_1.Err.add = "Username is already taken.";
+            return res.status(419).json(Types_1.Err);
         }
         const user = yield User_1.Users.create({
             username,
@@ -83,8 +84,8 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             };
             const trashed = yield Bin_1.Bins.create(newTrash);
             if (trashed) {
-                message.delete = "User successfully deleted.";
-                return res.status(200).json(message);
+                Types_1.Message.delete = "User successfully deleted.";
+                return res.status(200).json(Types_1.Message);
             }
         }
     }
@@ -110,8 +111,8 @@ const restoreUser = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 },
             });
             if (restored) {
-                message.restore = "User successfully restored.";
-                return res.status(200).json(message);
+                Types_1.Message.restore = "User successfully restored.";
+                return res.status(200).json(Types_1.Message);
             }
         }
     }
@@ -123,20 +124,20 @@ exports.restoreUser = restoreUser;
 const updatePhone = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id), phone = req.body.phone;
     if ((0, isEmpty_1.default)(id)) {
-        error.phone = "ID is required";
-        return res.status(400).json(error);
+        Types_1.Err.phone = "ID is required";
+        return res.status(400).json(Types_1.Err);
     }
     if ((0, isEmpty_1.default)(phone)) {
-        error.phone = "Phone Number is required";
-        return res.status(400).json(error);
+        Types_1.Err.phone = "Phone Number is required";
+        return res.status(400).json(Types_1.Err);
     }
     try {
         const updateUser = yield User_1.Users.update({ phone }, {
             where: { id },
         });
         if (updateUser) {
-            message.phone = "User Phone Number updated successfully";
-            return res.status(200).json(message);
+            Types_1.Message.phone = "User Phone Number updated successfully";
+            return res.status(200).json(Types_1.Message);
         }
     }
     catch (err) {
@@ -147,12 +148,12 @@ exports.updatePhone = updatePhone;
 const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id), Password = req.body.password;
     if ((0, isEmpty_1.default)(id)) {
-        error.password = "ID is required";
-        return res.status(400).json(error);
+        Types_1.Err.password = "ID is required";
+        return res.status(400).json(Types_1.Err);
     }
     if ((0, isEmpty_1.default)(Password)) {
-        error.password = "Password is required";
-        return res.status(400).json(error);
+        Types_1.Err.password = "Password is required";
+        return res.status(400).json(Types_1.Err);
     }
     try {
         const password = yield bcrypt_1.default.hash(Password, salt);
@@ -160,8 +161,8 @@ const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function*
             where: { id },
         });
         if (updateUser) {
-            message.password = "Password changed successfully";
-            return res.status(200).json(message);
+            Types_1.Message.password = "Password changed successfully";
+            return res.status(200).json(Types_1.Message);
         }
     }
     catch (err) {
@@ -172,12 +173,12 @@ exports.updatePassword = updatePassword;
 const uploadPhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uploadDirectory = "/../../../uploads/user/", dirPath = path_1.default.join(__dirname, uploadDirectory), files = req.files, UserId = Number(req.params.id), username = req.body.username, validate = (0, validateImage_1.default)(files);
     if ((0, isEmpty_1.default)(UserId)) {
-        error.photo = "ID is required";
-        return res.status(400).json(error);
+        Types_1.Err.photo = "ID is required";
+        return res.status(400).json(Types_1.Err);
     }
     if ((0, isEmpty_1.default)(username)) {
-        error.username = "Username is required";
-        return res.status(400).json(error);
+        Types_1.Err.username = "Username is required";
+        return res.status(400).json(Types_1.Err);
     }
     if (!validate.isValid) {
         return res.status(400).json(validate.errors);
@@ -199,11 +200,11 @@ const uploadPhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
         if (upload || fresh) {
             files.file.mv(filePath, (err) => {
-                error.upload = "Error uploading";
+                err.upload = "Error uploading";
                 if (err)
-                    return res.status(500).json(error.upload);
-                message.image = "User image uploaded successfully.";
-                return res.status(200).json(message);
+                    return res.status(500).json(err.upload);
+                Types_1.Message.image = "User image uploaded successfully.";
+                return res.status(200).json(Types_1.Message);
             });
         }
     }

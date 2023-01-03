@@ -22,7 +22,6 @@ router.route("/").post(loginLimiter, handleLogin);
 @desc Refresh Token Rotation
 @access private
 */
-router.use(verifyJWT);
 router.route("/refresh").get(handleRefresh);
 
 /*
@@ -33,4 +32,4 @@ router.route("/refresh").get(handleRefresh);
 router.use(verifyJWT);
 router.route("/logout").get(handleLogout);
 
-module.exports = router;
+export { router as auth };

@@ -59,4 +59,4 @@ router.route("/password/:id").patch(verifyJWT, updatePassword);
 
 router.route("/photo/:id").patch(verifyJWT, uploadPhoto);
 
-module.exports = router;
+export { router as user };

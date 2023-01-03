@@ -1,5 +1,6 @@
-import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express, { Express, Request, Response } from "express";
 import cookieParser = require("cookie-parser");
 import cors from "cors";
 import { CorsOptions } from "cors";
@@ -7,8 +8,8 @@ import { credentials } from "./middleware/credentials";
 import { corsOptions as options } from "./util/corsOptions";
 import { myEmit } from "./logger/emit";
 import fileUpload = require("express-fileupload");
-
-dotenv.config();
+import { user } from "./router/api/userRoute";
+import { auth } from "./router/api/authRoute";
 
 const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
@@ -22,8 +23,6 @@ app.use(fileUpload());
 require("./util/DBRelationships");
 
 // Require Api
-const auth = require("./router/api/authRoute"),
-  user = require("./router/api/userRoute");
 
 // Use apis
 // Apis that doesn't require JWT Authentication

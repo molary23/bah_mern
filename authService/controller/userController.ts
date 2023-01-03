@@ -9,16 +9,16 @@ import {
   RegularObject,
   DBStatus,
   IGetUserAuthInfoRequest,
+  Err as err,
+  Message as message,
 } from "../util/Types";
 import validateAddUserInput from "../util/validator/createUser";
 import { Bins } from "../models/Bin";
 import validateImage from "../util/validator/validateImage";
 
-const error: RegularObject = {},
-  message: RegularObject = {},
-  salt: number = 10;
+const salt: number = 10;
 
-export const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response) => {
   const { errors, isValid } = validateAddUserInput(req.body);
 
   if (!isValid) {
@@ -40,8 +40,8 @@ export const createUser = async (req: Request, res: Response) => {
       },
     });
     if (checkEmail) {
-      error.add = "Email address is already taken.";
-      return res.status(419).json(error);
+      err.add = "Email address is already taken.";
+      return res.status(419).json(err);
     }
     const checkUser = await Users.findOne({
       where: {
@@ -49,8 +49,8 @@ export const createUser = async (req: Request, res: Response) => {
       },
     });
     if (checkUser) {
-      error.add = "Username is already taken.";
-      return res.status(419).json(error);
+      err.add = "Username is already taken.";
+      return res.status(419).json(err);
     }
     const user = await Users.create({
       username,
@@ -69,7 +69,7 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteUser = async (
+const deleteUser = async (
   req: IGetUserAuthInfoRequest | any,
   res: Response
 ) => {
@@ -135,18 +135,18 @@ export const restoreUser = async (
   }
 };
 
-export const updatePhone = async (req: Request, res: Response) => {
+const updatePhone = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id),
     phone: string = req.body.phone;
 
   if (isEmpty(id)) {
-    error.phone = "ID is required";
-    return res.status(400).json(error);
+    err.phone = "ID is required";
+    return res.status(400).json(err);
   }
 
   if (isEmpty(phone)) {
-    error.phone = "Phone Number is required";
-    return res.status(400).json(error);
+    err.phone = "Phone Number is required";
+    return res.status(400).json(err);
   }
 
   try {
@@ -165,18 +165,18 @@ export const updatePhone = async (req: Request, res: Response) => {
   }
 };
 
-export const updatePassword = async (req: Request, res: Response) => {
+const updatePassword = async (req: Request, res: Response) => {
   const id: number = Number(req.params.id),
     Password: string = req.body.password;
 
   if (isEmpty(id)) {
-    error.password = "ID is required";
-    return res.status(400).json(error);
+    err.password = "ID is required";
+    return res.status(400).json(err);
   }
 
   if (isEmpty(Password)) {
-    error.password = "Password is required";
-    return res.status(400).json(error);
+    err.password = "Password is required";
+    return res.status(400).json(err);
   }
 
   try {
@@ -196,7 +196,7 @@ export const updatePassword = async (req: Request, res: Response) => {
   }
 };
 
-export const uploadPhoto = async (
+const uploadPhoto = async (
   req: IGetUserAuthInfoRequest | any,
   res: Response
 ) => {
@@ -208,13 +208,13 @@ export const uploadPhoto = async (
     validate = validateImage(files);
 
   if (isEmpty(UserId)) {
-    error.photo = "ID is required";
-    return res.status(400).json(error);
+    err.photo = "ID is required";
+    return res.status(400).json(err);
   }
 
   if (isEmpty(username)) {
-    error.username = "Username is required";
-    return res.status(400).json(error);
+    err.username = "Username is required";
+    return res.status(400).json(err);
   }
 
   if (!validate.isValid) {
@@ -241,8 +241,8 @@ export const uploadPhoto = async (
     });
     if (upload || fresh) {
       files.file.mv(filePath, (err: any) => {
-        error.upload = "Error uploading";
-        if (err) return res.status(500).json(error.upload);
+        err.upload = "Error uploading";
+        if (err) return res.status(500).json(err.upload);
         message.image = "User image uploaded successfully.";
         return res.status(200).json(message);
       });
@@ -251,3 +251,5 @@ export const uploadPhoto = async (
     res.status(400).json(`Error: ${err}`);
   }
 };
+
+export { createUser, deleteUser, updatePassword, updatePhone, uploadPhoto };

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = require("../model/User");
-const Bin_1 = require("../model/Bin");
-const Verify_1 = require("../model/Verify");
-const UserImage_1 = require("../model/UserImage");
+const User_1 = require("../models/User");
+const Bin_1 = require("../models/Bin");
+const Verify_1 = require("../models/Verify");
+const UserImage_1 = require("../models/UserImage");
 User_1.Users.hasMany(Bin_1.Bins, {
     onDelete: "RESTRICT",
     hooks: true,

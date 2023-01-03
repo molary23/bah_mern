@@ -1,6 +1,5 @@
 "use strict";
 
-const { ifError } = require("assert");
 const Category = require("../../models/Category"),
   Trash = require("../../models/Trash"),
   { Op } = require("sequelize"),

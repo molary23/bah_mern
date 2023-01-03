@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleLogout = exports.handleRefresh = exports.handleLogin = void 0;
+exports.handleRefresh = exports.handleLogout = exports.handleLogin = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const sequelize_1 = require("sequelize");
-const User_1 = require("../model/User");
+const User_1 = require("../models/User");
 const Types_1 = require("../util/Types");
 const userLogin_1 = __importDefault(require("../util/validator/userLogin"));
-const error = {}, message = {}, cookieOptions = {
+const cookieOptions = {
     httpOnly: true,
     sameSite: "none",
     secure: process.env.NODE_ENV === "production",
@@ -39,13 +39,13 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             attributes: ["id", "username", "password", "token", "level"],
         });
         if (!user) {
-            error.user = "User not found.";
-            return res.status(404).json(error);
+            Types_1.Err.user = "User not found.";
+            return res.status(404).json(Types_1.Err);
         }
         const isMatch = yield bcrypt_1.default.compare(password, user.password);
         if (!isMatch) {
-            error.password = "Incorrect password.";
-            return res.status(404).json(error);
+            Types_1.Err.password = "Incorrect password.";
+            return res.status(404).json(Types_1.Err);
         }
         const accessToken = jsonwebtoken_1.default.sign({ userInfo: { username: username, level: user.level, id: user.id } }, Types_1.ACCESS_SECRET_KEY, { expiresIn: "30m" }), newRefreshToken = jsonwebtoken_1.default.sign({
             username: user.username,
@@ -76,8 +76,8 @@ const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             res.status(200).json(accessToken);
         }
     }
-    catch (err) {
-        return res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        return res.status(400).json(`Error: ${error}`);
     }
 });
 exports.handleLogin = handleLogin;
@@ -137,8 +137,8 @@ const handleRefresh = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             }
         }));
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.handleRefresh = handleRefresh;
@@ -161,8 +161,8 @@ const handleLogout = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     });
     if (saveToken) {
         res.clearCookie("jwt", cookieOptions);
-        message.status = "You have been logged out successfully.";
-        return res.status(200).json(message);
+        Types_1.Message.status = "You have been logged out successfully.";
+        return res.status(200).json(Types_1.Message);
     }
 });
 exports.handleLogout = handleLogout;
