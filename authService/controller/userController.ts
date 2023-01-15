@@ -64,7 +64,7 @@ const createUser = async (req: Request, res: Response) => {
     if (user) {
       return res.status(200).json(user);
     }
-  } catch (err) {
+  } catch (error) {
     res.sendStatus(400);
   }
 };
@@ -97,8 +97,8 @@ const deleteUser = async (
         return res.status(200).json(message);
       }
     }
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -130,8 +130,8 @@ export const restoreUser = async (
         return res.status(200).json(message);
       }
     }
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -160,8 +160,8 @@ const updatePhone = async (req: Request, res: Response) => {
       message.phone = "User Phone Number updated successfully";
       return res.status(200).json(message);
     }
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -191,8 +191,8 @@ const updatePassword = async (req: Request, res: Response) => {
       message.password = "Password changed successfully";
       return res.status(200).json(message);
     }
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -247,8 +247,8 @@ const uploadPhoto = async (
         return res.status(200).json(message);
       });
     }
-  } catch (err) {
-    res.status(400).json(`Error: ${err}`);
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
   }
 };
 

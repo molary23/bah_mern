@@ -110,7 +110,7 @@ const deleteCategory = async (
       const trash = await Bins.create(newTrash);
       if (trash) {
         message.delete = "Category deleted successfully";
-        return res.status(200).json(message);
+        return res.status(202).json(message);
       }
     }
   } catch (error) {
@@ -176,10 +176,41 @@ const getCategory = async (req: Request, res: Response) => {
   }
 };
 
+const restoreCategory = async (req: Request, res: Response) => {
+  const id: number = Number(req?.params?.id);
+
+  try {
+    const updateProduct = await Categories.update(
+      {
+        status: "a",
+      },
+      {
+        where: { id },
+      }
+    );
+
+    if (updateProduct) {
+      const restored = await Bins.destroy({
+        where: {
+          itemId: id,
+          itemTable: "c",
+        },
+      });
+      if (restored) {
+        message.restore = "Category successfully restored.";
+        return res.status(200).json(message);
+      }
+    }
+  } catch (error) {
+    res.status(400).json(`Error: ${error}`);
+  }
+};
+
 export {
   createCategory,
   updateCategory,
   deleteCategory,
   getAllCategories,
   getCategory,
+  restoreCategory,
 };

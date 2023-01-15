@@ -6,6 +6,7 @@ export type DBObject = {
   DBHOST: string | undefined;
   DBUSER: string | undefined;
   DBPASS: string | undefined;
+  dialect?: string | undefined;
 };
 
 export type DBEnv = {
@@ -55,6 +56,15 @@ export type NestedRegularObject = {
   [index: string]: {
     [index: string]: string | number;
   };
+};
+
+export type ProductObject = {
+  id?: number;
+  productName: string;
+  productModel: string;
+  productQuantity?: number;
+  productDescription?: string;
+  status: string;
 };
 
 export const Err: RegularObject = {};

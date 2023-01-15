@@ -62,7 +62,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             return res.status(200).json(user);
         }
     }
-    catch (err) {
+    catch (error) {
         res.sendStatus(400);
     }
 });
@@ -89,8 +89,8 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             }
         }
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.deleteUser = deleteUser;
@@ -116,8 +116,8 @@ const restoreUser = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             }
         }
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.restoreUser = restoreUser;
@@ -140,8 +140,8 @@ const updatePhone = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             return res.status(200).json(Types_1.Message);
         }
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.updatePhone = updatePhone;
@@ -165,8 +165,8 @@ const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function*
             return res.status(200).json(Types_1.Message);
         }
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.updatePassword = updatePassword;
@@ -208,8 +208,8 @@ const uploadPhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             });
         }
     }
-    catch (err) {
-        res.status(400).json(`Error: ${err}`);
+    catch (error) {
+        res.status(400).json(`Error: ${error}`);
     }
 });
 exports.uploadPhoto = uploadPhoto;
