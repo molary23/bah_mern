@@ -76,6 +76,16 @@ const deleteUser = async (
   const id: number = Number(req?.params?.id);
 
   try {
+    const check = await Users.findOne({
+      where: {
+        id,
+        status: "d",
+      },
+    });
+    if (check) {
+      err.message = "User has already been deleted.";
+      return res.status(202).json(err);
+    }
     const deleteUser = await Users.update(
       {
         status: "d",
@@ -200,7 +210,7 @@ const uploadPhoto = async (
   req: IGetUserAuthInfoRequest | any,
   res: Response
 ) => {
-  const uploadDirectory: string = "/../../../uploads/user/",
+  const uploadDirectory: string = "/../../../uploads/image/user/",
     dirPath = path.join(__dirname, uploadDirectory),
     files = req.files,
     UserId: number = Number(req.params.id),

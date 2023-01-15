@@ -71,6 +71,16 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     var _a;
     const id = Number((_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.id);
     try {
+        const check = yield User_1.Users.findOne({
+            where: {
+                id,
+                status: "d",
+            },
+        });
+        if (check) {
+            Types_1.Err.message = "User has already been deleted.";
+            return res.status(202).json(Types_1.Err);
+        }
         const deleteUser = yield User_1.Users.update({
             status: "d",
         }, {
@@ -171,7 +181,7 @@ const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.updatePassword = updatePassword;
 const uploadPhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const uploadDirectory = "/../../../uploads/user/", dirPath = path_1.default.join(__dirname, uploadDirectory), files = req.files, UserId = Number(req.params.id), username = req.body.username, validate = (0, validateImage_1.default)(files);
+    const uploadDirectory = "/../../../uploads/image/user/", dirPath = path_1.default.join(__dirname, uploadDirectory), files = req.files, UserId = Number(req.params.id), username = req.body.username, validate = (0, validateImage_1.default)(files);
     if ((0, isEmpty_1.default)(UserId)) {
         Types_1.Err.photo = "ID is required";
         return res.status(400).json(Types_1.Err);
