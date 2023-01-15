@@ -13,6 +13,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const verifyJWT_1 = require("./middleware/verifyJWT");
 const categoryRoute_1 = require("./router/api/categoryRoute");
+const productRoute_1 = require("./router/api/productRoute");
 const app = (0, express_1.default)();
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cookie_parser_1.default)());
@@ -25,6 +26,7 @@ require("./util/DBRelationships");
 // Use apis
 app.use(verifyJWT_1.verifyJWT);
 app.use("/api/category", categoryRoute_1.category);
+app.use("/api/product", productRoute_1.product);
 // Apis that doesn't require JWT Authentication
 /*myEmit.emit(
   "log",

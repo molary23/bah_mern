@@ -12,6 +12,7 @@ import { CorsOptions } from "cors";
 import fileUpload from "express-fileupload";
 import { verifyJWT } from "./middleware/verifyJWT";
 import { category } from "./router/api/categoryRoute";
+import { product } from "./router/api/productRoute";
 
 const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ require("./util/DBRelationships");
 // Use apis
 app.use(verifyJWT);
 app.use("/api/category", category);
+app.use("/api/product", product);
 
 // Apis that doesn't require JWT Authentication
 

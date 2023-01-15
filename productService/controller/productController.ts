@@ -1,4 +1,7 @@
+const fs = require("fs"),
+  path = require("path");
 import { Products } from "../models/Product";
+import ProductView from "../models/ProductView";
 import { Bins } from "../models/Bin";
 import { Stocks } from "../models/Stock";
 import { Request, Response } from "express";
@@ -10,35 +13,62 @@ import {
   IGetUserAuthInfoRequest,
   RegularObject,
   ProductObject,
+  NestedRegularObject,
 } from "../util/Types";
 import validator from "validator";
 import validateAddProductInput from "../util/validator/createProduct";
+import validateImage from "../util/validator/validateImage";
+import { ProductImages } from "../models/ProductImage";
 
-const createProduct = async (req: Request, res: Response) => {
+const createProduct = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
   const { errors, isValid } = validateAddProductInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
-  }
+  } /*
   const newProduct: ProductObject = {
     productName: req.body.productName,
     productModel: req.body.productModel,
     productDescription: req.body.productDescription,
     status: req.body.status,
+    UserId: req.id,
+    CategoryId: Number(req.body.CategoryId),
   };
+  console.log(newProduct);*/
 
   try {
-    const product = await Products.create(newProduct);
+    const [found, create] = await Products.findOrCreate({
+      where: {
+        productName: req.body.productName,
+        productModel: req.body.productModel,
+        CategoryId: req.body.CategoryId,
+      },
+      defaults: {
+        productName: req.body.productName,
+        productModel: req.body.productModel,
+        productDescription: req.body.productDescription,
+        status: req.body.status,
+        UserId: req.id,
+        CategoryId: req.body.CategoryId,
+      },
+    });
 
-    if (product) {
+    if (create) {
       const stock = await Stocks.create({
+        ProductId: found.id,
         quantity: req.body.productQuantity,
-        ProductId: product.id,
       });
       if (stock) {
         message.success = "Product created successfully.";
         return res.status(200).json(message);
       }
+    } else {
+      err.product =
+        "Product with the same name, model and category already exists";
+      return res.status(419).json(err);
     }
   } catch (error) {
     res.status(400).json(error);
@@ -52,6 +82,16 @@ const deleteProduct = async (
   const id = parseInt(req.params.id);
 
   try {
+    const check = await Products.findOne({
+      where: {
+        id,
+        status: "d",
+      },
+    });
+    if (check) {
+      err.message = "Product has already been deleted.";
+      return res.status(202).json(err);
+    }
     const deleteProduct = await Products.update(
       {
         status: "d",
@@ -130,32 +170,36 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-/*
-const updateImage = async (req, res) => {
-  const imageInfo = {};
+const updateImage = async (req: Request, res: Response) => {
+  const imageInfo: RegularObject = {};
   imageInfo.ProductId = Number(req.params.id);
-  const files = req.files,
+  const files: NestedRegularObject | any = req.files,
     validate = validateImage(files);
 
   if (!validate.isValid) {
     return res.status(400).json(validate.errors);
   }
 
-  if (imageInfo.ProductId) {
-    error.update = "Product ID not specified";
-    return res.status(400).json(error);
+  if (!imageInfo.ProductId) {
+    err.update = "Product ID not specified";
+    return res.status(400).json(err);
   }
 
-  if (req.body.imageName) {
-    error.update = "Image Name not specified";
-    return res.status(400).json(error);
+  if (!req.body.imageName) {
+    err.update = "Image Name not specified";
+    return res.status(400).json(err);
+  } else {
+    imageInfo.imageName = `${req.body.imageName}${path.extname(
+      files.file.name
+    )}`;
   }
 
-  if (req.body.imageName) imageInfo.imageName = req.body.imageName;
+  const uploadDirectory = "/../../../uploads/image/product/",
+    dirPath = __dirname + uploadDirectory;
 
   if (!fs.existsSync(dirPath)) {
-    fs.mkdir(dirPath, (err) => {
-      if (err) return res.sendStatus(500);
+    fs.mkdir(dirPath, (error: any) => {
+      if (error) return res.sendStatus(500);
     });
   }
 
@@ -165,28 +209,37 @@ const updateImage = async (req, res) => {
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
-    const image = await Image.update(
-      { imageName: imageInfo.imageName },
-      {
-        where: {
-          ProductId: imageInfo.ProductId,
-        },
-      }
-    );
+    const [found, create] = await ProductImages.findOrCreate({
+      where: {
+        ProductId: imageInfo.ProductId,
+      },
+      defaults: {
+        imageName: imageInfo.imageName,
+      },
+    });
+    let image;
+    if (found) {
+      image = await ProductImages.update(
+        { imageName: imageInfo.imageName },
+        {
+          where: {
+            ProductId: imageInfo.ProductId,
+          },
+        }
+      );
+    }
 
-    if (image) {
-      await act("p", "e", imageInfo.ProductId, req.id);
-      files.file.mv(filePath, (err) => {
-        error.upload = "Error uploading";
-        if (err) return res.status(500).json(error.upload);
+    if (create || image) {
+      //  await act("p", "e", imageInfo.ProductId, req.id);
+      files.file.mv(filePath, (error: any) => {
+        if (error) return res.sendStatus(500);
       });
       return res.sendStatus(200);
     }
-  } catch (err) {
-    error.find = "Unable to update Image";
-    res.status(400).json(`${error} , ${err}`);
+  } catch (error) {
+    res.status(400).json(error);
   }
-};*/
+};
 
 const restoreProduct = async (req: Request, res: Response) => {
   const id: number = Number(req?.params?.id);
@@ -221,12 +274,65 @@ const restoreProduct = async (req: Request, res: Response) => {
 const getProduct = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   try {
-    const product = await Products.findOne({
+    const product = await ProductView.findOne({
       where: {
         id,
       },
     });
     res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+const getAllProducts = async (req: Request, res: Response) => {
+  let where: RegularObject | any = { status: "a" };
+
+  if (req.body.search) {
+    const search: string = req.body.search,
+      searchArray = search.split("+");
+    if (searchArray.length > 1) {
+      let newSearchArray = [],
+        newSearchObj = {};
+      for (let i = 0; i < searchArray.length; i++) {
+        if (validator.isAlphanumeric(searchArray[i])) {
+          newSearchObj = {
+            [Op.or]: [
+              { username: { [Op.substring]: searchArray[i] } },
+              { categoryName: { [Op.substring]: searchArray[i] } },
+              { productName: { [Op.substring]: searchArray[i] } },
+              { productModel: { [Op.substring]: searchArray[i] } },
+              { productDescription: { [Op.substring]: searchArray[i] } },
+            ],
+          };
+        }
+        newSearchArray.push(newSearchObj);
+      }
+      where = { ...where, ...{ [Op.and]: newSearchArray } };
+    } else {
+      let searchTerms: string = searchArray[0];
+      if (validator.isAlphanumeric(searchTerms)) {
+        where = {
+          ...where,
+          ...{
+            [Op.or]: [
+              { username: { [Op.substring]: searchTerms } },
+              { categoryName: { [Op.substring]: searchTerms } },
+              { productName: { [Op.substring]: searchTerms } },
+              { productModel: { [Op.substring]: searchTerms } },
+              { productDescription: { [Op.substring]: searchTerms } },
+            ],
+          },
+        };
+      }
+    }
+  }
+
+  try {
+    const allProducts = await ProductView.findAndCountAll({
+      where,
+    });
+    res.status(200).json(allProducts);
   } catch (error) {
     res.status(400).json(error);
   }
@@ -238,4 +344,6 @@ export {
   updateProduct,
   restoreProduct,
   getProduct,
+  getAllProducts,
+  updateImage,
 };

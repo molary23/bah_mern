@@ -8,6 +8,7 @@ import {
   getAllCategories,
   getCategory,
   updateCategory,
+  restoreCategory,
 } from "../../controller/categoryController";
 
 const router = express.Router();
@@ -59,5 +60,13 @@ router
 */
 
 router.route("/:id").delete(verifyLevels([LEVEL_LIST.admin]), deleteCategory);
+
+/*
+@route GET api/category/id
+@desc Restore a Category
+@access private
+*/
+
+router.route("/:id").patch(verifyLevels([LEVEL_LIST.admin]), restoreCategory);
 
 export { router as category };

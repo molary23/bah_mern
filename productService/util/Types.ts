@@ -65,6 +65,8 @@ export type ProductObject = {
   productQuantity?: number;
   productDescription?: string;
   status: string;
+  CategoryId?: number | any;
+  UserId?: number;
 };
 
 export const Err: RegularObject = {};

@@ -94,6 +94,17 @@ const deleteCategory = async (
   }
 
   try {
+    const check = await Categories.findOne({
+      where: {
+        id,
+        status: "d",
+      },
+    });
+    if (check) {
+      err.message = "Category has already been deleted.";
+      return res.status(202).json(err);
+    }
+
     const deleteCategory = await Categories.update(
       { status: "d" },
       {

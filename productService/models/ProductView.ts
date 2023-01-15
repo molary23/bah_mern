@@ -25,11 +25,10 @@ ProductView.init(
     categoryName: DataTypes.STRING,
     productName: DataTypes.STRING,
     productModel: DataTypes.STRING,
-    productImage: DataTypes.STRING,
     input: DataTypes.INTEGER,
     output: DataTypes.INTEGER,
     productDescription: DataTypes.TEXT,
-    productStatus: DataTypes.STRING,
+    status: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     username: DataTypes.STRING,
   },
@@ -48,8 +47,6 @@ ProductView.init(
   }
 );
 
-//ProductView.sync = () => Promise.resolve();
-
-//ProductView.sync({ force: true });
+ProductView.sync;
 
 export default ProductView;

@@ -14,6 +14,9 @@ export default function validateAddProductInput(data: ProductObject) {
   data.productModel = !isEmpty(data.productModel)
     ? data.productModel.toLowerCase()
     : "";
+  data.CategoryId = !isEmpty(data.CategoryId)
+    ? data.CategoryId.toLowerCase()
+    : "";
 
   if (validator.isEmpty(data.productName)) {
     errors.productName = "Product Name Field can't be Empty";
@@ -21,7 +24,10 @@ export default function validateAddProductInput(data: ProductObject) {
   if (validator.isEmpty(data.productModel)) {
     errors.productModel = "Product Model Field can't be Empty";
   }
-  if (validator.isEmpty(data.productQuantity === 0)) {
+  if (validator.isEmpty(data.CategoryId)) {
+    errors.CategoryId = "Category Id can't be Empty";
+  }
+  if (data.productQuantity === 0) {
     errors.productQuantity = "Product Quantity Field can't be Empty";
   }
 

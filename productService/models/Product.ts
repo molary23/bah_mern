@@ -22,7 +22,6 @@ export const Products = Product.init(
     productName: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      unique: true,
     },
     productModel: {
       type: DataTypes.STRING(50),
