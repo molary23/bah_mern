@@ -51,15 +51,6 @@ Products.hasOne(ProductImages, {
 });
 ProductImages.belongsTo(Products);
 
-Products.hasMany(Stocks, {
-  onDelete: "CASCADE",
-  hooks: true,
-  foreignKey: {
-    allowNull: false,
-  },
-});
-Stocks.belongsTo(Products);
-
 /*
 sequelize
   .sync({ alter: false })

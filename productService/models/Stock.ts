@@ -26,6 +26,12 @@ export const Stocks = Stock.init(
       values: ["n", "r", "s"], // n: new product, r: restock, s: sold
       defaultValue: "n",
     },
+    ProductId: {
+      type: DataTypes.INTEGER,
+    },
+    OrderId: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     // don't forget to enable timestamps!
