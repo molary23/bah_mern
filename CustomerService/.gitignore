@@ -1,0 +1,14 @@
+# Node Modules
+/node_modules
+
+#DB Config
+/config
+
+#env
+.env
+
+# All logs
+*.log
+
+#dist folder
+/dist

@@ -194,7 +194,7 @@ const updateImage = async (req: Request, res: Response) => {
     )}`;
   }
 
-  const uploadDirectory = "/../../../uploads/image/product/",
+  const uploadDirectory = "/../../../uploads/image/products/",
     dirPath = __dirname + uploadDirectory;
 
   if (!fs.existsSync(dirPath)) {

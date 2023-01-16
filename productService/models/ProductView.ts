@@ -43,10 +43,10 @@ ProductView.init(
     updatedAt: false,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "ProductView", // We need to choose the model name
+    modelName: "ProductViews", // We need to choose the model name
   }
 );
 
-ProductView.sync;
+//ProductView.sync;
 
 export default ProductView;
