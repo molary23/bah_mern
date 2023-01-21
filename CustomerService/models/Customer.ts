@@ -30,6 +30,9 @@ export const Customers = Customer.init(
       allowNull: false,
       unique: true,
     },
+    phone: {
+      type: DataTypes.STRING(15),
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

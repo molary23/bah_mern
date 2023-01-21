@@ -6,25 +6,27 @@ import express, { Express, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { CorsOptions } from "cors";
-//import { credentials } from "./middleware/credentials";
-//import { corsOptions as options } from "./util/corsOptions";
-//import { myEmit } from "./logger/emit";
+import { credentials } from "./middleware/credentials";
+import { corsOptions as options } from "./util/corsOptions";
+import { myEmit } from "./logger/emit";
 import fileUpload from "express-fileupload";
-import { verifyJWT } from "./middleware/verifyJWT";
+import { user } from "./router/api/customerRoute";
+import { auth } from "./router/api/verifyRoute";
 
 const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.json());
-//app.use(credentials);
-//app.use(cors(options as CorsOptions));
+app.use(credentials);
+app.use(cors(options as CorsOptions));
 app.use(fileUpload());
 
 // Sync Database Relationsship
 require("./util/DBRelationships");
 
 // Use apis
-//app.use(verifyJWT);
+app.use("/api/verify", auth);
+app.use("/api/customer", user);
 
 // Apis that doesn't require JWT Authentication
 
