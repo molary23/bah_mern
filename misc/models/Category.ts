@@ -1,13 +1,13 @@
 import { sequelize } from "../config/db";
 import { Model, DataTypes } from "sequelize";
 
-class Stock extends Model {
+class Category extends Model {
   declare id: number;
-  declare quantity: number;
-  declare type: string;
+  declare categoryName: string;
+  declare status: string;
 }
 
-export const Stocks = Stock.init(
+export const Categories = Category.init(
   {
     // Model attributes are defined here
     id: {
@@ -16,21 +16,15 @@ export const Stocks = Stock.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    quantity: {
-      type: DataTypes.INTEGER,
+    categoryName: {
+      type: DataTypes.STRING(50),
       allowNull: false,
       unique: true,
     },
-    type: {
+    status: {
       type: DataTypes.ENUM,
-      values: ["n", "r"], // n: new product, r: restock
-      defaultValue: "n",
-    },
-    ProductId: {
-      type: DataTypes.INTEGER,
-    },
-    OrderId: {
-      type: DataTypes.INTEGER,
+      values: ["a", "d"], // a: active, d: deleted
+      defaultValue: "a",
     },
   },
   {
@@ -41,9 +35,9 @@ export const Stocks = Stock.init(
     createdAt: true,
 
     // I want updatedAt
-    updatedAt: false,
+    updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Stock", // We need to choose the model name
+    modelName: "Category", // We need to choose the model name
   }
 );

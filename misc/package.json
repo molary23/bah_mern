@@ -1,0 +1,53 @@
+{
+  "name": "bahengine",
+  "version": "1.0.0",
+  "description": "Bahengine new site using Typescript - Misc Service",
+  "main": "server.ts",
+  "author": "Hassan A. Adeola",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13",
+    "@types/express-fileupload": "^1.4.1",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cron": "^2.2.0",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-json": "^1.0.0",
+    "express-rate-limit": "^6.7.0",
+    "express-upload": "^0.1.0",
+    "helmet": "^6.0.1",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^2.3.3",
+    "node-rotation-file": "^1.1.2",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0",
+    "uuid": "^9.0.0",
+    "validator": "^13.7.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cron": "^2.0.0",
+    "@types/express": "^4.17.15",
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/node": "^18.11.18",
+    "@types/node-cron": "^3.0.7",
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.2",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/server.js\""
+  },
+  "keywords": []
+}
