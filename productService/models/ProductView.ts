@@ -48,5 +48,6 @@ ProductView.init(
 );
 
 //ProductView.sync;
+ProductView.sync = () => new Promise((resolve) => {});
 
 export default ProductView;

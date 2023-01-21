@@ -338,6 +338,36 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
+const restockProduct = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
+  const { productId, productQuantity } = req.body;
+  const UserId = Number(req.params);
+
+  if (isEmpty(productQuantity)) {
+    err.restock = "Product Quantity not specified";
+    return res.status(400).json(err);
+  }
+
+  if (isEmpty(productId)) {
+    err.restock = "Product ID not specified";
+    return res.status(400).json(err);
+  }
+
+  try {
+    const restock = await Stocks.create({
+      quantity: productQuantity,
+      type: "r",
+      ProductId: productId,
+    });
+    if (restock) {
+      message.success = "Product Quantity added successfully";
+      return res.status(200).json(message);
+    }
+  } catch (error) {}
+};
+
 export {
   createProduct,
   deleteProduct,
@@ -346,4 +376,5 @@ export {
   getProduct,
   getAllProducts,
   updateImage,
+  restockProduct,
 };

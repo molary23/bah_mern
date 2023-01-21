@@ -10,6 +10,7 @@ import {
   getProduct,
   getAllProducts,
   updateImage,
+  restockProduct,
 } from "../../controller/productController";
 
 const router = express.Router();
@@ -63,7 +64,7 @@ router
 router.route("/:id").delete(verifyLevels([LEVEL_LIST.admin]), deleteProduct);
 
 /*
-@route GET api/product/id
+@route PATCH api/product/id
 @desc Restore a Product
 @access private - Admin
 */
@@ -71,13 +72,23 @@ router.route("/:id").delete(verifyLevels([LEVEL_LIST.admin]), deleteProduct);
 router.route("/:id").patch(verifyLevels([LEVEL_LIST.admin]), restoreProduct);
 
 /*
-@route GET api/product/image/id
+@route PUT api/product/image/id
 @desc Upload Product Image
 @access private - Admin
 */
 
 router
   .route("/image/:id")
-  .put(verifyLevels([LEVEL_LIST.admin, , LEVEL_LIST.manager]), updateImage);
+  .put(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), updateImage);
+
+/*
+@route POST api/product/restock
+@desc Upload Product Image
+@access private - Admin
+*/
+
+router
+  .route("/restock")
+  .post(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), restockProduct);
 
 export { router as product };
