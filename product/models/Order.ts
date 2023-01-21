@@ -1,13 +1,20 @@
 import { sequelize } from "../config/db";
 import { Model, DataTypes } from "sequelize";
 
-class Stock extends Model {
-  declare id: number;
-  declare quantity: number;
-  declare type: string;
+enum statusEnum {
+  "a",
+  "d",
+  "p",
 }
 
-export const Stocks = Stock.init(
+class Order extends Model {
+  declare id: number;
+  declare quantity: number;
+  declare type: statusEnum;
+  declare comment: string;
+}
+
+export const Orders = Order.init(
   {
     // Model attributes are defined here
     id: {
@@ -21,16 +28,22 @@ export const Stocks = Stock.init(
       allowNull: false,
       unique: true,
     },
-    type: {
+    status: {
       type: DataTypes.ENUM,
-      values: ["n", "r"], // n: new product, r: restock
-      defaultValue: "n",
+      values: ["a", "d", "p"], // a: approved, d: declined, p: pending
+      defaultValue: "p",
     },
     ProductId: {
       type: DataTypes.INTEGER,
     },
-    OrderId: {
+    UserId: {
       type: DataTypes.INTEGER,
+    },
+    CustomerId: {
+      type: DataTypes.INTEGER,
+    },
+    comment: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -41,9 +54,9 @@ export const Stocks = Stock.init(
     createdAt: true,
 
     // I want updatedAt
-    updatedAt: false,
+    updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Stock", // We need to choose the model name
+    modelName: "Order", // We need to choose the model name
   }
 );

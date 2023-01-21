@@ -4,6 +4,7 @@ import { Products } from "../models/Product";
 import ProductView from "../models/ProductView";
 import { Bins } from "../models/Bin";
 import { Stocks } from "../models/Stock";
+import { Orders } from "../models/Order";
 import { Request, Response } from "express";
 import { Op } from "sequelize";
 import isEmpty from "../util/validator/isEmpty";
@@ -343,7 +344,7 @@ const restockProduct = async (
   res: Response
 ) => {
   const { productId, productQuantity } = req.body;
-  const UserId = Number(req.params);
+  const UserId = Number(req.params.id);
 
   if (isEmpty(productQuantity)) {
     err.restock = "Product Quantity not specified";
@@ -368,6 +369,38 @@ const restockProduct = async (
   } catch (error) {}
 };
 
+const orderProduct = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
+  const { productId, productQuantity, comment } = req.body;
+  const UserId = Number(req.params);
+
+  if (isEmpty(productQuantity)) {
+    err.restock = "Product Quantity not specified";
+    return res.status(400).json(err);
+  }
+
+  if (isEmpty(productId)) {
+    err.restock = "Product ID not specified";
+    return res.status(400).json(err);
+  }
+
+  try {
+    const restock = await Orders.create({
+      quantity: productQuantity,
+      status: "a",
+      ProductId: productId,
+      comment,
+      UserId: Number(req.params.id),
+    });
+    if (restock) {
+      message.success = "Product Quantity added successfully";
+      return res.status(200).json(message);
+    }
+  } catch (error) {}
+};
+
 export {
   createProduct,
   deleteProduct,
@@ -377,4 +410,5 @@ export {
   getAllProducts,
   updateImage,
   restockProduct,
+  orderProduct,
 };

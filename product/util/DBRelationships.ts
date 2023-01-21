@@ -4,7 +4,6 @@ import { ProductImages } from "../models/ProductImage";
 import { Users } from "../models/User";
 import { Bins } from "../models/Bin";
 import { Categories } from "../models/Category";
-import { Stocks } from "../models/Stock";
 
 Users.hasMany(Bins, {
   onDelete: "RESTRICT",
@@ -50,10 +49,9 @@ Products.hasOne(ProductImages, {
   },
 });
 ProductImages.belongsTo(Products);
-
 /*
 sequelize
-  .sync({ alter: false })
+  .sync({ alter: true })
   .then((result: any) => {
     console.log(result);
   })
