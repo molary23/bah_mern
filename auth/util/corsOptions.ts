@@ -2,7 +2,6 @@ import { allowedOrigins } from "./allowedOrigins";
 
 export const corsOptions = {
   origin: (origin: string, callback: any) => {
-    console.log("Cors Options", origin);
     if (
       allowedOrigins.indexOf(origin) !==
         -1 /* Remove this part before Production*/ ||

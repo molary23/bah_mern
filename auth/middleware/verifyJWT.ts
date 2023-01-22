@@ -1,7 +1,8 @@
-import jwt from "jsonwebtoken";
 import { Response, NextFunction } from "express";
-import { ACCESS_SECRET_KEY } from "../util/Types";
+import jwt, { Secret } from "jsonwebtoken";
 import { IGetUserAuthInfoRequest } from "../util/Types";
+
+const ACCESS_SECRET_KEY: Secret = process.env.ACCESS_TOKEN_SECRET_KEY!;
 
 export const verifyJWT = async (
   req: IGetUserAuthInfoRequest | any,

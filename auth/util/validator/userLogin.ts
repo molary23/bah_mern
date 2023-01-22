@@ -1,4 +1,5 @@
 const validator = require("validator");
+
 import isEmpty from "./isEmpty";
 import { DBUser, RegularObject } from "../Types";
 

@@ -31,8 +31,8 @@ app.use("/api/user", user);
 
 myEmit.emit(
   "log",
-  "log event emmitted on my short code are you rotating",
-  "error.log"
+  "log event emmitted on my short code are you rotating and logging them on the server",
+  "menulog.log"
 );
 
 const PORT: string | number = process.env.PORT || 6000;

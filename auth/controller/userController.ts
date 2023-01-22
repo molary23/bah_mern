@@ -15,6 +15,7 @@ import {
 import validateAddUserInput from "../util/validator/createUser";
 import { Bins } from "../models/Bin";
 import validateImage from "../util/validator/validateImage";
+import { myEmit } from "../logger/emit";
 
 const salt: number = 10;
 
@@ -38,6 +39,7 @@ const createUser = async (req: Request, res: Response) => {
       where: {
         email,
       },
+      attributes: ["email"],
     });
     if (checkEmail) {
       err.add = "Email address is already taken.";
@@ -47,6 +49,7 @@ const createUser = async (req: Request, res: Response) => {
       where: {
         username,
       },
+      attributes: ["username"],
     });
     if (checkUser) {
       err.add = "Username is already taken.";
@@ -62,10 +65,20 @@ const createUser = async (req: Request, res: Response) => {
     });
 
     if (user) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Created a new User`,
+        "user.log"
+      );
       return res.status(200).json(user);
     }
   } catch (error) {
-    res.sendStatus(400);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Created a new User failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -103,12 +116,23 @@ const deleteUser = async (
       };
       const trashed = await Bins.create(newTrash);
       if (trashed) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t Deleted a User`,
+          "user.log"
+        );
         message.delete = "User successfully deleted.";
+
         return res.status(200).json(message);
       }
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Deleting a User failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -136,12 +160,23 @@ export const restoreUser = async (
         },
       });
       if (restored) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t Restore a User`,
+          "user.log"
+        );
         message.restore = "User successfully restored.";
+
         return res.status(200).json(message);
       }
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Restoring a User failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -167,11 +202,22 @@ const updatePhone = async (req: Request, res: Response) => {
       }
     );
     if (updateUser) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Update a User phone number`,
+        "user.log"
+      );
       message.phone = "User Phone Number updated successfully";
+
       return res.status(200).json(message);
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Updating a User phone number failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -198,11 +244,21 @@ const updatePassword = async (req: Request, res: Response) => {
       }
     );
     if (updateUser) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Update a User password`,
+        "user.log"
+      );
       message.password = "Password changed successfully";
       return res.status(200).json(message);
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Updating a User password failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -253,12 +309,22 @@ const uploadPhoto = async (
       files.file.mv(filePath, (err: any) => {
         err.upload = "Error uploading";
         if (err) return res.status(500).json(err.upload);
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t Updated a User photo`,
+          "user.log"
+        );
         message.image = "User image uploaded successfully.";
         return res.status(200).json(message);
       });
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Updating a User photo failed`,
+      "user.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 

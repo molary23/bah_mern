@@ -1,11 +1,12 @@
 import { Secret } from "jsonwebtoken";
-import { Request, Response } from "express";
+import { Request } from "express";
 
 export type DBObject = {
   DBNAME: string | undefined;
   DBHOST: string | undefined;
   DBUSER: string | undefined;
   DBPASS: string | undefined;
+  dialect?: string | undefined;
 };
 
 export type DBEnv = {
@@ -57,8 +58,29 @@ export type NestedRegularObject = {
   };
 };
 
+export type ProductObject = {
+  id?: number;
+  productName: string;
+  productModel: string;
+  productQuantity?: number;
+  productDescription?: string;
+  status: string;
+  CategoryId?: number | any;
+  UserId?: number;
+};
+
 export const Err: RegularObject = {};
 export const Message: RegularObject = {};
 
 export const ACCESS_SECRET_KEY: Secret = process.env.ACCESS_TOKEN_SECRET_KEY!;
 export const REFRESH_SECRET_KEY: Secret = process.env.REFRESH_TOKEN_SECRET_KEY!;
+
+export enum statusEnum {
+  "a",
+  "d",
+}
+
+export enum levelEnum {
+  "a",
+  "m",
+}

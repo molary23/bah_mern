@@ -33,10 +33,11 @@ UserImages.belongsTo(Users);
 
 /*
 sequelize
-  .sync({ alter: false })
+  .sync({ alter: true })
   .then((result: any) => {
     console.log(result);
   })
   .catch((error: never) => {
     console.log(error);
-  });*/
+  });
+*/

@@ -3,15 +3,15 @@ import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
 import { Users } from "../models/User";
-import isEmpty from "../util/validator/isEmpty";
 import {
   CookieObject,
-  ACCESS_SECRET_KEY,
-  REFRESH_SECRET_KEY,
   Err as err,
   Message as message,
+  ACCESS_SECRET_KEY,
+  REFRESH_SECRET_KEY,
 } from "../util/Types";
 import validateUserLogin from "../util/validator/userLogin";
+import { myEmit } from "../logger/emit";
 
 const cookieOptions: CookieObject = {
   httpOnly: true,
@@ -33,7 +33,7 @@ const handleLogin = async (req: Request, res: Response) => {
   try {
     const user = await Users.findOne({
       where: {
-        [Op.and]: { status: "a", [Op.or]: { email: username, username } },
+        [Op.and]: { status: "a", [Op.or]: [{ email: username }, { username }] },
       },
       attributes: ["id", "username", "password", "token", "level"],
     });
@@ -43,7 +43,7 @@ const handleLogin = async (req: Request, res: Response) => {
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      err.password = "Incorrect password.";
+      err.user = "Incorrect password.";
       return res.status(404).json(err);
     }
     const accessToken = jwt.sign(
@@ -90,9 +90,19 @@ const handleLogin = async (req: Request, res: Response) => {
         ...cookieOptions,
         maxAge: 86400000,
       });
-      res.status(200).json(accessToken);
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Successful Login`,
+        "auth.success.log"
+      );
+      return res.status(200).json(accessToken);
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Login failed`,
+      "auth.error.log"
+    );
     return res.status(400).json(`Error: ${error}`);
   }
 };
@@ -182,12 +192,22 @@ const handleRefresh = async (req: Request, res: Response) => {
             ...cookieOptions,
             maxAge: 86400000,
           });
-          res.status(200).json(accessToken);
+          myEmit.emit(
+            "log",
+            `${req.url}\t${req.headers.origin}\t Refresh Rotation Successful`,
+            "refresh.roate.log"
+          );
+          return res.status(200).json(accessToken);
         }
       }
     );
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Refresh Rotation failed`,
+      "refresh.error.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -215,6 +235,11 @@ const handleLogout = async (req: Request, res: Response) => {
   if (saveToken) {
     res.clearCookie("jwt", cookieOptions);
     message.status = "You have been logged out successfully.";
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Log out`,
+      "log.out.log"
+    );
     return res.status(200).json(message);
   }
 };

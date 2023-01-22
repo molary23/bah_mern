@@ -22,7 +22,7 @@ export const Bins = Bin.init(
     },
     itemTable: {
       type: DataTypes.ENUM,
-      values: ["c", "p", "u"],
+      values: ["c", "p", "u", "b"],
     },
   },
   {

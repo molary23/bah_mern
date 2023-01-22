@@ -6,8 +6,8 @@ const fs = require("fs"),
   RotationFileStream = require("node-rotation-file");
 
 export const logEvent = async (message: string, fileName: string) => {
-  const filePath: string = path.join(__dirname, "/../logs", fileName),
-    folderPath = path.join(__dirname, "/../logs/archives");
+  const filePath: string = path.join(__dirname, "/../../../logs", fileName),
+    folderPath = path.join(__dirname, "/../../../logs/archives");
   const stream = new RotationFileStream({
     path: filePath,
     maxTime: "1D",
@@ -21,11 +21,11 @@ export const logEvent = async (message: string, fileName: string) => {
     logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
   try {
-    if (!fs.existsSync(path.join(__dirname, "/../logs"))) {
-      await fsPromises.mkdir(path.join(__dirname, "/../logs"));
+    if (!fs.existsSync(path.join(__dirname, "/../../../logs"))) {
+      await fsPromises.mkdir(path.join(__dirname, "/../../../logs"));
     }
     await fsPromises.appendFile(
-      path.join(__dirname, "/../logs", fileName),
+      path.join(__dirname, "/../../../logs", fileName),
       logItem
     );
   } catch (error) {

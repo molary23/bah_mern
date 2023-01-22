@@ -1,6 +1,7 @@
-import isEmpty from "./isEmpty";
 import path from "path";
-import { RegularObject, NestedRegularObject } from "../Types";
+
+import isEmpty from "./isEmpty";
+import { NestedRegularObject, RegularObject } from "../Types";
 
 const allowedExtArray = [".jpg", ".png", ".jpeg"],
   FILE_SIZE_LIMIT = 10 * 1024 * 1024;
