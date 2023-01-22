@@ -49,7 +49,7 @@ Products.hasOne(ProductImages, {
   },
 });
 ProductImages.belongsTo(Products);
-/*
+/**/
 sequelize
   .sync({ alter: true })
   .then((result: any) => {
@@ -58,4 +58,4 @@ sequelize
   .catch((error: never) => {
     console.log(error);
   });
-*/
+//
