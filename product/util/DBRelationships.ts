@@ -42,7 +42,7 @@ Categories.hasMany(Products, {
 Products.belongsTo(Categories);
 
 Products.hasOne(ProductImages, {
-  onDelete: "CASCADE",
+  onDelete: "RESTRICT",
   hooks: true,
   foreignKey: {
     allowNull: false,
@@ -51,11 +51,10 @@ Products.hasOne(ProductImages, {
 ProductImages.belongsTo(Products);
 /**/
 sequelize
-  .sync({ alter: true })
+  .sync({ alter: false })
   .then((result: any) => {
     console.log(result);
   })
   .catch((error: never) => {
     console.log(error);
   });
-//

@@ -12,6 +12,7 @@ import {
   Message as message,
 } from "../util/Types";
 import validateUserLogin from "../util/validator/userLogin";
+import { myEmit } from "../logger/emit";
 
 const cookieOptions: CookieObject = {
   httpOnly: true,
@@ -90,9 +91,19 @@ const handleLogin = async (req: Request, res: Response) => {
         ...cookieOptions,
         maxAge: 86400000,
       });
-      res.status(200).json(accessToken);
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Customer Log in successfully.`,
+        "customer.success.log"
+      );
+      return res.status(200).json(accessToken);
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer Log in failed.`,
+      "customer.error.log"
+    );
     return res.status(400).json(`Error: ${error}`);
   }
 };
@@ -182,12 +193,22 @@ const handleRefresh = async (req: Request, res: Response) => {
             ...cookieOptions,
             maxAge: 86400000,
           });
-          res.status(200).json(accessToken);
+          myEmit.emit(
+            "log",
+            `${req.url}\t${req.headers.origin}\t Customer Refresh Token.`,
+            "customer.refresh.log"
+          );
+          return res.status(200).json(accessToken);
         }
       }
     );
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer Refresh Token failed.`,
+      "customer.error.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -214,6 +235,11 @@ const handleLogout = async (req: Request, res: Response) => {
   );
   if (saveToken) {
     res.clearCookie("jwt", cookieOptions);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer Logs out successfully.`,
+      "customer.success.log"
+    );
     message.status = "You have been logged out successfully.";
     return res.status(200).json(message);
   }

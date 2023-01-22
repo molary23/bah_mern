@@ -20,6 +20,8 @@ import validator from "validator";
 import validateAddProductInput from "../util/validator/createProduct";
 import validateImage from "../util/validator/validateImage";
 import { ProductImages } from "../models/ProductImage";
+import { myEmit } from "../logger/emit";
+import paginate from "../util/pagination";
 
 const createProduct = async (
   req: IGetUserAuthInfoRequest | any,
@@ -29,16 +31,7 @@ const createProduct = async (
 
   if (!isValid) {
     return res.status(400).json(errors);
-  } /*
-  const newProduct: ProductObject = {
-    productName: req.body.productName,
-    productModel: req.body.productModel,
-    productDescription: req.body.productDescription,
-    status: req.body.status,
-    UserId: req.id,
-    CategoryId: Number(req.body.CategoryId),
-  };
-  console.log(newProduct);*/
+  }
 
   try {
     const [found, create] = await Products.findOrCreate({
@@ -63,6 +56,11 @@ const createProduct = async (
         quantity: req.body.productQuantity,
       });
       if (stock) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t New Product created successfully.`,
+          "product.success.log"
+        );
         message.success = "Product created successfully.";
         return res.status(200).json(message);
       }
@@ -72,7 +70,12 @@ const createProduct = async (
       return res.status(419).json(err);
     }
   } catch (error) {
-    res.status(400).json(error);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t New Product creation failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
@@ -112,12 +115,22 @@ const deleteProduct = async (
       };
       const trash = await Bins.create(newTrash);
       if (trash) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t  Product deleted successfully.`,
+          "product.success.log"
+        );
         message.delete = "Product deleted successfully";
         return res.status(202).json(message);
       }
     }
   } catch (error) {
-    res.status(400).json(error);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product deletion failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
@@ -163,10 +176,19 @@ const updateProduct = async (req: Request, res: Response) => {
       },
     });
     if (updateProduct) {
-      //  await act("p", "u", id, req.id);
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Product updated successfully.`,
+        "product.success.log"
+      );
       return res.status(204).json(updateProduct);
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product update failed.`,
+      "product.error.log"
+    );
     return res.status(400).json(error);
   }
 };
@@ -235,10 +257,20 @@ const updateImage = async (req: Request, res: Response) => {
       files.file.mv(filePath, (error: any) => {
         if (error) return res.sendStatus(500);
       });
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Product image updated successfully.`,
+        "product.success.log"
+      );
       return res.sendStatus(200);
     }
   } catch (error) {
-    res.status(400).json(error);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t  Product image update failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
@@ -280,14 +312,28 @@ const getProduct = async (req: Request, res: Response) => {
         id,
       },
     });
-    res.status(200).json(product);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product restored successfully.`,
+      "product.success.log"
+    );
+    return res.status(200).json(product);
   } catch (error) {
-    res.status(400).json(error);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product restoration failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
 const getAllProducts = async (req: Request, res: Response) => {
-  let where: RegularObject | any = { status: "a" };
+  const pageNumber = Number(req.params.pageNumber);
+  const { offset, limit } = paginate(pageNumber, 5),
+    status = req.body.status ?? "a";
+
+  let where: RegularObject | any = { status };
 
   if (req.body.search) {
     const search: string = req.body.search,
@@ -332,10 +378,22 @@ const getAllProducts = async (req: Request, res: Response) => {
   try {
     const allProducts = await ProductView.findAndCountAll({
       where,
+      offset,
+      limit,
     });
-    res.status(200).json(allProducts);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t All Product selected successfully.`,
+      "product.success.log"
+    );
+    return res.status(200).json(allProducts);
   } catch (error) {
-    res.status(400).json(error);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t All Product selection failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
@@ -363,10 +421,22 @@ const restockProduct = async (
       ProductId: productId,
     });
     if (restock) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Product restocked successfully.`,
+        "product.success.log"
+      );
       message.success = "Product Quantity added successfully";
       return res.status(200).json(message);
     }
-  } catch (error) {}
+  } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product restocking failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
+  }
 };
 
 const orderProduct = async (
@@ -395,10 +465,22 @@ const orderProduct = async (
       UserId: Number(req.params.id),
     });
     if (restock) {
-      message.success = "Product Quantity added successfully";
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Product ordered successfully.`,
+        "product.success.log"
+      );
+      message.success = "Product Quantity ordered successfully";
       return res.status(200).json(message);
     }
-  } catch (error) {}
+  } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Product ordering failed.`,
+      "product.error.log"
+    );
+    return res.status(400).json(error);
+  }
 };
 
 export {

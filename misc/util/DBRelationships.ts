@@ -1,4 +1,5 @@
 // Bring in Models
+import { sequelize } from "../config/db";
 import { Customers } from "../models/Customer";
 import { Users } from "../models/User";
 import { ProductImages } from "../models/ProductImage";
@@ -6,6 +7,7 @@ import { Products } from "../models/Product";
 import { UserImages } from "../models/UserImage";
 import { Categories } from "../models/Category";
 import { Bins } from "../models/Bin";
+import { Orders } from "../models/Order";
 
 Users.hasMany(Bins, {
   onDelete: "RESTRICT",
@@ -51,6 +53,15 @@ Products.hasOne(ProductImages, {
   },
 });
 ProductImages.belongsTo(Products);
+
+Products.hasMany(Orders, {
+  onDelete: "CASCADE",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Orders.belongsTo(Products);
 
 /*
 sequelize

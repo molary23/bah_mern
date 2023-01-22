@@ -6,10 +6,10 @@ import cors from "cors";
 import { CorsOptions } from "cors";
 import { credentials } from "./middleware/credentials";
 import { corsOptions as options } from "./util/corsOptions";
-import { myEmit } from "./logger/emit";
 import fileUpload = require("express-fileupload");
 import { user } from "./router/api/userRoute";
 import { auth } from "./router/api/authRoute";
+import { customer } from "./router/api/customerRoute";
 
 const app: Express = express();
 app.use(express.urlencoded({ extended: false }));
@@ -28,12 +28,7 @@ require("./util/DBRelationships");
 // Apis that doesn't require JWT Authentication
 app.use("/api/auth", auth);
 app.use("/api/user", user);
-
-myEmit.emit(
-  "log",
-  "log event emmitted on my short code are you rotating and logging them on the server",
-  "menulog.log"
-);
+app.use("/api/customer", customer);
 
 const PORT: string | number = process.env.PORT || 6000;
 

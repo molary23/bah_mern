@@ -10,6 +10,8 @@ import {
   RegularObject,
 } from "../util/Types";
 import validator from "validator";
+import { myEmit } from "../logger/emit";
+import paginate from "../util/pagination";
 
 const createCategory = async (
   req: IGetUserAuthInfoRequest | any,
@@ -33,6 +35,11 @@ const createCategory = async (
     });
 
     if (category) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Category created successfully.`,
+        "category.success.log"
+      );
       message.category = "Category created successfully.";
       return res.status(200).json(message);
     } else {
@@ -40,6 +47,11 @@ const createCategory = async (
       return res.status(419).json(err);
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Category creation failed.`,
+      "category.error.log"
+    );
     return res.status(400).json(`Error: ${error}`);
   }
 };
@@ -75,10 +87,20 @@ const updateCategory = async (req: Request, res: Response) => {
       }
     );
     if (updateCategory) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Category updated successfully.`,
+        "category.success.log"
+      );
       message.update = "Category updated successfully";
       return res.status(200).json(message);
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Category updated failed.`,
+      "category.error.log"
+    );
     return res.status(400).json(`Error: ${error}`);
   }
 };
@@ -120,17 +142,31 @@ const deleteCategory = async (
       };
       const trash = await Bins.create(newTrash);
       if (trash) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t Category deleted successfully.`,
+          "category.success.log"
+        );
         message.delete = "Category deleted successfully";
         return res.status(202).json(message);
       }
     }
   } catch (error) {
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Category detion failed.`,
+      "category.error.log"
+    );
     return res.status(400).json(`Error: ${error}`);
   }
 };
 
 const getAllCategories = async (req: Request, res: Response) => {
-  let where: RegularObject | any = { status: "a" };
+  const pageNumber = Number(req.params.pageNumber);
+  const { offset, limit } = paginate(pageNumber, 5),
+    status = req.body.status ?? "a";
+
+  let where: RegularObject | any = { status };
 
   if (req.body.search) {
     const search: string = req.body.search,
@@ -164,11 +200,23 @@ const getAllCategories = async (req: Request, res: Response) => {
   try {
     const allCategory = await Categories.findAndCountAll({
       where,
+      offset,
+      limit,
       attributes: ["categoryName", "id", "UserId"],
     });
-    res.status(200).json(allCategory);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t All Category Selected.`,
+      "category.success.log"
+    );
+    return res.status(200).json(allCategory);
   } catch (error) {
-    res.sendStatus(400);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t All Category selection failed.`,
+      "category.error.log"
+    );
+    return res.sendStatus(400);
   }
 };
 
@@ -208,12 +256,22 @@ const restoreCategory = async (req: Request, res: Response) => {
         },
       });
       if (restored) {
+        myEmit.emit(
+          "log",
+          `${req.url}\t${req.headers.origin}\t A Category selected successfully.`,
+          "category.success.log"
+        );
         message.restore = "Category successfully restored.";
         return res.status(200).json(message);
       }
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t A Category selection failed.`,
+      "category.error.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 

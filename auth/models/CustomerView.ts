@@ -1,17 +1,22 @@
 import { sequelize } from "../config/db";
 import { Model, DataTypes } from "sequelize";
 
-class Customer extends Model {
+class CustomerView extends Model {
   declare id: number;
   declare email: string;
   declare username: string;
-  declare password: string;
+  declare firstName: string;
+  declare lastName: string;
+  declare street: string;
+  declare city: string;
+  declare state: string;
+  declare country: string;
   declare level: string;
   declare status: string;
-  declare token: [string];
+  declare phone: string;
 }
 
-export const Customers = Customer.init(
+export default CustomerView.init(
   {
     // Model attributes are defined here
     id: {
@@ -30,10 +35,6 @@ export const Customers = Customer.init(
       allowNull: false,
       unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     level: {
       type: DataTypes.ENUM,
       values: ["r", "p"], // a: admin, m: manager
@@ -44,22 +45,39 @@ export const Customers = Customer.init(
       values: ["a", "d"], // a: active, d: deleted
       defaultValue: "a",
     },
-    token: {
-      type: DataTypes.JSONB(),
-      defaultValue: [],
+    firstName: {
+      type: DataTypes.STRING(50),
+    },
+    lastName: {
+      type: DataTypes.STRING(50),
+    },
+    phone: {
+      type: DataTypes.STRING(15),
+    },
+    street: {
+      type: DataTypes.STRING,
+    },
+    city: {
+      type: DataTypes.STRING,
+    },
+    state: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
     },
   },
   {
     // don't forget to enable timestamps!
-    timestamps: true,
+    timestamps: false,
 
     // I want createdAt
-    createdAt: true,
+    createdAt: false,
 
     // I want updatedAt
     updatedAt: true,
     // Other model options go here
     sequelize, // We need to pass the connection instance
-    modelName: "Customer", // We need to choose the model name
+    modelName: "CustomerView", // We need to choose the model name
   }
 );

@@ -3,7 +3,7 @@ import {
   handleLogin,
   handleRefresh,
   handleLogout,
-} from "../../controller/authController";
+} from "../../controller/verifyController";
 import { verifyJWT } from "../../middleware/verifyJWT";
 import { loginLimiter } from "../../middleware/rateLimit";
 

@@ -11,6 +11,7 @@ import { CustomerProfiles } from "../models/CustomerProfile";
 import { CronJob } from "cron";
 import fs from "fs";
 import path from "path";
+import { myEmit } from "../logger/emit";
 
 const uploadDirectory = "/../../uploads/image/",
   dirPath = __dirname + uploadDirectory;
@@ -31,6 +32,13 @@ const deleteItem = async (table: any, id: number) => {
           itemId: id,
         },
       });
+    })
+    .then(() => {
+      myEmit.emit(
+        "log",
+        `A ${table} item removed from Bin failed.`,
+        "cron.log"
+      );
     });
 };
 

@@ -3,7 +3,7 @@ import {
   registerUser,
   updatePassword,
   updatePhone,
-} from "../../controller/userController";
+} from "../../controller/customerController";
 import { verifyJWT } from "../../middleware/verifyJWT";
 
 const router = express.Router();

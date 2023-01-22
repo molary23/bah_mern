@@ -25,6 +25,7 @@ const CustomerProfile_1 = require("../models/CustomerProfile");
 const cron_1 = require("cron");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const emit_1 = require("../logger/emit");
 const uploadDirectory = "/../../uploads/image/", dirPath = __dirname + uploadDirectory;
 let date = new Date();
 date.setDate(date.getDate() + 30);
@@ -41,6 +42,9 @@ const deleteItem = (table, id) => __awaiter(void 0, void 0, void 0, function* ()
                 itemId: id,
             },
         });
+    })
+        .then(() => {
+        emit_1.myEmit.emit("log", `A ${table} item removed from Bin failed.`, "cron.log");
     });
 });
 const trashItem = () => __awaiter(void 0, void 0, void 0, function* () {

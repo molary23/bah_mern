@@ -5,6 +5,7 @@ const ProductImage_1 = require("../models/ProductImage");
 const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
 const Bin_1 = require("../models/Bin");
+const Order_1 = require("../models/Order");
 User_1.Users.hasMany(Bin_1.Bins, {
     onDelete: "RESTRICT",
     hooks: true,
@@ -45,6 +46,14 @@ Product_1.Products.hasOne(ProductImage_1.ProductImages, {
     },
 });
 ProductImage_1.ProductImages.belongsTo(Product_1.Products);
+Product_1.Products.hasMany(Order_1.Orders, {
+    onDelete: "CASCADE",
+    hooks: true,
+    foreignKey: {
+        allowNull: false,
+    },
+});
+Order_1.Orders.belongsTo(Product_1.Products);
 /*
 sequelize
   .sync({ alter: false })

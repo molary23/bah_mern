@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import isEmpty from "../util/validator/isEmpty";
 import { DBStatus, Err as err, Message as message } from "../util/Types";
 import validateAddUserInput from "../util/validator/registerUser";
+import { myEmit } from "../logger/emit";
 
 const salt: number = 10;
 
@@ -51,10 +52,20 @@ const registerUser = async (req: Request, res: Response) => {
     });
 
     if (user) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Customer registration successful`,
+        "customer.success.log"
+      );
       return res.status(200).json(user);
     }
   } catch (error) {
-    res.sendStatus(400);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer registrations failed`,
+      "customer.error.log"
+    );
+    return res.status(400).json(error);
   }
 };
 
@@ -80,11 +91,21 @@ const updatePhone = async (req: Request, res: Response) => {
       }
     );
     if (updateUser) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Customer update phone number successful`,
+        "customer.success.log"
+      );
       message.phone = "User Phone Number updated successfully";
       return res.status(200).json(message);
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer update phone number failed`,
+      "customer.error.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
@@ -111,11 +132,21 @@ const updatePassword = async (req: Request, res: Response) => {
       }
     );
     if (updateUser) {
+      myEmit.emit(
+        "log",
+        `${req.url}\t${req.headers.origin}\t Customer update password successful`,
+        "customer.success.log"
+      );
       message.password = "Password changed successfully";
       return res.status(200).json(message);
     }
   } catch (error) {
-    res.status(400).json(`Error: ${error}`);
+    myEmit.emit(
+      "log",
+      `${req.url}\t${req.headers.origin}\t Customer update password failed`,
+      "customer.error.log"
+    );
+    return res.status(400).json(`Error: ${error}`);
   }
 };
 
