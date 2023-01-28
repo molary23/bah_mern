@@ -4,6 +4,7 @@ import { CustomerImages } from "../models/CustomerImage";
 import { CustomerProfiles } from "../models/CustomerProfile";
 import { Products } from "../models/Product";
 import { Orders } from "../models/Order";
+import { Stocks } from "../models/Stock";
 
 Customers.hasOne(CustomerImages, {
   onDelete: "CASCADE",
@@ -40,6 +41,15 @@ Products.hasMany(Orders, {
   },
 });
 Orders.belongsTo(Products);
+
+Products.hasMany(Stocks, {
+  onDelete: "RESTRICT",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Stocks.belongsTo(Products);
 
 /*
 sequelize

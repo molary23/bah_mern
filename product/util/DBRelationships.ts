@@ -4,6 +4,7 @@ import { ProductImages } from "../models/ProductImage";
 import { Users } from "../models/User";
 import { Bins } from "../models/Bin";
 import { Categories } from "../models/Category";
+import { Stocks } from "../models/Stock";
 
 Users.hasMany(Bins, {
   onDelete: "RESTRICT",
@@ -49,7 +50,17 @@ Products.hasOne(ProductImages, {
   },
 });
 ProductImages.belongsTo(Products);
-/**/
+
+Products.hasMany(Stocks, {
+  onDelete: "RESTRICT",
+  hooks: true,
+  foreignKey: {
+    allowNull: false,
+  },
+});
+Stocks.belongsTo(Products);
+
+/*
 sequelize
   .sync({ alter: false })
   .then((result: any) => {
@@ -58,3 +69,5 @@ sequelize
   .catch((error: never) => {
     console.log(error);
   });
+
+*/

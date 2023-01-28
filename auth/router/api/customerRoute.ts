@@ -3,6 +3,8 @@ import {
   upgradeCustomer,
   deleteCustomer,
   restoreCustomer,
+  getAllCustomers,
+  getCustomer,
 } from "../../controller/customerController";
 import { verifyJWT } from "../../middleware/verifyJWT";
 
@@ -38,7 +40,7 @@ router.route("/:id").patch(verifyJWT, upgradeCustomer);
 @access private
 */
 
-router.route("/all").get(verifyJWT);
+router.route("/all").get(verifyJWT, getAllCustomers);
 
 /*
 @route POST api/customer/:id
@@ -46,6 +48,6 @@ router.route("/all").get(verifyJWT);
 @access private
 */
 
-router.route("/:id").get(verifyJWT);
+router.route("/:id").get(verifyJWT, getCustomer);
 
 export { router as customer };
