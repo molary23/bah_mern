@@ -13,7 +13,6 @@ import {
   Message as message,
   IGetUserAuthInfoRequest,
   RegularObject,
-  ProductObject,
   NestedRegularObject,
 } from "../util/Types";
 import validator from "validator";
@@ -137,7 +136,10 @@ const deleteProduct = async (
   }
 };
 
-const updateProduct = async (req: IGetUserAuthInfoRequest, res: Response) => {
+const updateProduct = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
   const editProduct: RegularObject = {};
   const id = Number(req.params.id);
 
@@ -197,7 +199,10 @@ const updateProduct = async (req: IGetUserAuthInfoRequest, res: Response) => {
   }
 };
 
-const updateImage = async (req: IGetUserAuthInfoRequest, res: Response) => {
+const updateImage = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
   const imageInfo: RegularObject = {};
   imageInfo.ProductId = Number(req.params.id);
   const files: NestedRegularObject | any = req.files,

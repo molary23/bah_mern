@@ -1,5 +1,4 @@
-import express, { Express } from "express";
-import { verifyJWT } from "../../middleware/verifyJWT";
+import express from "express";
 import { verifyLevels } from "../../middleware/verifyLevels";
 import LEVEL_LIST from "../../util/level";
 import {

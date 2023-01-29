@@ -58,7 +58,10 @@ const createCategory = async (
   }
 };
 
-const updateCategory = async (req: IGetUserAuthInfoRequest, res: Response) => {
+const updateCategory = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
   const id: number = Number(req.params.id),
     categoryName: string = req.body.categoryName;
 

@@ -3,23 +3,23 @@ import isEmpty from "../util/validator/isEmpty";
 
 const act = async (
   table: string,
-  action: string,
-  itemId: number,
-  userId: number
+  Action: string,
+  ItemId: number,
+  UserId: number
 ) => {
-  if (isEmpty(table) || isEmpty(action) || isEmpty(itemId) || isEmpty(userId)) {
+  if (isEmpty(table) || isEmpty(Action) || isEmpty(ItemId) || isEmpty(UserId)) {
     return;
   }
 
   try {
     await AuditLogs.create({
       table,
-      action,
-      itemId,
-      userId,
+      Action,
+      ItemId,
+      UserId,
     });
   } catch (error) {
-    return;
+    console.log(error);
   }
 };
 

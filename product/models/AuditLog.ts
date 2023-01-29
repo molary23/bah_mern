@@ -18,11 +18,11 @@ export const AuditLogs = AuditLog.init(
       primaryKey: true,
     },
     table: {
-      type: DataTypes.STRING(1), // C: create, D: delete, S: Update Password, U: Update Info, E: Edit Image, T: Update Telephone
+      type: DataTypes.STRING(1), // B: Customer, U: User, P: Product, C: Categroy
       allowNull: false,
     },
     Action: {
-      type: DataTypes.STRING(1),
+      type: DataTypes.STRING(1), // A: create/Add, D: delete, P: Update Password, E: Edit Image
       allowNull: false,
     },
     ItemId: {
