@@ -17,6 +17,7 @@ import validator from "validator";
 import { myEmit } from "../logger/emit";
 import paginate from "../util/pagination";
 import CustomerView from "../models/CustomerView";
+import { act } from "./actController";
 
 const deleteCustomer = async (
   req: IGetUserAuthInfoRequest | any,
@@ -52,6 +53,7 @@ const deleteCustomer = async (
       };
       const trashed = await Bins.create(newTrash);
       if (trashed) {
+        await act("b", "d", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t Deleted a Customer`,
@@ -96,6 +98,7 @@ const restoreCustomer = async (
         },
       });
       if (restored) {
+        await act("b", "r", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t Restore a Customer`,
@@ -132,6 +135,7 @@ const upgradeCustomer = async (
     );
 
     if (updateCustomer) {
+      await act("b", "u", id, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Upgrade a Customer`,

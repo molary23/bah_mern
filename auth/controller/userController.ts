@@ -16,10 +16,11 @@ import validateAddUserInput from "../util/validator/createUser";
 import { Bins } from "../models/Bin";
 import validateImage from "../util/validator/validateImage";
 import { myEmit } from "../logger/emit";
+import { act } from "./actController";
 
 const salt: number = 10;
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: IGetUserAuthInfoRequest, res: Response) => {
   const { errors, isValid } = validateAddUserInput(req.body);
 
   if (!isValid) {
@@ -65,6 +66,7 @@ const createUser = async (req: Request, res: Response) => {
     });
 
     if (user) {
+      await act("u", "a", user.id, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Created a new User`,
@@ -116,6 +118,7 @@ const deleteUser = async (
       };
       const trashed = await Bins.create(newTrash);
       if (trashed) {
+        await act("u", "d", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t Deleted a User`,
@@ -160,6 +163,7 @@ export const restoreUser = async (
         },
       });
       if (restored) {
+        await act("u", "a", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t Restore a User`,
@@ -244,6 +248,7 @@ const updatePassword = async (req: Request, res: Response) => {
       }
     );
     if (updateUser) {
+      await act("u", "p", id, id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Update a User password`,

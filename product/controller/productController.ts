@@ -22,6 +22,7 @@ import validateImage from "../util/validator/validateImage";
 import { ProductImages } from "../models/ProductImage";
 import { myEmit } from "../logger/emit";
 import paginate from "../util/pagination";
+import { act } from "./actController";
 
 const createProduct = async (
   req: IGetUserAuthInfoRequest | any,
@@ -56,6 +57,7 @@ const createProduct = async (
         quantity: req.body.productQuantity,
       });
       if (stock) {
+        await act("p", "a", found?.id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t New Product created successfully.`,
@@ -115,6 +117,7 @@ const deleteProduct = async (
       };
       const trash = await Bins.create(newTrash);
       if (trash) {
+        await act("p", "d", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t  Product deleted successfully.`,
@@ -134,7 +137,7 @@ const deleteProduct = async (
   }
 };
 
-const updateProduct = async (req: Request, res: Response) => {
+const updateProduct = async (req: IGetUserAuthInfoRequest, res: Response) => {
   const editProduct: RegularObject = {};
   const id = Number(req.params.id);
 
@@ -176,6 +179,7 @@ const updateProduct = async (req: Request, res: Response) => {
       },
     });
     if (updateProduct) {
+      await act("p", "u", id, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Product updated successfully.`,
@@ -193,7 +197,7 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-const updateImage = async (req: Request, res: Response) => {
+const updateImage = async (req: IGetUserAuthInfoRequest, res: Response) => {
   const imageInfo: RegularObject = {};
   imageInfo.ProductId = Number(req.params.id);
   const files: NestedRegularObject | any = req.files,
@@ -253,7 +257,7 @@ const updateImage = async (req: Request, res: Response) => {
     }
 
     if (create || image) {
-      //  await act("p", "e", imageInfo.ProductId, req.id);
+      await act("p", "e", imageInfo.ProductId, req.id);
       files.file.mv(filePath, (error: any) => {
         if (error) return res.sendStatus(500);
       });
@@ -421,6 +425,7 @@ const restockProduct = async (
       ProductId: productId,
     });
     if (restock) {
+      await act("p", "r", productId, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Product restocked successfully.`,
@@ -447,24 +452,25 @@ const orderProduct = async (
   const UserId = Number(req.params);
 
   if (isEmpty(productQuantity)) {
-    err.restock = "Product Quantity not specified";
+    err.order = "Product Quantity not specified";
     return res.status(400).json(err);
   }
 
   if (isEmpty(productId)) {
-    err.restock = "Product ID not specified";
+    err.order = "Product ID not specified";
     return res.status(400).json(err);
   }
 
   try {
-    const restock = await Orders.create({
+    const order = await Orders.create({
       quantity: productQuantity,
       status: "a",
       ProductId: productId,
       comment,
       UserId: Number(req.params.id),
     });
-    if (restock) {
+    if (order) {
+      await act("p", "o", productId, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Product ordered successfully.`,

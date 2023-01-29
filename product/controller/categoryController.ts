@@ -12,6 +12,7 @@ import {
 import validator from "validator";
 import { myEmit } from "../logger/emit";
 import paginate from "../util/pagination";
+import { act } from "./actController";
 
 const createCategory = async (
   req: IGetUserAuthInfoRequest | any,
@@ -35,6 +36,7 @@ const createCategory = async (
     });
 
     if (category) {
+      await act("c", "a", check?.id, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Category created successfully.`,
@@ -56,7 +58,7 @@ const createCategory = async (
   }
 };
 
-const updateCategory = async (req: Request, res: Response) => {
+const updateCategory = async (req: IGetUserAuthInfoRequest, res: Response) => {
   const id: number = Number(req.params.id),
     categoryName: string = req.body.categoryName;
 
@@ -87,6 +89,7 @@ const updateCategory = async (req: Request, res: Response) => {
       }
     );
     if (updateCategory) {
+      await act("c", "a", id, req.id);
       myEmit.emit(
         "log",
         `${req.url}\t${req.headers.origin}\t Category updated successfully.`,
@@ -142,6 +145,7 @@ const deleteCategory = async (
       };
       const trash = await Bins.create(newTrash);
       if (trash) {
+        await act("c", "d", id, req.id);
         myEmit.emit(
           "log",
           `${req.url}\t${req.headers.origin}\t Category deleted successfully.`,

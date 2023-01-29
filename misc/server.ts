@@ -7,7 +7,6 @@ app.use(express.urlencoded({ extended: false }));
 require("./util/DBRelationships");
 
 require("./controllers/cronController");
-require("./controllers/actController");
 
 app.get("/", (req, res) => {
   res.send("Server functional");
