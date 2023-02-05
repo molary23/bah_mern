@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "default.scss";
+
+.nav__submenu {
+  width: 800px;
+}
+
+.nav__submenu--icon {
+  font-size: 40px;
+}
+
+@import "responsive.scss";

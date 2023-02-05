@@ -1,14 +1,11 @@
-import { JsxAttribute } from "typescript";
 import Footer from "./Footer";
-import HTMLHead from "./HTMLHead";
 import Nav from "./Nav";
 
-const Home = ({ children }: JsxAttribute | any) => {
+const Home = ({ children }: any) => {
   return (
     <>
-      <HTMLHead />
       <Nav />
-      {children}
+      <main className="min-h-fit">{children}</main>
       <Footer />
     </>
   );
