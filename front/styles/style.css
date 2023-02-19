@@ -101,11 +101,11 @@ html {
 }
 
 .nav__submenu {
-  width: 800px;
+  width: 80rem;
 }
 
 .nav__submenu--icon {
-  font-size: 40px;
+  font-size: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {

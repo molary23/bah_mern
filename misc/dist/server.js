@@ -9,7 +9,6 @@ app.use(express_1.default.urlencoded({ extended: false }));
 // Sync Database Relationsship
 require("./util/DBRelationships");
 require("./controllers/cronController");
-require("./controllers/actController");
 app.get("/", (req, res) => {
     res.send("Server functional");
 });

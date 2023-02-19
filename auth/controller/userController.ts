@@ -20,7 +20,10 @@ import { act } from "./actController";
 
 const salt: number = 10;
 
-const createUser = async (req: IGetUserAuthInfoRequest, res: Response) => {
+const createUser = async (
+  req: IGetUserAuthInfoRequest | any,
+  res: Response
+) => {
   const { errors, isValid } = validateAddUserInput(req.body);
 
   if (!isValid) {

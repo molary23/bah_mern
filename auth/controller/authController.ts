@@ -38,12 +38,12 @@ const handleLogin = async (req: Request, res: Response) => {
       attributes: ["id", "username", "password", "token", "level"],
     });
     if (!user) {
-      err.user = "User not found.";
+      err.auth = "User not found.";
       return res.status(404).json(err);
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      err.user = "Incorrect password.";
+      err.auth = "Incorrect password.";
       return res.status(404).json(err);
     }
     const accessToken = jwt.sign(
