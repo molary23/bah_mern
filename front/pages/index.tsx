@@ -1,3 +1,5 @@
+import { ClientRequest } from "http";
+import ClientsSection from "../layouts/ClientsSection";
 import HTMLHead from "../layouts/HTMLHead";
 import ProductSection from "../layouts/ProductSection";
 import ServiceSection from "../layouts/ServiceSection";
@@ -13,8 +15,10 @@ export default function Home() {
   return (
     <>
       <HTMLHead meta={meta} />
+
       <TopSection />
       <ServiceSection />
+      <ClientsSection />
       <TestimonialSection />
     </>
   );

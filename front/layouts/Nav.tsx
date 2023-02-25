@@ -54,9 +54,9 @@ const Nav = () => {
                         Servicing
                       </a>
                     </div>
-
+                    {/* Add sm:hidden here and activate on hover */}
                     <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-4 sm:hidden"
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-4 mt-5 sm:hidden"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"

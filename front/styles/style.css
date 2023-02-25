@@ -101,11 +101,16 @@ html {
 }
 
 .nav__submenu {
-  width: 80rem;
+  width: 60rem;
 }
 
 .nav__submenu--icon {
   font-size: 2rem;
+}
+
+.footer__social svg {
+  width: 30px;
+  height: 30px;
 }
 
 @media (prefers-color-scheme: dark) {

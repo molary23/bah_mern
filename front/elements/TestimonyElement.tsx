@@ -5,7 +5,7 @@ const TestimonyElement = (props: TestimonyProps) => {
   const { image, testifier, testimony } = props;
   return (
     <div className="sm:basis-1/3">
-      <div className="w-10/12 mx-auto sm:grid">
+      <div className="w-10/12 mx-auto">
         <div className="mb-4">
           <p className="mb-4 text-justify">
             <svg
@@ -13,7 +13,7 @@ const TestimonyElement = (props: TestimonyProps) => {
               focusable="false"
               data-prefix="fas"
               data-icon="quote-left"
-              className="w-8 mb-2 block"
+              className="w-8 mb-3 block"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -26,10 +26,10 @@ const TestimonyElement = (props: TestimonyProps) => {
             <span>{testimony}</span>
           </p>
         </div>
-        <div className="justify-self-end mb-4">
+        <div className="mb-4 flex justify-end">
           <span className="">- {testifier}</span>
         </div>
-        <div className="justify-self-end">
+        <div className="flex justify-end">
           <Image
             className="h-24 w-24 rounded-full"
             src={image}
