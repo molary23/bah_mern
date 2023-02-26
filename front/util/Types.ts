@@ -19,6 +19,23 @@ export interface ImageProps {
 
 export type IntroProps = {
   heading: string;
+  subHeading?: string;
+};
+
+type Intro = {
+  heading: string;
+  subHeading: string;
+};
+
+export type HeadingProps = {
+  intro: Intro;
+  imageUrL?: string;
+};
+
+export type SectionProp = {
+  title: string;
+  description: string[];
+  imageSrc: StaticImageData;
 };
 
 export type TestimonyProps = {
