@@ -21,40 +21,33 @@ const racking = () => {
         imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
       />
       <LeftArticle
-        title="Light Duty Shelves"
+        title="Drive-in Racking"
         description={[
-          `It is the ideal shelf system to store products that are not too heavy and do not take up a lot of space with light and medium duty shelving systems. It can adapt to any kind of storage space thanks to its easily adjustable eye gaps. A strong and rigid material is used in this system.`,
-          `Light duty shelving systems provide easy access to your products and give your storage space a stylish look. It can be converted into mezzanine (deck) platforms in storage environments with high altitude. Quality being the utmost priority, we manufacture and supply an extensive range of Light Duty shelves.`,
+          `Drive-in racking systems apply the LIFO (last in, first out) principle for loading and unloading. Drive-through installations are loaded and unloaded according the FIFO (first in, first out) principle. To guide the truck or pallets and to protect the installation we recommend the use of ground rails.`,
+          `There are three types of drive-in racks, depending on the load and unload procedure and the accessibility: Single drive-in racking, Double drive-in racking, and Drive through.`,
         ]}
         imageSrc={sunset}
       />
       <ParallaxArticle
-        title="Gravity"
+        title="Selective Racking"
         description={[
-          `Gravity Racking is a storage system that relies on gravity flow to
-            load, organize, and retrieve stored cartons or pallets within a
-            warehouse. Maximizing space and efficiency, gravity flow racks will
-            save your business money, improve your productivity, and increase
-            safety for your employees.`,
-          `Gravity racks act as non-powered, downward-sloped storage conveyors,
-            which allow for all subsequent pallets or cartons to move to the
-            forefront, once the preceding item has been removed, otherwise known
-            as first in first out (FIFO) racking.`,
+          `Selective racking is one of the most common types of racking system for warehouses. It has the lowest storage capacity of pallet and also has the lowest cost per square meter when it comes to racking.`,
+          `However, when it comes to high volume storage that is greater than 3000 pallets, it is often considered to be the most expensive solution.`,
         ]}
         imageSrc={""}
         type="single"
         backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
       />
-      <RightArticle
-        title="Middle Duty Shelves"
+      <LeftArticle
+        title="Flow Through Racking"
         description={[
-          `Middle Duty Shelves are absolute storage system perfect for warehouse and industrial applications. These characteristically include automotive and other spare hardware, parts, bulk retail, and common purposes carton and archive storage. The Middle Duty Storage Shelves can be configured to accommodate a wide range of storage requirements. These shelves are suitable for storage of small boxes and cartons. Further, these shelves are available with adjustable shelving system along with the load bearing capacity up to 1.2 ton per level.`,
-          `The features are light weight, good durability, superb accuracy, fine finishing, very long lasting, superior strength, and easy to install and assemble.`,
+          `Specially constructed lanes of gravity inclined tracks stacked side by side and on top of each other within a pallet rack framework form a solid block of storage that is fed in from one end and unloaded at the other. Consistent loads are stored in each lane, for the same SKU. Automatic rotation is provided rack utilization is often at 90%.`,
+          `Wide range of pallets can be accommodated at the design stage; and the flow through racking can secure and safe handling as the pallet truck does not enter the rack.`,
         ]}
         imageSrc={sunset}
       />
       <ParallaxArticle
-        title="Gravity"
+        title="Gravity Racking"
         description={[
           `Gravity Racking is a storage system that relies on gravity flow to
             load, organize, and retrieve stored cartons or pallets within a
@@ -65,6 +58,24 @@ const racking = () => {
             which allow for all subsequent pallets or cartons to move to the
             forefront, once the preceding item has been removed, otherwise known
             as first in first out (FIFO) racking.`,
+        ]}
+        imageSrc={sunset}
+        type="dual"
+        backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+      />
+      <LeftArticle
+        title="Mezzanine Racking"
+        description={[
+          `A mezzanine storage system can help solve the problem of unutilized empty space in your warehouse. Mezzanine storage systems also easily pay for themselves by doubling or tripling available storage space without the need for expensive building expansions. Free-standing mezzanines provide additional work areas or storage space by utilizing the wasted air space in your warehouse or manufacturing facility.`,
+          `Mezzanine storage increases your cubic space while freeing up valuable floor space for other use. Structural steel mezzanines can be configured in a wide range of sizes, floor types, and construction styles to fit almost any space or application, which can also be reconfigured or added on to at a later date.`,
+        ]}
+        imageSrc={sunset}
+      />
+      <ParallaxArticle
+        title="Stereoscopic Racking"
+        description={[
+          `Our main objective is centered on the need to provide additional services to the customers and inject a new innovation into the growing economy in Nigeria.`,
+          `It was during this period we found out that most client buy wrong equipments for use on the stock racking system and we now fel t to normalize this for future clients that passes through us.`,
         ]}
         imageSrc={sunset}
         type="dual"
