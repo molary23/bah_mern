@@ -35,7 +35,9 @@ export type HeadingProps = {
 export type SectionProp = {
   title: string;
   description: string[];
-  imageSrc: StaticImageData;
+  imageSrc: StaticImageData | string;
+  type?: string;
+  backgroundImage?: string;
 };
 
 export type TestimonyProps = {

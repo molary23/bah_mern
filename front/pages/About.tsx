@@ -1,19 +1,13 @@
 import HTMLHead from "../layouts/HTMLHead";
 import Image from "next/image";
 import { sunset } from "../assets";
-const meta = {
-    title: "About US",
-    description: "This is BAH Engineering Consultant about page",
-    keywords: "about us, about",
-  },
-  LAST_NAME: string = "Hassan",
+const LAST_NAME: string = "Hassan",
   FIRST_MEMBER_NAME: string = "Billy",
   SECOND_MEMBER_NAME: string = "Adetayo";
 
 const About = () => {
   return (
     <section>
-      <HTMLHead meta={meta} />
       <div className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-24 lg:h-24 sm:h-96  sm:px-48 sm:py-72">
         <h1 className="sm:text-7xl text-3xl font-bold text-white page__heading">
           About Us

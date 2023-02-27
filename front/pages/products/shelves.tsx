@@ -3,16 +3,11 @@ import HTMLHead from "../../layouts/HTMLHead";
 import LeftArticle from "../../layouts/LeftArticle";
 import PageHeading from "../../layouts/PageHeading";
 import RightArticle from "../../layouts/RightArticle";
+import { HTMLMetaTag } from "../../util/HTMLMetaTag";
 
-const meta = {
-  title: "Shelves",
-  description: "This is BAH Engineering Consultant about page",
-  keywords: "shelves, shelves product",
-};
 const shelves = () => {
   return (
     <section>
-      <HTMLHead meta={meta} />
       <PageHeading
         intro={{
           heading: "Shelves",

@@ -3,6 +3,7 @@ import Nav from "../layouts/Nav";
 import SubFooter from "./SubFooter";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import HTMLHead from "../layouts/HTMLHead";
 
 const Home = ({ children }: any) => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const Home = ({ children }: any) => {
   }, [router.pathname]);
   return (
     <>
+      <HTMLHead />
       <Nav />
       <main className="min-h-fit">{children}</main>
       <SubFooter />

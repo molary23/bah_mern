@@ -1,15 +1,30 @@
 import Head from "next/head";
-import { JsxAttribute } from "typescript";
+import { HTMLMetaTag } from "../util/HTMLMetaTag";
+import { useRouter } from "next/router";
 
-function HTMLHead(props: any) {
-  const { title, description, keywords } = props.meta;
-  const fullTitle = `${title} | BAH Engineering Consultant`;
+function HTMLHead() {
+  const router = useRouter(),
+    pathname = router.pathname;
+
+  let MetaTags = {
+    title: "",
+    description: "",
+    keywords: "",
+  };
+
+  if (pathname === "/products/shelves") {
+    MetaTags = HTMLMetaTag?.shelves;
+  } else if (pathname === "/products/racking") {
+    MetaTags = HTMLMetaTag?.racking;
+  } else if (pathname === "/about") {
+    MetaTags = HTMLMetaTag?.about;
+  }
 
   return (
     <Head>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={`${keywords}, other keywords`} />
+      <title>{MetaTags?.title}</title>
+      <meta name="description" content={MetaTags?.description} />
+      <meta name="keywords" content={`${MetaTags?.keywords}, other keywords`} />
       <link rel="icon" href="/favicon.ico" />
     </Head>
   );

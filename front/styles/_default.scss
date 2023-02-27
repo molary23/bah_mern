@@ -5,7 +5,7 @@
  Template:     NextJS App
  Version:      2.0.0
 */
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @import "color.scss";
 
 /*
@@ -23,8 +23,7 @@
 */
 * {
   margin: 0;
-  font-family: "Open Sans", "Segoe UI", "Roboto", "Oxygen", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

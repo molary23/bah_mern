@@ -3,7 +3,7 @@ import { SectionProp } from "../util/Types";
 
 const LeftArticle = (props: SectionProp) => {
   return (
-    <section className="sm:flex sm:py-20 sm:px-20 h-[600px] mb-8 bg-red-900">
+    <section className="sm:flex sm:py-20 sm:px-20 h-[40rem] bg-red-900">
       <aside className="sm:basis-1/2 hidden__element left__aside">
         <ImageElement
           width={600}

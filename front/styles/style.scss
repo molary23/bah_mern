@@ -4,6 +4,27 @@
 
 @import "default.scss";
 
+.menu__menu {
+  .dropdown {
+    display: none;
+    /*  opacity: 0;
+    visibility: hidden;
+    margin-top: 2rem;
+    transition: margin-top 1s;*/
+  }
+}
+
+.menu__menu {
+  &:hover {
+    .dropdown {
+      display: block;
+      /*  margin-top: 1.2rem;
+      visibility: visible;
+      opacity: 1;*/
+    }
+  }
+}
+
 .nav__submenu {
   width: 60rem;
 }

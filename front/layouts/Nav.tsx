@@ -3,7 +3,7 @@ import { NavSubLink } from "./NavSubLink";
 
 const Nav = () => {
   return (
-    <nav className="bg-gray-800 sticky top-0">
+    <nav className="bg-gray-800 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-between">
@@ -44,7 +44,7 @@ const Nav = () => {
                   Services
                 </a>
 
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
                     <div>
                       <a
@@ -56,7 +56,7 @@ const Nav = () => {
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
                     <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-4 mt-5 sm:hidden"
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-4 dropdown"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
