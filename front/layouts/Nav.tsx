@@ -151,10 +151,10 @@ const Nav = () => {
                 </a>
 
                 <a
-                  href="#"
+                  href="/showroom"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Store
+                  eShowroom
                 </a>
               </div>
             </div>
@@ -300,12 +300,6 @@ const Nav = () => {
               >
                 Maintenance & Repair
               </a>
-              <a
-                href="/services/"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Services-5
-              </a>
             </div>
           </div>
 
@@ -317,10 +311,10 @@ const Nav = () => {
           </a>
 
           <a
-            href="#"
+            href="/showroom"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Store
+            eShowroom
           </a>
         </div>
       </div>

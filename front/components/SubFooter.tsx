@@ -8,7 +8,7 @@ import {
 const SubFooter = () => {
   return (
     <section>
-      <div className="flex justify-evenly p-12 h-max gap-x-10 w-11/12 mx-auto">
+      <div className="flex justify-evenly px-12 py-24 h-max gap-x-10 w-11/12 mx-auto">
         <div className="footer-left basis-1/3">
           <h2 className="mb-8 text-2xl font-bold">
             BAH Engineering Consultant
@@ -25,9 +25,36 @@ const SubFooter = () => {
           </p>
         </div>
         <div className="footer__center basis-1/3 flex justify-center">
-          <div>
+          <div className="">
             <h3 className="mb-4 text-xl font-bold">Quick Links</h3>
-            <a href="/about">About Us</a>
+            <ul className="footer__quick__links">
+              <li>
+                <a href="/about">About Us</a>
+              </li>
+              <li>
+                <a href="/contact">Contact Us</a>
+              </li>
+              <li>
+                <a href="/showroom">e-Showroom</a>
+              </li>
+              <li>
+                {" "}
+                <a href="/products/equipments">Equipments</a>
+              </li>
+              <li>
+                {" "}
+                <a href="/consultancy">Consultancy</a>
+              </li>
+              <li>
+                <a href="/pallets">Pallets</a>
+              </li>
+              <li>
+                <a href="/logistics">Logistics</a>
+              </li>
+              <li>
+                <a href="/power">Power</a>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="footer__right basis-1/3">
