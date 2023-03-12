@@ -1,6 +1,16 @@
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
 
+export type RegularArrayOfObject = [
+  {
+    [index: string]: string | number;
+  }
+];
+
+export type RegularObject = {
+  [index: string]: string | StaticImageData | number | string[] | any;
+};
+
 export interface NavSub {
   title: string;
   more: string;
@@ -22,10 +32,10 @@ export type IntroProps = {
   subHeading?: string;
 };
 
-type Intro = {
+interface Intro {
   heading: string;
   subHeading: string;
-};
+}
 
 export type HeadingProps = {
   intro: Intro;
@@ -45,3 +55,12 @@ export type TestimonyProps = {
   testifier: string;
   testimony: string;
 };
+
+export type TabProp = {
+  title: string;
+  description: string[];
+  pages: string[];
+  content: RegularObject[];
+};
+
+export type SubIntro = Pick<Intro, "heading">;

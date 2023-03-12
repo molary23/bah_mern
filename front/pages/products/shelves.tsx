@@ -5,7 +5,7 @@ import PageHeading from "../../layouts/PageHeading";
 import RightArticle from "../../layouts/RightArticle";
 import { HTMLMetaTag } from "../../util/HTMLMetaTag";
 
-const shelves = () => {
+export default function shelves() {
   return (
     <section>
       <PageHeading
@@ -44,6 +44,4 @@ const shelves = () => {
       />
     </section>
   );
-};
-
-export default shelves;
+}

@@ -6,22 +6,27 @@
 
 .menu__menu {
   .dropdown {
-    display: none;
-    /*  opacity: 0;
+    opacity: 0;
     visibility: hidden;
     margin-top: 2rem;
-    transition: margin-top 1s;*/
+    transition: margin-top 1s;
   }
 }
 
 .menu__menu {
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     .dropdown {
-      display: block;
-      /*  margin-top: 1.2rem;
+      margin-top: 0.5rem;
       visibility: visible;
-      opacity: 1;*/
+      opacity: 1;
     }
+  }
+  &:has(.menu__menu:focus) {
+    margin-top: 0.5rem;
+    visibility: visible;
+    opacity: 1;
   }
 }
 

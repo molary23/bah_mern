@@ -16,8 +16,18 @@ function HTMLHead() {
     MetaTags = HTMLMetaTag?.shelves;
   } else if (pathname === "/products/racking") {
     MetaTags = HTMLMetaTag?.racking;
+  } else if (pathname === "/products/equipment") {
+    MetaTags = HTMLMetaTag?.equipment;
+  } else if (pathname === "/products/spares") {
+    MetaTags = HTMLMetaTag?.spares;
+  } else if (pathname === "/products/power") {
+    MetaTags = HTMLMetaTag?.power;
+  } else if (pathname === "/products/pallets") {
+    MetaTags = HTMLMetaTag?.pallets;
   } else if (pathname === "/about") {
     MetaTags = HTMLMetaTag?.about;
+  } else if (pathname === "/contact") {
+    MetaTags = HTMLMetaTag?.contact;
   }
 
   return (

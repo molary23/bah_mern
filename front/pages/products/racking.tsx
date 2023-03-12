@@ -1,6 +1,5 @@
 import PageHeading from "../../layouts/PageHeading";
 import LeftArticle from "../../layouts/LeftArticle";
-import RightArticle from "../../layouts/RightArticle";
 import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 

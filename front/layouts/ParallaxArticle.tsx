@@ -2,7 +2,7 @@ import React from "react";
 import { SectionProp } from "../util/Types";
 import ImageElement from "../elements/ImageElement";
 
-const ParallaxArticle = (props: SectionProp) => {
+export default function ParallaxArticle(props: SectionProp) {
   return (
     <section
       className={`h-[40rem] ${props?.backgroundImage} bg-fixed bg-cover bg-center`}
@@ -15,7 +15,9 @@ const ParallaxArticle = (props: SectionProp) => {
         >
           <h2 className="mb-3 text-2xl font-bold">{props?.title}</h2>
           <p className="text-xl mb-2">{props?.description?.[0]}</p>
-          <p className="text-lg">{props?.description?.[1]}</p>
+          {props?.description?.[1] && (
+            <p className="text-lg">{props?.description?.[1]}</p>
+          )}
         </aside>
         <aside className="sm:basis-1/2 hidden__element left__aside">
           {props?.type !== "single" ? (
@@ -26,13 +28,9 @@ const ParallaxArticle = (props: SectionProp) => {
               alt="alt"
               className="mx-auto"
             />
-          ) : (
-            ""
-          )}
+          ) : null}
         </aside>
       </article>
     </section>
   );
-};
-
-export default ParallaxArticle;
+}
