@@ -1,7 +1,11 @@
 import React from "react";
 
-const logistics = () => {
-  return <div>logistics</div>;
-};
-
-export default logistics;
+export default function logistics() {
+  return (
+    <section>
+      <h1 className="sm:text-6xl text-3xl font-bold text-white page__heading">
+        BEC Maintenance and Repair
+      </h1>
+    </section>
+  );
+}

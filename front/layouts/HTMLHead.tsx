@@ -16,8 +16,8 @@ function HTMLHead() {
     MetaTags = HTMLMetaTag?.shelves;
   } else if (pathname === "/products/racking") {
     MetaTags = HTMLMetaTag?.racking;
-  } else if (pathname === "/products/equipment") {
-    MetaTags = HTMLMetaTag?.equipment;
+  } else if (pathname === "/products/equipments") {
+    MetaTags = HTMLMetaTag?.equipments;
   } else if (pathname === "/products/spares") {
     MetaTags = HTMLMetaTag?.spares;
   } else if (pathname === "/products/power") {
@@ -28,6 +28,8 @@ function HTMLHead() {
     MetaTags = HTMLMetaTag?.about;
   } else if (pathname === "/contact") {
     MetaTags = HTMLMetaTag?.contact;
+  } else if (pathname === "/") {
+    MetaTags = HTMLMetaTag?.home;
   }
 
   return (

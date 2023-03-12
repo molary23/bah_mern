@@ -1,5 +1,10 @@
-import { GiGearHammer } from "react-icons/gi";
 import { NavSubLink } from "./NavSubLink";
+import { MdLightbulbOutline, MdOutlineWaterDrop } from "react-icons/md";
+import { BsHddRack, BsBookshelf, BsTools } from "react-icons/bs";
+import { GiCartwheel, GiForklift, GiDiscussion } from "react-icons/gi";
+import { FaPallet } from "react-icons/fa";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { BiCabinet } from "react-icons/bi";
 
 const Nav = () => {
   return (
@@ -30,19 +35,65 @@ const Nav = () => {
                 >
                   About Us
                 </a>
-                <a
-                  href="/products/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Products
-                </a>
-
-                <a
-                  href="/services/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Services
-                </a>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
+                  <div className="relative">
+                    <div>
+                      <a
+                        href="#"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      >
+                        Product
+                      </a>
+                    </div>
+                    {/* Add sm:hidden here and activate on hover */}
+                    <div
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-8 dropdown"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="user-menu-button"
+                      tabIndex={-1}
+                    >
+                      <div className="flex flex-wrap justify-around nav__submenu">
+                        <NavSubLink
+                          title="Equipments"
+                          more="More details about Profile"
+                          icon={<GiForklift />}
+                          link="/products/equipments"
+                        />
+                        <NavSubLink
+                          title="Pallets"
+                          more="More details about Profile"
+                          icon={<FaPallet />}
+                          link="/products/pallets"
+                        />
+                        <NavSubLink
+                          title="Power"
+                          more="More details about Profile"
+                          icon={<MdLightbulbOutline />}
+                          link="/products/power"
+                        />
+                        <NavSubLink
+                          title="Racking"
+                          more="More details about Profile"
+                          icon={<BsBookshelf />}
+                          link="/products/racking"
+                        />
+                        <NavSubLink
+                          title="Shelves"
+                          more="More details about Profile"
+                          icon={<BiCabinet />}
+                          link="/products/shelves"
+                        />
+                        <NavSubLink
+                          title="Spares"
+                          more="More details about Profile"
+                          icon={<GiCartwheel />}
+                          link="/products/spares"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
@@ -51,53 +102,41 @@ const Nav = () => {
                         href="#"
                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       >
-                        Servicing
+                        Services
                       </a>
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
                     <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-4 dropdown"
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-8 dropdown"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
                       tabIndex={-1}
                     >
-                      <div className="flex flex-wrap justify-around nav__submenu">
+                      <div className="flex flex-wrap justify-start nav__submenu">
                         <NavSubLink
-                          title="Settings"
+                          title="Consultancy"
                           more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
+                          icon={<GiDiscussion />}
+                          link="/services/consultancy"
                         />
                         <NavSubLink
-                          title="Settings"
+                          title="Distilled Water"
                           more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
+                          icon={<MdOutlineWaterDrop />}
+                          link="/services/distilled-water"
                         />
                         <NavSubLink
-                          title="Settings"
+                          title="Logistics"
                           more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
+                          icon={<CiDeliveryTruck />}
+                          link="/services/logistics"
                         />
                         <NavSubLink
-                          title="Settings"
+                          title="Maintenance & Repair"
                           more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
-                        />
-                        <NavSubLink
-                          title="Settings"
-                          more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
-                        />
-                        <NavSubLink
-                          title="Settings"
-                          more="More details about Profile"
-                          icon={<GiGearHammer />}
-                          link="/settings"
+                          icon={<BsTools />}
+                          link="/services/maintenance"
                         />
                       </div>
                     </div>
@@ -183,14 +222,54 @@ const Nav = () => {
             About Us
           </a>
           <a
-            href="/products/"
+            href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Products
           </a>
+          <div className="md:hidden">
+            <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+              <a
+                href="/products/equipments"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Equipments
+              </a>
+              <a
+                href="/products/pallets"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Pallets
+              </a>
+              <a
+                href="/products/power"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Power
+              </a>
+              <a
+                href="/products/racking"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Racking
+              </a>
+              <a
+                href="/products/shelves"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Shelves
+              </a>
+              <a
+                href="/products/spares"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Spares
+              </a>
+            </div>
+          </div>
 
           <a
-            href="/services/"
+            href="#"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Services
@@ -198,28 +277,28 @@ const Nav = () => {
           <div className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <a
-                href="/services/"
+                href="/services/consultancy"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Services-1
+                Consultancy
               </a>
               <a
-                href="/services/"
+                href="/services/distilled-water"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Services-2
+                Distilled Water
               </a>
               <a
-                href="/services/"
+                href="/services/logistics"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Services-3
+                Logistics
               </a>
               <a
-                href="/services/"
+                href="/services/maintenance"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
-                Services-4
+                Maintenance & Repair
               </a>
               <a
                 href="/services/"

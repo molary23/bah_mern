@@ -1,4 +1,9 @@
 export const HTMLMetaTag = {
+  home: {
+    title: "Home",
+    description: "This is BAH Engineering Consultant about page",
+    keywords: "Home, shelves product",
+  },
   racking: {
     title: "Racking",
     description: "This is BAH Engineering Consultant about page",
@@ -19,7 +24,7 @@ export const HTMLMetaTag = {
     description: "This is BAH Engineering Consultant about page",
     keywords: "about us, about",
   },
-  equipment: {
+  equipments: {
     title: "Equipments",
     description: "This is BAH Engineering Consultant about page",
     keywords: "about us, about",
@@ -54,7 +59,7 @@ export const HTMLMetaTag = {
     description: "This is BAH Engineering Consultant about page",
     keywords: "about us, about",
   },
-  distill: {
+  water: {
     title: "Distill Water",
     description: "This is BAH Engineering Consultant about page",
     keywords: "about us, about",
