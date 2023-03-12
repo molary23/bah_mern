@@ -54,7 +54,7 @@ export const HTMLMetaTag = {
     description: "This is BAH Engineering Consultant about page",
     keywords: "Maintenance, Repair",
   },
-  logistic: {
+  logistics: {
     title: "Logistics",
     description: "This is BAH Engineering Consultant about page",
     keywords: "about us, about",

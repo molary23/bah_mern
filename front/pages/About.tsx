@@ -1,6 +1,7 @@
 import HTMLHead from "../layouts/HTMLHead";
 import Image from "next/image";
 import { sunset } from "../assets";
+import PageHeading from "../layouts/PageHeading";
 const LAST_NAME: string = "Hassan",
   FIRST_MEMBER_NAME: string = "Billy",
   SECOND_MEMBER_NAME: string = "Adetayo";
@@ -8,11 +9,13 @@ const LAST_NAME: string = "Hassan",
 const About = () => {
   return (
     <section>
-      <div className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-24 lg:h-24 sm:h-96  sm:px-48 sm:py-72">
-        <h1 className="sm:text-7xl text-3xl font-bold text-white page__heading">
-          About Us
-        </h1>
-      </div>
+      <PageHeading
+        intro={{
+          heading: "About Us",
+          subHeading: `We are only a Buzz away`,
+        }}
+        imageUrL=""
+      />
       <div className="about__content__all w-5/6 bg-red-600 h-fit py-12 px-6 mx-auto">
         <div className="about__content__who bg-blue-400 h-fit my-6">
           <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">

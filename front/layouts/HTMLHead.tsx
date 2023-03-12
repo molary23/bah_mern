@@ -12,7 +12,13 @@ function HTMLHead() {
     keywords: "",
   };
 
-  if (pathname === "/products/shelves") {
+  if (pathname === "/") {
+    MetaTags = HTMLMetaTag?.home;
+  } else if (pathname === "/about") {
+    MetaTags = HTMLMetaTag?.about;
+  } else if (pathname === "/contact") {
+    MetaTags = HTMLMetaTag?.contact;
+  } else if (pathname === "/products/shelves") {
     MetaTags = HTMLMetaTag?.shelves;
   } else if (pathname === "/products/racking") {
     MetaTags = HTMLMetaTag?.racking;
@@ -24,12 +30,14 @@ function HTMLHead() {
     MetaTags = HTMLMetaTag?.power;
   } else if (pathname === "/products/pallets") {
     MetaTags = HTMLMetaTag?.pallets;
-  } else if (pathname === "/about") {
-    MetaTags = HTMLMetaTag?.about;
-  } else if (pathname === "/contact") {
-    MetaTags = HTMLMetaTag?.contact;
-  } else if (pathname === "/") {
-    MetaTags = HTMLMetaTag?.home;
+  } else if (pathname === "/services/maintenance") {
+    MetaTags = HTMLMetaTag?.maintenance;
+  } else if (pathname === "/services/logistics") {
+    MetaTags = HTMLMetaTag?.logistics;
+  } else if (pathname === "/services/consultancy") {
+    MetaTags = HTMLMetaTag?.consultancy;
+  } else if (pathname === "/services/distilled-water") {
+    MetaTags = HTMLMetaTag?.water;
   }
 
   return (

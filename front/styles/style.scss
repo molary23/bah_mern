@@ -75,4 +75,10 @@
   margin-bottom: 0.5rem;
 }
 
+.fast__contact {
+  svg {
+    width: 4rem;
+    height: 4rem;
+  }
+}
 @import "responsive.scss";
