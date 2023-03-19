@@ -1,4 +1,3 @@
-import HTMLHead from "../layouts/HTMLHead";
 import Image from "next/image";
 import { sunset } from "../assets";
 import PageHeading from "../layouts/PageHeading";
@@ -6,7 +5,7 @@ const LAST_NAME: string = "Hassan",
   FIRST_MEMBER_NAME: string = "Billy",
   SECOND_MEMBER_NAME: string = "Adetayo";
 
-const About = () => {
+export default function About() {
   return (
     <section>
       <PageHeading
@@ -16,25 +15,25 @@ const About = () => {
         }}
         imageUrL=""
       />
-      <div className="about__content__all w-5/6 bg-red-600 h-fit py-12 px-6 mx-auto">
+      <div className="about__content__all sm:w-5/6 bg-red-600 h-fit py-12 px-4 sm:px-6 mx-auto">
         <div className="about__content__who bg-blue-400 h-fit my-6">
           <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
             Who we are
           </h2>
 
           <div className="about__content__who--details mt-6">
-            <p className="about__content--para text-1xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
               BAH Engineering Consultant is a globally-focused company that
               seeks competitive advantage through quality, price peculiarity and
               value added products and services.
             </p>
-            <p className="about__content--para text-1xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
               The company was incorporated in 1990 as an enterprise in Lagos and
               later moved to Kano in the year 1996 to oversee the sales and
               services of automotive product. BEC ran a skeletal business in
               Eket, Akwa Ibom within 1999 to 2002 and later moved to Lagos.
             </p>
-            <p className="about__content--para text-1xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
               The management underwent special trainings on warehouse
               equipment’s such as stocking on racks & forklifts services. It was
               during this period the company found out that most clients buy
@@ -42,7 +41,7 @@ const About = () => {
               company decided to normalize this for future clients that pass
               through us.
             </p>
-            <p className="about__content--para text-1xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
               Our main objective is centered on the need to provide additional
               services to the customers and inject a new innovation into the
               growing economy in Nigeria, and of in-fact, to drive a noble
@@ -51,8 +50,8 @@ const About = () => {
               around by a team of experts and some well-qualified professionals
               from various part of the country.
             </p>
-            <p className="about__content--para text-1xl sm:text-2xl text-justify mb-3">
-              This company founded about twenty years ago can boast of highly
+            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+              This company founded over twenty years ago can boast of highly
               experienced and skilled staff.
             </p>
 
@@ -87,35 +86,35 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="about__content__how bg-gray-600 h-fit my-6">
-          <h2 className="text-center text-6xl font-bold text-3xl sm:text-6xl page__subheading">
-            How We measure Our Performance
+        <div className="about__content__how bg-gray-600 h-fit my-6 py-6">
+          <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
+            How We Measure Our Performance
           </h2>
           <div className="about__content__how--details mt-6">
-            <p className="about__content--para text-3xl text-justify mb-3">
+            <p className="about__content--para text-2xl sm:text-3xl text-justify mb-5">
               Each business will make a positive contribution to the company’s
               objectives in the pursuit of creating genuine value for our
               stakeholders. Our “scorecard’ includes:
             </p>
-            <ul className="list-none">
-              <li className="about__content--list text-1xl sm:text-2xl">
-                Human Resources – Employee satisfaction, Training{" "}
+            <ul className="list-disc ml-6">
+              <li className="about__content--list sm:text-2xl">
+                Human Resources – Employee satisfaction, Training
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
-                Customer Focus – Loyalty, Market Leadership Business{" "}
+              <li className="about__content--list sm:text-2xl">
+                Customer Focus – Loyalty, Market Leadership Business
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list sm:text-2xl">
                 Processes – Productivity, Quality, Cost, Environment Business
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list sm:text-2xl">
                 Results – Return on Assets, Growth
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="about__content__obj bg-yellow-600 h-fit my-6">
-          <h2 className="text-center text-6xl font-bold text-3xl sm:text-6xl page__subheading">
+        <div className="about__content__obj bg-yellow-600 h-fit my-6 py-6">
+          <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
             Our Strategic Objectives
           </h2>
           <div className="about__content__obj--details mt-6">
@@ -147,10 +146,10 @@ const About = () => {
       <div className="about__team flex flex-wrap w-10/12 mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 sm:h-72 sm:py-14 sm:px-12 mt-4 ">
         <div className="our__team sm:flex sm:flex-row w-full mx-auto sm:gap-6 justify-around">
           <div className="our__team--intro mb-6 sm:basis-1/4">
-            <h2 className="our__team--heading pb-4 text-4xl font-black text-center sm:text-left">
-              Meet our leadership
+            <h2 className="our__team--heading mb-4 text-3xl font-black text-center sm:text-left">
+              Meet Our Leadership
             </h2>
-            <p className="our__team--para text-center sm:text-left">
+            <p className="our__team--para text-center sm:text-left mb-8">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Praesentium reiciendis aperiam consequatur aspernatur quia
             </p>
@@ -196,6 +195,4 @@ const About = () => {
       </div>
     </section>
   );
-};
-
-export default About;
+}

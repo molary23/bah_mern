@@ -16,7 +16,7 @@ const PageHeading = (props: HeadingProps) => {
           <h1 className="sm:text-6xl text-3xl font-bold text-white page__heading">
             {intro.heading}
           </h1>
-          <h2 className="sm:text-2xl text-xl font-bold text-white page__heading mt-6">
+          <h2 className="sm:text-2xl text-xl sm:font-bold text-white page__heading mt-1 sm:mt-6">
             {intro.subHeading}
           </h2>
         </div>
