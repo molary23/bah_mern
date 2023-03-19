@@ -60,10 +60,18 @@ const SubFooter = () => {
         <div className="footer__right basis-1/3">
           <h3 className="mb-4 text-xl font-bold">Connect with Us</h3>
           <div className="footer__social flex gap-x-3">
-            <AiFillFacebook />
-            <AiFillSkype />
-            <AiFillLinkedin />
-            <AiOutlineWhatsApp />
+            <a href="">
+              <AiFillFacebook />
+            </a>
+            <a href="">
+              <AiFillSkype />
+            </a>
+            <a href="">
+              <AiFillLinkedin />
+            </a>
+            <a href="">
+              <AiOutlineWhatsApp />
+            </a>
           </div>
         </div>
       </div>
