@@ -14,9 +14,9 @@ export default function Contact() {
       />
 
       <div className="w-full h-max my-4">
-        <div className="fast__contact w-10/12 mx-auto">
-          <div className="sm:flex sm:h-48 justify-between py-8 bg-red-500 fast__contact--box">
-            <div className="flex justify-center w-full gap-4">
+        <div className="fast__contact sm:w-10/12 mx-auto">
+          <div className="flex flex-col gap-y-8 sm:flex-row sm:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
+            <div className="flex justify-between sm:justify-center w-full sm:gap-4">
               <div className="">
                 <HiOutlineDevicePhoneMobile />
               </div>
@@ -34,8 +34,8 @@ export default function Contact() {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-center w-full gap-4">
-              <div className="mx-4">
+            <div className="flex justify-between sm:justify-center w-full gap-4">
+              <div className="">
                 <RiMailSendLine />
               </div>
               <div>

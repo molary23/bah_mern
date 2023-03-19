@@ -96,7 +96,7 @@ export default function About() {
               objectives in the pursuit of creating genuine value for our
               stakeholders. Our “scorecard’ includes:
             </p>
-            <ul className="list-disc ml-6">
+            <ul className="list-disc list-outside ml-6">
               <li className="about__content--list sm:text-2xl">
                 Human Resources – Employee satisfaction, Training
               </li>
@@ -118,7 +118,7 @@ export default function About() {
             Our Strategic Objectives
           </h2>
           <div className="about__content__obj--details mt-6">
-            <ul className="list-disc ml-6">
+            <ul className="list-disc list-outside ml-6">
               <li className="about__content--list text-1xl sm:text-2xl">
                 To make all of our products and services market leaders in their
                 core categories in terms of quality and price peculiarity while

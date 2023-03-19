@@ -1,6 +1,6 @@
 import { HeadingProps } from "../util/Types";
 
-const PageHeading = (props: HeadingProps) => {
+export default function PageHeading(props: HeadingProps) {
   const { intro, imageUrL } = props;
 
   return (
@@ -23,6 +23,4 @@ const PageHeading = (props: HeadingProps) => {
       </div>
     </div>
   );
-};
-
-export default PageHeading;
+}

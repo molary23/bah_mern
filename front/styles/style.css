@@ -159,12 +159,15 @@ html {
 }
 
 .footer__quick__links li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .fast__contact svg {
   width: 4rem;
   height: 4rem;
+}
+.fast__contact li {
+  margin-bottom: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
