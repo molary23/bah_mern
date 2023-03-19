@@ -1,12 +1,40 @@
+import { useReducer } from "react";
 import { NavSubLink } from "./NavSubLink";
 import { MdLightbulbOutline, MdOutlineWaterDrop } from "react-icons/md";
-import { BsHddRack, BsBookshelf, BsTools } from "react-icons/bs";
+import { BsBookshelf, BsTools } from "react-icons/bs";
 import { GiCartwheel, GiForklift, GiDiscussion } from "react-icons/gi";
 import { FaPallet } from "react-icons/fa";
-import { CiDeliveryTruck } from "react-icons/ci";
 import { BiCabinet } from "react-icons/bi";
+import { TbTruckDelivery } from "react-icons/tb";
+import { RegularObject } from "../util/Types";
+
+const initialMenu = [
+  { name: "mobile", active: false },
+  { name: "products", active: false },
+  { name: "services", active: false },
+];
+
+const reducer = (state: RegularObject, action: RegularObject) => {
+  switch (action.type) {
+    case "ACTIVATE":
+      return state.map((menu: RegularObject) => {
+        if (menu.name === action.name) {
+          return { ...menu, active: !menu.active };
+        } else {
+          return menu;
+        }
+      });
+    default:
+      return state;
+  }
+};
 
 const Nav = () => {
+  const [menus, dispatch] = useReducer(reducer, initialMenu);
+
+  const handleActivate = (menu: string) => {
+    dispatch({ type: "ACTIVATE", name: menu });
+  };
   return (
     <nav className="bg-gray-800 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -131,7 +159,7 @@ const Nav = () => {
                         <NavSubLink
                           title="Logistics"
                           more="More details about Profile"
-                          icon={<CiDeliveryTruck />}
+                          icon={<TbTruckDelivery />}
                           link="/services/logistics"
                         />
                         <NavSubLink
@@ -168,8 +196,9 @@ const Nav = () => {
               className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               aria-controls="mobile-menu"
               aria-expanded="false"
+              onClick={() => handleActivate("mobile")}
             >
-              <span className="sr-only">Open main menu</span>
+              {/*<span className="sr-only">Open main menu</span>*/}
 
               <svg
                 className="block h-6 w-6"
@@ -207,7 +236,10 @@ const Nav = () => {
         </div>
       </div>
 
-      <div className="md:hidden" id="mobile-menu">
+      <div
+        className={`md:hidden ${!menus[0].active && "hidden"}`}
+        id="mobile-menu"
+      >
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <a
             href="/"
@@ -223,13 +255,13 @@ const Nav = () => {
           >
             About Us
           </a>
-          <a
-            href="#"
+          <button
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            onClick={() => handleActivate("products")}
           >
             Products
-          </a>
-          <div className="md:hidden">
+          </button>
+          <div className={`md:hidden ${!menus[1].active && "hidden"}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <a
                 href="/products/equipments"
@@ -270,13 +302,13 @@ const Nav = () => {
             </div>
           </div>
 
-          <a
-            href="#"
+          <button
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            onClick={() => handleActivate("services")}
           >
             Services
-          </a>
-          <div className="md:hidden">
+          </button>
+          <div className={`md:hidden ${!menus[2].active && "hidden"}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <a
                 href="/services/consultancy"
