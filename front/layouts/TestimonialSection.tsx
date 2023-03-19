@@ -2,11 +2,11 @@ import { sunset } from "../assets";
 import TestimonyElement from "../elements/TestimonyElement";
 import IntroHeading from "./IntroHeading";
 
-const TestimonialSection = () => {
+export default function TestimonialSection() {
   return (
     <section className="h-max py-24 bg-yellow-500 sm:px-8">
       <IntroHeading heading="Testimonials" />
-      <div className="sm:flex">
+      <div className="flex flex-col gap-y-16 sm:flex-row  ">
         <TestimonyElement
           testimony="BAH Engineering Consultant is responsive, committed, honest in all
             business transactions and competent in their operational and
@@ -31,6 +31,4 @@ const TestimonialSection = () => {
       </div>
     </section>
   );
-};
-
-export default TestimonialSection;
+}

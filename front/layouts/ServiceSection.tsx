@@ -2,11 +2,11 @@ import { dummy, sunset } from "../assets";
 import ImageElement from "../elements/ImageElement";
 import IntroHeading from "./IntroHeading";
 
-function ServiceSection() {
+export default function ServiceSection() {
   return (
     <section className="h-max bg-blue-900 py-12 home__page__service">
       <IntroHeading heading="Our Services" />
-      <div className="h-max px-4 py-8 sm:w-11/12 mx-auto sm:flex sm:gap-5">
+      <div className="h-max px-4 py-8 sm:w-11/12 mx-auto flex flex-col sm:flex-row gap-y-4 sm:gap-5 ">
         <div className="sm:basis-1/3 flex justify-center">
           <ImageElement
             src={dummy}
@@ -35,5 +35,3 @@ function ServiceSection() {
     </section>
   );
 }
-
-export default ServiceSection;

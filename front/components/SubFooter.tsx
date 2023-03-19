@@ -5,10 +5,10 @@ import {
   AiOutlineWhatsApp,
 } from "react-icons/ai";
 
-const SubFooter = () => {
+export default function SubFooter() {
   return (
     <section>
-      <div className="flex justify-evenly px-12 py-24 h-max gap-x-10 w-11/12 mx-auto">
+      <div className="flex flex-col sm:flex-row gap-y-8 justify-evenly px-12 py-24 h-max gap-x-10 w-11/12 mx-auto">
         <div className="footer-left basis-1/3">
           <h2 className="mb-8 text-2xl font-bold">
             BAH Engineering Consultant
@@ -24,7 +24,7 @@ const SubFooter = () => {
             clients.
           </p>
         </div>
-        <div className="footer__center basis-1/3 flex justify-center">
+        <div className="footer__center basis-1/3 flex sm:justify-center">
           <div className="">
             <h3 className="mb-4 text-xl font-bold">Quick Links</h3>
             <ul className="footer__quick__links">
@@ -77,6 +77,4 @@ const SubFooter = () => {
       </div>
     </section>
   );
-};
-
-export default SubFooter;
+}
