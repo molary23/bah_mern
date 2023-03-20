@@ -17,7 +17,7 @@ export default function Contact() {
         <div className="fast__contact sm:w-10/12 mx-auto">
           <div className="flex flex-col gap-y-8 sm:flex-row sm:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
             <div className="flex justify-between sm:justify-center w-full sm:gap-4">
-              <div className="">
+              <div>
                 <HiOutlineDevicePhoneMobile />
               </div>
               <div>
@@ -35,7 +35,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex justify-between sm:justify-center w-full gap-4">
-              <div className="">
+              <div>
                 <RiMailSendLine />
               </div>
               <div>
@@ -138,7 +138,7 @@ export default function Contact() {
                       ></textarea>
                     </div>
                   </div>
-                  <div className="">
+                  <div>
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
