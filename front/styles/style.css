@@ -132,8 +132,8 @@ html {
 }
 
 .footer__social svg {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .right__aside,
@@ -162,12 +162,17 @@ html {
   margin-bottom: 0.25rem;
 }
 
+/* Contact Us page */
 .fast__contact svg {
   width: 4rem;
   height: 4rem;
 }
 .fast__contact li {
   margin-bottom: 0.5rem;
+}
+
+.contact__form label {
+  text-transform: capitalize;
 }
 
 @media (prefers-color-scheme: dark) {

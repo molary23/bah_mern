@@ -3,7 +3,7 @@ import { SectionProp } from "../util/Types";
 
 export default function RightArticle(props: SectionProp) {
   return (
-    <section className="flex flex-col sm-flex-row gap-y-4 sm:py-20 sm:px-20 h-max py-8 sm:h-[40rem] bg-red-900">
+    <section className="flex flex-col sm:flex-row gap-y-4 sm:py-20 sm:px-20 h-max py-8 sm:h-[40rem] bg-red-900">
       <article className="sm:basis-1/2 hidden__element right__aside">
         <h2 className="text-3xl font-bold mb-4 sm:mb-8 text-center sm:text-left">
           {props?.title}

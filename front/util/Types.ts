@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-import { ReactNode } from "react";
+import { ChangeEvent, ChangeEventHandler, ReactNode } from "react";
 
 export type RegularArrayOfObject = [
   {
@@ -64,3 +64,13 @@ export type TabProp = {
 };
 
 export type SubIntro = Pick<Intro, "heading">;
+
+export interface InputProps {
+  name: string;
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  autoComplete: string;
+  id: string;
+  type: string;
+  error: string;
+}

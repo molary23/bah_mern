@@ -13,9 +13,6 @@ const Home = ({ children }: any) => {
         if (entry.isIntersecting) {
           entry.target.classList.remove("hidden__element");
           entry.target.classList.add("show__element");
-        } else {
-          entry.target.classList.remove("show__element");
-          entry.target.classList.add("hidden__element");
         }
       });
     });

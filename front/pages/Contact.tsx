@@ -1,8 +1,24 @@
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import PageHeading from "../layouts/PageHeading";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { GrMapLocation } from "react-icons/gr";
 import { RiMailSendLine } from "react-icons/ri";
 import { FiSend } from "react-icons/fi";
+import { RegularObject } from "../util/Types";
+import InputElement from "../elements/InputElement";
+
+const API = "url to submit page";
+
 export default function Contact() {
+  const [inputs, setInputs] = useState<RegularObject>({}),
+    [errors, setErrors] = useState<RegularObject>({}),
+    [loading, setLoading] = useState<boolean>(false),
+    changeHandler = (
+      e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      const { name, value } = e.target;
+      setInputs((values) => ({ ...values, [name]: value }));
+    };
   return (
     <section>
       <PageHeading
@@ -16,6 +32,23 @@ export default function Contact() {
       <div className="w-full h-max my-4">
         <div className="fast__contact sm:w-10/12 mx-auto">
           <div className="flex flex-col gap-y-8 sm:flex-row sm:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
+            <div className="flex justify-between sm:justify-center w-full sm:gap-4">
+              <div>
+                <GrMapLocation />
+              </div>
+              <div>
+                <a
+                  href="https://www.google.com/maps/place/BAH+Engineering+Consultant/@6.7531317,3.2126805,17z/data=!3m1!4b1!4m6!3m5!1s0x103b97308126e639:0xa72b73099ff342d8!8m2!3d6.7531317!4d3.2152608!16s%2Fg%2F11h551fllx"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <address>No 2, Akinremi Adekunle Crescent </address>
+                  <address>off KM 51/52 Lagos-Abeokuta expressway,</address>
+                  <address>Abule-Oke (Beside Aucco Filling station)</address>
+                  <address>Ogun state, Nigeria</address>
+                </a>
+              </div>
+            </div>
             <div className="flex justify-between sm:justify-center w-full sm:gap-4">
               <div>
                 <HiOutlineDevicePhoneMobile />
@@ -60,67 +93,46 @@ export default function Contact() {
             <div className="overflow-hidden shadow sm:rounded-md">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="contact__name"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="contact__name"
-                      id="contact__name"
-                      autoComplete="on"
-                      className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+                  <InputElement
+                    type="text"
+                    name="name"
+                    id="contact__name"
+                    autoComplete="on"
+                    value={inputs.name || ""}
+                    onChange={changeHandler}
+                    error={errors.name || ""}
+                  />
 
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="contact__email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="contact__email"
-                      id="contact__email"
-                      autoComplete="off"
-                      className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="contact__phone"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      name="contact__phone"
-                      id="contact__phone"
-                      autoComplete="on"
-                      className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="contact__subject"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      name="contact__subject"
-                      id="contact__subject"
-                      autoComplete="off"
-                      className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+                  <InputElement
+                    type="email"
+                    name="email"
+                    id="contact__email"
+                    autoComplete="off"
+                    value={inputs.email || ""}
+                    onChange={changeHandler}
+                    error={errors.email || ""}
+                  />
+
+                  <InputElement
+                    type="tel"
+                    name="phone"
+                    id="contact__phone"
+                    autoComplete="on"
+                    value={inputs.phone || ""}
+                    onChange={changeHandler}
+                    error={errors.phone || ""}
+                  />
+
+                  <InputElement
+                    type="text"
+                    name="subject"
+                    id="contact__subject"
+                    autoComplete="off"
+                    value={inputs.subject || ""}
+                    onChange={changeHandler}
+                    error={errors.subject || ""}
+                  />
+
                   <div className="col-span-6">
                     <label
                       htmlFor="contact__message"
@@ -131,8 +143,10 @@ export default function Contact() {
                     <div className="mt-2">
                       <textarea
                         id="contact__message"
-                        name="contact__message"
+                        name="message"
                         rows={3}
+                        value={inputs.message || ""}
+                        onChange={changeHandler}
                         className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-1.5"
                         placeholder="Your Message"
                       ></textarea>
