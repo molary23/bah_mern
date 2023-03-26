@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import PageHeading from "../layouts/PageHeading";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { GrMapLocation } from "react-icons/gr";
@@ -6,6 +6,9 @@ import { RiMailSendLine } from "react-icons/ri";
 import { FiSend } from "react-icons/fi";
 import { RegularObject } from "../util/Types";
 import InputElement from "../elements/InputElement";
+import Modal from "../layouts/Modal";
+
+import useInputValidate from "../hooks/useInputValidate";
 
 const API = "url to submit page";
 
@@ -13,12 +16,73 @@ export default function Contact() {
   const [inputs, setInputs] = useState<RegularObject>({}),
     [errors, setErrors] = useState<RegularObject>({}),
     [loading, setLoading] = useState<boolean>(false),
+    [modal, setModal] = useState<boolean>(true),
+    [status, setStatus] = useState<boolean>(true),
     changeHandler = (
       e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
     ) => {
       const { name, value } = e.target;
       setInputs((values) => ({ ...values, [name]: value }));
+    },
+    modalHandler = (close: boolean) => {
+      setModal(close);
+    },
+    submitHandler = async (e: FormEvent) => {
+      e.preventDefault();
+
+      if (useInputValidate(inputs, "name")) {
+        setErrors({
+          name: "Please enter a valid name",
+        });
+      } else if (useInputValidate(inputs, "email")) {
+        setErrors({
+          email: "Please enter a valid email",
+        });
+      } else if (useInputValidate(inputs, "phone") || isNaN(inputs.phone)) {
+        setErrors({
+          phone: "Please enter a valid phone",
+        });
+      } else if (useInputValidate(inputs, "subject")) {
+        setErrors({
+          subject: "Please enter a valid subject",
+        });
+      } else if (useInputValidate(inputs, "message")) {
+        setErrors({
+          message: "Please enter a valid message",
+        });
+      } else {
+        setLoading(true);
+        const payload = {
+          name: inputs.name,
+          email: inputs.email,
+          phone: inputs.phone,
+          subject: inputs.subject,
+          message: inputs.message,
+        };
+
+        try {
+          const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          };
+          const response = await fetch(API, requestOptions);
+          const data = await response.json();
+          if (data === 1) {
+            setInputs({});
+            setStatus(true);
+          } else {
+            setStatus(false);
+          }
+        } catch (error) {
+          setStatus(false);
+        } finally {
+          setLoading(false);
+          setModal(true);
+        }
+      }
     };
+
   return (
     <section>
       <PageHeading
@@ -89,7 +153,10 @@ export default function Contact() {
           </div>
         </div>
         <div className="contact__form">
-          <form className="contact__form-form w-11/12 mx-auto my-8">
+          <form
+            className="contact__form-form w-11/12 mx-auto my-8"
+            onSubmit={submitHandler}
+          >
             <div className="overflow-hidden shadow sm:rounded-md">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
@@ -147,8 +214,9 @@ export default function Contact() {
                         rows={3}
                         value={inputs.message || ""}
                         onChange={changeHandler}
-                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-1.5"
-                        placeholder="Your Message"
+                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
+                        placeholder="Enter your Message"
+                        aria-label="Enter your Message"
                       ></textarea>
                     </div>
                   </div>
@@ -167,6 +235,7 @@ export default function Contact() {
           </form>
         </div>
       </div>
+      {modal && <Modal modal={modal} status={status} onClick={modalHandler} />}
     </section>
   );
 }
