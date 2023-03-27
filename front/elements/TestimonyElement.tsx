@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { TestimonyProps } from "../util/Types";
 
-const TestimonyElement = (props: TestimonyProps) => {
+export default function TestimonyElement(props: TestimonyProps) {
   const { image, testifier, testimony } = props;
   return (
     <div className="sm:basis-1/3">
@@ -26,21 +26,21 @@ const TestimonyElement = (props: TestimonyProps) => {
             <span>{testimony}</span>
           </p>
         </div>
-        <div className="mb-4 flex justify-end">
-          <span className="">- {testifier}</span>
-        </div>
-        <div className="flex justify-end">
-          <Image
-            className="h-24 w-24 rounded-full"
-            src={image}
-            width={"256"}
-            height={"256"}
-            alt={`testimonial`}
-          />
+        <div className="flex-col">
+          <div className="mb-4">
+            <span className="">- {testifier}</span>
+          </div>
+          <div className="">
+            <Image
+              className="h-24 w-24 rounded-full"
+              src={image}
+              width={"256"}
+              height={"256"}
+              alt={`testimonial`}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default TestimonyElement;
+}

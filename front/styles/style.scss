@@ -8,10 +8,6 @@
   .dropdown {
     margin-top: 0.25rem;
     display: none;
-    /*  opacity: 0;
-    visibility: hidden;
-    margin-top: 2rem;
-    transition: margin-top 1s;*/
   }
 }
 
@@ -73,6 +69,13 @@
 
 .footer__quick__links li {
   margin-bottom: 0.25rem;
+}
+
+.scrollMe {
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 
 /* Contact Us page */

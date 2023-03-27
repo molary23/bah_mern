@@ -1,11 +1,34 @@
+import { useEffect, useState } from "react";
 import {
   AiFillFacebook,
   AiFillSkype,
   AiFillLinkedin,
   AiOutlineWhatsApp,
+  AiOutlineVerticalAlignTop,
 } from "react-icons/ai";
+import { GrLinkTop } from "react-icons/gr";
 
 export default function SubFooter() {
+  const [show, setShow] = useState(false),
+    handleScroll = () => {
+      window.scrollTo(0, 0);
+    },
+    handleShow = () => {
+      if (window.scrollY > 300) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
+    };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleShow, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleShow);
+    };
+  }, []);
+
   return (
     <section>
       <div className="flex flex-col sm:flex-row gap-y-8 justify-evenly px-4 sm:px-12 py-24 h-max gap-x-10 w-11/12 mx-auto">
@@ -74,6 +97,14 @@ export default function SubFooter() {
             </a>
           </div>
         </div>
+      </div>
+      <div
+        className={`fixed right-5 bottom-8 z-9999 bg-indigo-600 p-3 scrollMe cursor-pointer ${
+          show ? "" : "hidden"
+        }`}
+        onClick={handleScroll}
+      >
+        <AiOutlineVerticalAlignTop />
       </div>
     </section>
   );

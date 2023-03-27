@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import PageHeading from "../layouts/PageHeading";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
-import { GrMapLocation } from "react-icons/gr";
+import { TbMap2 } from "react-icons/tb";
 import { RiMailSendLine } from "react-icons/ri";
 import { FiSend } from "react-icons/fi";
 import { RegularObject } from "../util/Types";
@@ -16,8 +16,8 @@ export default function Contact() {
   const [inputs, setInputs] = useState<RegularObject>({}),
     [errors, setErrors] = useState<RegularObject>({}),
     [loading, setLoading] = useState<boolean>(false),
-    [modal, setModal] = useState<boolean>(true),
-    [status, setStatus] = useState<boolean>(true),
+    [modal, setModal] = useState<boolean>(false),
+    [status, setStatus] = useState<boolean>(false),
     changeHandler = (
       e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
     ) => {
@@ -52,19 +52,12 @@ export default function Contact() {
         });
       } else {
         setLoading(true);
-        const payload = {
-          name: inputs.name,
-          email: inputs.email,
-          phone: inputs.phone,
-          subject: inputs.subject,
-          message: inputs.message,
-        };
 
         try {
           const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(inputs),
           };
           const response = await fetch(API, requestOptions);
           const data = await response.json();
@@ -98,7 +91,7 @@ export default function Contact() {
           <div className="flex flex-col gap-y-8 sm:flex-row sm:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
             <div className="flex justify-between sm:justify-center w-full sm:gap-4">
               <div>
-                <GrMapLocation />
+                <TbMap2 />
               </div>
               <div>
                 <a

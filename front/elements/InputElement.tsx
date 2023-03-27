@@ -2,7 +2,7 @@ import { InputProps } from "../util/Types";
 
 export default function InputElement(props: InputProps) {
   return (
-    <div className="col-span-6 sm:col-span-3">
+    <div className="sm:col-span-3 col-span-6">
       <label
         htmlFor={props?.id}
         className="block text-sm font-medium leading-6 text-gray-900"
