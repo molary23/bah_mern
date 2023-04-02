@@ -3,17 +3,21 @@ import { SectionProp } from "../util/Types";
 
 export default function RightArticle(props: SectionProp) {
   return (
-    <section className="flex flex-col sm:flex-row gap-y-4 sm:py-20 sm:px-20 h-max py-8 sm:h-[40rem] bg-red-900">
-      <article className="sm:basis-1/2 hidden__element right__aside">
-        <h2 className="text-3xl font-bold mb-4 sm:mb-8 text-center sm:text-left">
+    <section className="flex flex-col lg:flex-row gap-y-8 lg:py-20 lg:px-20 h-max py-8 lg:h-[40rem] bg-red-900">
+      <article className="lg:basis-1/2 hidden__element right__aside">
+        <h2 className="text-3xl font-bold mb-4 lg:mb-8 text-center lg:text-left">
           {props?.title}
         </h2>
-        <p className="text-2xl mb-6 text-justify">{props?.description?.[0]}</p>
+        <p className="md:text-2xl text-xl mb-6 text-justify">
+          {props?.description?.[0]}
+        </p>
         {props?.description?.[1] && (
-          <p className="text-xl text-justify">{props?.description?.[1]}</p>
+          <p className="md:text-xl text-lg text-justify">
+            {props?.description?.[1]}
+          </p>
         )}
       </article>
-      <aside className="sm:basis-1/2 hidden__element right__article">
+      <aside className="lg:basis-1/2 hidden__element right__article">
         <ImageElement
           width={600}
           height={400}

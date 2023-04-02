@@ -87,13 +87,13 @@ export default function Contact() {
       />
 
       <div className="w-full h-max my-4">
-        <div className="fast__contact sm:w-10/12 mx-auto">
-          <div className="flex flex-col gap-y-8 sm:flex-row sm:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
-            <div className="flex justify-between sm:justify-center w-full sm:gap-4">
-              <div>
+        <div className="fast__contact lg:w-10/12 mx-auto">
+          <div className="flex flex-col sm:flex-col gap-y-8 lg:flex-row lg:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
+            <div className="flex gap-6 justify-items-stretch lg:justify-center w-full lg:gap-4">
+              <div className="flex basis-1/3 place-content-end">
                 <TbMap2 />
               </div>
-              <div>
+              <div className="flex basis-2/3 place-content-start">
                 <a
                   href="https://www.google.com/maps/place/BAH+Engineering+Consultant/@6.7531317,3.2126805,17z/data=!3m1!4b1!4m6!3m5!1s0x103b97308126e639:0xa72b73099ff342d8!8m2!3d6.7531317!4d3.2152608!16s%2Fg%2F11h551fllx"
                   target="_blank"
@@ -106,11 +106,11 @@ export default function Contact() {
                 </a>
               </div>
             </div>
-            <div className="flex justify-between sm:justify-center w-full sm:gap-4">
-              <div>
+            <div className="flex justify-evenly lg:justify-center w-full lg:gap-4">
+              <div className="flex basis-1/3 place-content-end">
                 <HiOutlineDevicePhoneMobile />
               </div>
-              <div>
+              <div className="flex basis-2/3 place-content-start">
                 <ul>
                   <li>
                     <a href="tel:+2348029409798">+234 (0) 8029409798</a>
@@ -124,11 +124,11 @@ export default function Contact() {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-between sm:justify-center w-full gap-4">
-              <div>
+            <div className="flex justify-evenly lg:justify-center w-full gap-4">
+              <div className="flex basis-1/3 place-content-end">
                 <RiMailSendLine />
               </div>
-              <div>
+              <div className="flex basis-2/3 place-content-start">
                 <ul>
                   <li>
                     <a href="mailto:bahengineeringconsultant@gmail.com">
@@ -150,49 +150,53 @@ export default function Contact() {
             className="contact__form-form w-11/12 mx-auto my-8"
             onSubmit={submitHandler}
           >
-            <div className="overflow-hidden shadow sm:rounded-md">
-              <div className="bg-white px-4 py-5 sm:p-6">
+            <div className="overflow-hidden shadow lg:rounded-md">
+              <div className="bg-white px-4 py-5 lg:p-6">
                 <div className="grid grid-cols-6 gap-6">
-                  <InputElement
-                    type="text"
-                    name="name"
-                    id="contact__name"
-                    autoComplete="on"
-                    value={inputs.name || ""}
-                    onChange={changeHandler}
-                    error={errors.name || ""}
-                  />
-
-                  <InputElement
-                    type="email"
-                    name="email"
-                    id="contact__email"
-                    autoComplete="off"
-                    value={inputs.email || ""}
-                    onChange={changeHandler}
-                    error={errors.email || ""}
-                  />
-
-                  <InputElement
-                    type="tel"
-                    name="phone"
-                    id="contact__phone"
-                    autoComplete="on"
-                    value={inputs.phone || ""}
-                    onChange={changeHandler}
-                    error={errors.phone || ""}
-                  />
-
-                  <InputElement
-                    type="text"
-                    name="subject"
-                    id="contact__subject"
-                    autoComplete="off"
-                    value={inputs.subject || ""}
-                    onChange={changeHandler}
-                    error={errors.subject || ""}
-                  />
-
+                  <div className="col-span-6 lg:col-span-3">
+                    <InputElement
+                      type="text"
+                      name="name"
+                      id="contact__name"
+                      autoComplete="on"
+                      value={inputs.name || ""}
+                      onChange={changeHandler}
+                      error={errors.name || ""}
+                    />
+                  </div>
+                  <div className="col-span-6 lg:col-span-3">
+                    <InputElement
+                      type="email"
+                      name="email"
+                      id="contact__email"
+                      autoComplete="off"
+                      value={inputs.email || ""}
+                      onChange={changeHandler}
+                      error={errors.email || ""}
+                    />
+                  </div>
+                  <div className="col-span-6 lg:col-span-3">
+                    <InputElement
+                      type="tel"
+                      name="phone"
+                      id="contact__phone"
+                      autoComplete="on"
+                      value={inputs.phone || ""}
+                      onChange={changeHandler}
+                      error={errors.phone || ""}
+                    />
+                  </div>
+                  <div className="col-span-6 lg:col-span-3">
+                    <InputElement
+                      type="text"
+                      name="subject"
+                      id="contact__subject"
+                      autoComplete="off"
+                      value={inputs.subject || ""}
+                      onChange={changeHandler}
+                      error={errors.subject || ""}
+                    />
+                  </div>
                   <div className="col-span-6">
                     <label
                       htmlFor="contact__message"
@@ -207,7 +211,7 @@ export default function Contact() {
                         rows={3}
                         value={inputs.message || ""}
                         onChange={changeHandler}
-                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
+                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 lg:text-sm lg:leading-6 p-2"
                         placeholder="Enter your Message"
                         aria-label="Enter your Message"
                       ></textarea>

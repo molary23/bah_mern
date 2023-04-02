@@ -11,13 +11,13 @@ export default function TabNav(props: TabProp) {
     [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="py-8 sm:p-24">
+    <section className="py-8 lg:p-24">
       <h2 className="text-3xl font-bold mb-8 text-center">{props?.title}</h2>
-      <p className="text-xl sm:text-2xl text-center sm:font-bold mb-8">
+      <p className="text-xl md:text-2xl text-center lg:font-bold mb-8">
         {props?.description?.[0]}
       </p>
       {props?.description?.[1] && (
-        <p className="sm:text-xl text-center sm:font-bold mb-8">
+        <p className="md:text-xl text-lg text-center lg:font-bold mb-8">
           {props?.description?.[1]}
         </p>
       )}
@@ -41,8 +41,8 @@ export default function TabNav(props: TabProp) {
         </ul>
       </div>
 
-      <div className="tab__content flex flex-col sm-flex-row gap-y-4 flex sm:py-20 sm:px-20 h-[40rem] bg-blue-900 py-8">
-        <aside className="sm:basis-1/2 left__aside">
+      <div className="tab__content flex flex-col sm-flex-row gap-y-4 flex lg:py-20 lg:px-20 h-[40rem] bg-blue-900 py-8">
+        <aside className="lg:basis-1/2 left__aside">
           <ImageElement
             width={600}
             height={400}
@@ -51,13 +51,13 @@ export default function TabNav(props: TabProp) {
             className="mx-auto"
           />
         </aside>
-        <article className="sm:basis-1/2 left__article">
-          <h2 className="text-3xl font-bold mb-4 sm:mb-8 sm:text-left text-center">{`${props?.pages?.[activeTab]} ${props?.title}`}</h2>
-          <p className="text-2xl mb-3 sm:mb-6 text-justify">
+        <article className="lg:basis-1/2 left__article">
+          <h2 className="text-3xl font-bold mb-4 lg:mb-8 lg:text-left text-center">{`${props?.pages?.[activeTab]} ${props?.title}`}</h2>
+          <p className="text-xl md:text-2xl mb-3 lg:mb-6 text-justify">
             {props?.content?.[activeTab]?.text?.[0]}
           </p>
           {props?.content?.[activeTab]?.text?.[1] && (
-            <p className="text-xl text-justify">
+            <p className="text-lg md:text-xl text-justify">
               {props?.content?.[activeTab]?.text?.[1]}
             </p>
           )}

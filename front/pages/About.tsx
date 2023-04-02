@@ -15,25 +15,25 @@ export default function About() {
         }}
         imageUrL=""
       />
-      <div className="about__content__all sm:w-5/6 bg-red-600 h-fit py-12 px-4 sm:px-6 mx-auto">
+      <div className="about__content__all lg:w-5/6 bg-red-600 h-fit py-12 px-4 lg:px-6 mx-auto">
         <div className="about__content__who bg-blue-400 h-fit my-6">
-          <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
+          <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             Who we are
           </h2>
 
           <div className="about__content__who--details mt-6">
-            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl lg:text-2xl text-justify mb-3">
               BAH Engineering Consultant is a globally-focused company that
               seeks competitive advantage through quality, price peculiarity and
               value added products and services.
             </p>
-            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl lg:text-2xl text-justify mb-3">
               The company was incorporated in 1990 as an enterprise in Lagos and
               later moved to Kano in the year 1996 to oversee the sales and
               services of automotive product. BEC ran a skeletal business in
               Eket, Akwa Ibom within 1999 to 2002 and later moved to Lagos.
             </p>
-            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl lg:text-2xl text-justify mb-3">
               The management underwent special trainings on warehouse
               equipment’s such as stocking on racks & forklifts services. It was
               during this period the company found out that most clients buy
@@ -41,7 +41,7 @@ export default function About() {
               company decided to normalize this for future clients that pass
               through us.
             </p>
-            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl lg:text-2xl text-justify mb-3">
               Our main objective is centered on the need to provide additional
               services to the customers and inject a new innovation into the
               growing economy in Nigeria, and of in-fact, to drive a noble
@@ -50,7 +50,7 @@ export default function About() {
               around by a team of experts and some well-qualified professionals
               from various part of the country.
             </p>
-            <p className="about__content--para text-xl sm:text-2xl text-justify mb-3">
+            <p className="about__content--para text-xl lg:text-2xl text-justify mb-3">
               This company founded over twenty years ago can boast of highly
               experienced and skilled staff.
             </p>
@@ -87,26 +87,26 @@ export default function About() {
           </div>
         </div>
         <div className="about__content__how bg-gray-600 h-fit my-6 py-6">
-          <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
+          <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             How We Measure Our Performance
           </h2>
           <div className="about__content__how--details mt-6">
-            <p className="about__content--para text-2xl sm:text-3xl text-justify mb-5">
+            <p className="about__content--para text-2xl lg:text-3xl text-justify mb-5">
               Each business will make a positive contribution to the company’s
               objectives in the pursuit of creating genuine value for our
               stakeholders. Our “scorecard’ includes:
             </p>
             <ul className="list-disc list-outside ml-6">
-              <li className="about__content--list sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 Human Resources – Employee satisfaction, Training
               </li>
-              <li className="about__content--list sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 Customer Focus – Loyalty, Market Leadership Business
               </li>
-              <li className="about__content--list sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 Processes – Productivity, Quality, Cost, Environment Business
               </li>
-              <li className="about__content--list sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 Results – Return on Assets, Growth
               </li>
             </ul>
@@ -114,27 +114,27 @@ export default function About() {
         </div>
 
         <div className="about__content__obj bg-yellow-600 h-fit my-6 py-6">
-          <h2 className="text-center font-bold text-3xl sm:text-6xl page__subheading">
+          <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             Our Strategic Objectives
           </h2>
           <div className="about__content__obj--details mt-6">
             <ul className="list-disc list-outside ml-6">
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 To make all of our products and services market leaders in their
                 core categories in terms of quality and price peculiarity while
                 exceeding customer expectations.
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 To invest in Research and Development aimed at improving our
                 approaches to production and service discharge to achieve
                 further sustenance of price advantage, product quality and
                 customer satisfaction.
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 To establish and maintain a dominant leadership position for
                 whichever core categories we choose to operate.
               </li>
-              <li className="about__content--list text-1xl sm:text-2xl">
+              <li className="about__content--list text-xl lg:text-2xl">
                 To provide all our employees with challenging and rewarding
                 work, satisfying work conditions and opportunities for personal
                 development, advancement and performance-based remunerations.
@@ -143,19 +143,19 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="about__team flex flex-wrap w-10/12 mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 sm:h-72 sm:py-14 sm:px-12 mt-4 ">
-        <div className="our__team sm:flex sm:flex-row w-full mx-auto sm:gap-6 justify-around">
-          <div className="our__team--intro mb-6 sm:basis-1/4">
-            <h2 className="our__team--heading mb-4 text-3xl font-black text-center sm:text-left">
+      <div className="about__team flex flex-wrap w-10/12 mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 lg:h-72 lg:py-14 lg:px-12 mt-4 ">
+        <div className="our__team lg:flex lg:flex-row w-full mx-auto lg:gap-6 justify-around">
+          <div className="our__team--intro mb-6 lg:basis-1/4">
+            <h2 className="our__team--heading mb-4 text-3xl font-black text-center lg:text-left">
               Meet Our Leadership
             </h2>
-            <p className="our__team--para text-center sm:text-left mb-8">
+            <p className="our__team--para text-center lg:text-left mb-8">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Praesentium reiciendis aperiam consequatur aspernatur quia
             </p>
           </div>
           <div className="our__team--member sm:flex sm:justify-around sm:basis-3/4">
-            <div className="about__team--member flex mb-6 gap-4 sm:justify-between sm:gap-3">
+            <div className="about__team--member flex mb-6 gap-4 lg:justify-between lg:gap-3">
               <div className="">
                 <Image
                   className="h-24 w-24 rounded-full"
@@ -173,7 +173,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about__team--member flex flex mb-6 gap-4 sm:justify-between sm:gap-3">
+            <div className="about__team--member flex flex mb-6 gap-4 lg:justify-between lg:gap-3">
               <div className="">
                 <Image
                   className="h-24 w-24 rounded-full"

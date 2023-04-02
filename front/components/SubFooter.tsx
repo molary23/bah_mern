@@ -31,7 +31,7 @@ export default function SubFooter() {
 
   return (
     <section>
-      <div className="flex flex-col sm:flex-row gap-y-8 justify-evenly px-4 sm:px-12 py-24 h-max gap-x-10 w-11/12 mx-auto">
+      <div className="flex flex-col sm:flex-row gap-y-8 justify-evenly py-24 h-max gap-x-10 w-11/12 mx-auto">
         <div className="footer-left basis-1/3">
           <h2 className="mb-8 text-2xl font-bold">
             BAH Engineering Consultant
