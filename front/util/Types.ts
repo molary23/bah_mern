@@ -21,10 +21,12 @@ export interface NavSub {
 export interface ImageProps {
   width: number;
   height: number;
-  src: string;
+  src: StaticImageData;
   alt: string;
   onAction?: () => void;
-  className: string;
+  className?: string;
+  section?: string;
+  text?: string;
 }
 
 export type IntroProps = {

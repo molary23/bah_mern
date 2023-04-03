@@ -1,6 +1,7 @@
 import IntroHeading from "./IntroHeading";
 import { sunset } from "../assets";
 import ImageElement from "../elements/ImageElement";
+import OverlayImage from "../elements/OverlayImage";
 
 export default function ClientsSection() {
   return (
@@ -8,28 +9,84 @@ export default function ClientsSection() {
       <IntroHeading heading="Our Clients" />
       <div className="flex flex-wrap gap-y-4">
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
         <div className="sm:basis-1/4 flex justify-center">
-          <ImageElement src={sunset} width="400" height="400" alt="service 1" />
+          <OverlayImage
+            src={sunset}
+            width={400}
+            height={400}
+            alt="service 1"
+            section="client"
+            text="Hello service"
+          />
         </div>
       </div>
     </section>

@@ -78,6 +78,60 @@
   }
 }
 
+.image {
+  &__container {
+    position: relative;
+    width: 100%;
+    .image__image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .service__overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #008cba;
+      overflow: hidden;
+      width: 0;
+      height: 100%;
+      transition: 0.5s ease;
+    }
+    &:hover .service__overlay {
+      width: 100%;
+    }
+    .client_overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgb(0, 0, 0);
+      background: rgba(0, 0, 0, 0.5); /* Black see-through */
+      color: #f1f1f1;
+      width: 100%;
+      transition: 0.5s ease;
+      opacity: 0;
+      color: white;
+      font-size: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+    &:hover .client_overlay {
+      opacity: 1;
+    }
+    .image__text {
+      white-space: nowrap;
+      color: white;
+      font-size: 20px;
+      position: absolute;
+      overflow: hidden;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
+  }
+}
+
 /* Contact Us page */
 .fast__contact {
   svg {
