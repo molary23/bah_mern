@@ -76,3 +76,10 @@ export interface InputProps {
   type: string;
   error: string;
 }
+
+export type EquipmentProps = {
+  intro: Intro;
+  imageUrL?: string;
+  subHeading?: string;
+  elements: ReactNode;
+};
