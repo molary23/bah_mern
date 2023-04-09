@@ -88,7 +88,7 @@ export default function Contact() {
 
       <div className="w-full h-max my-4">
         <div className="fast__contact lg:w-10/12 mx-auto">
-          <div className="flex flex-col sm:flex-col gap-y-8 lg:flex-row lg:h-48 justify-between py-8 bg-red-500 fast__contact--box px-4">
+          <div className="flex flex-col sm:flex-col gap-y-8 lg:flex-row lg:h-48 justify-between py-8 fast__contact--box px-4">
             <div className="flex gap-6 justify-items-stretch lg:justify-center w-full lg:gap-4">
               <div className="flex basis-1/3 place-content-end">
                 <TbMap2 />
@@ -211,7 +211,7 @@ export default function Contact() {
                         rows={3}
                         value={inputs.message || ""}
                         onChange={changeHandler}
-                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 lg:text-sm lg:leading-6 p-2"
+                        className="mt-1 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary lg:text-sm lg:leading-6 p-2"
                         placeholder="Enter your Message"
                         aria-label="Enter your Message"
                       ></textarea>
@@ -220,7 +220,7 @@ export default function Contact() {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       <span className="mr-2">Submit</span>
                       <FiSend />

@@ -3,7 +3,7 @@ import { SectionProp } from "../util/Types";
 
 export default function LeftArticle(props: SectionProp) {
   return (
-    <section className="flex flex-col lg:flex-row gap-y-8 py-8 lg:py-20 lg:px-20 h-max lg:h-[40rem] bg-red-900">
+    <section className="flex flex-col lg:flex-row gap-y-8 py-8 lg:py-20 lg:px-20 h-max lg:h-[40rem] bg-offBlue">
       <aside className="lg:basis-1/2 hidden__element left__aside">
         <ImageElement
           width={600}

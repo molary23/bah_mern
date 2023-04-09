@@ -7,10 +7,10 @@ export default function ParallaxArticle(props: SectionProp) {
     <section
       className={`h-max lg:h-[40rem] ${props?.backgroundImage} bg-fixed bg-cover bg-center`}
     >
-      <article className="h-max py-8 px-4 lg:h-[40rem] bg-blue-900/[0.6] lg:py-20 lg:px-20 flex flex-col sm-flex-row gap-y-8">
+      <article className="h-max py-8 px-4 lg:h-[40rem] bg-primary/[0.6] lg:py-20 lg:px-20 flex flex-col sm:flex-row gap-y-8">
         <aside
           className={`${
-            props?.type === "single" ? "bg-yellow-600" : ""
+            props?.type === "single" ? "bg-white" : ""
           } h-max p-4 lg:py-12 lg:px-6 lg:basis-1/2 hidden__element left__article`}
         >
           <h2 className="mb-3 text-3xl font-bold text-center lg:text-left">

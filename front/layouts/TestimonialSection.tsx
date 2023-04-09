@@ -4,7 +4,7 @@ import IntroHeading from "./IntroHeading";
 
 export default function TestimonialSection() {
   return (
-    <section className="h-max py-24 bg-yellow-500 sm:px-8">
+    <section className="h-max py-24 bg-primary sm:px-8">
       <IntroHeading heading="Testimonials" />
       <div className="flex flex-col gap-y-16 sm:flex-row  ">
         <TestimonyElement

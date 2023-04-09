@@ -44,7 +44,7 @@ export default function Modal(props: RegularObject) {
             <div className="bg-gray-50 px-4 py-3 w-full mx-auto">
               <button
                 type="button"
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 text-white"
+                className="mt-3 inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-primary text-white"
                 onClick={() => props?.onClick(false)}
               >
                 Ok

@@ -30,7 +30,7 @@ export default function SubFooter() {
   }, []);
 
   return (
-    <section>
+    <section className="bg-zinc-500 text-white">
       <div className="flex flex-col sm:flex-row gap-y-8 justify-evenly py-24 h-max gap-x-10 w-11/12 mx-auto">
         <div className="footer-left basis-1/3">
           <h2 className="mb-8 text-2xl font-bold">
@@ -99,7 +99,7 @@ export default function SubFooter() {
         </div>
       </div>
       <div
-        className={`fixed right-5 bottom-8 z-9999 bg-indigo-600 p-3 scrollMe cursor-pointer ${
+        className={`fixed right-5 bottom-8 z-9999 bg-primary p-3 scrollMe cursor-pointer ${
           show ? "" : "hidden"
         }`}
         onClick={handleScroll}

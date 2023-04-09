@@ -18,7 +18,7 @@ export default function TopSection() {
               </p>
               <div className="mt-5 lg:mt-10 flex items-center justify-center gap-x-6">
                 <a
-                  href="#"
+                  href="/about"
                   className="text-base font-semibold leading-7 text-gray-900"
                 >
                   Learn more <span aria-hidden="true">→</span>

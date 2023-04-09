@@ -20,7 +20,7 @@ export default function pallets() {
         }}
         imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
       />
-      <section className="px-4 py-8 page__content">
+      <section className="page__content">
         <PageSubIntro
           heading=" We can help you design and construct any type of Pallets. We can help
           you design and construct any type of Pallets. We can help you design

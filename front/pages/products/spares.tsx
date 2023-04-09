@@ -15,7 +15,7 @@ const spares = () => {
         }}
         imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
       />
-      <section className="px-4 py-8 page__content">
+      <section className="page__content">
         <PageSubIntro heading="Spare parts are an important feature of logistics engineering and supply chain management, often comprising dedicated spare parts management systems. Forklift Tires, Controllers and batteries are part of what our company sells" />
         <LeftArticle
           title="Forklift Batteries"

@@ -16,7 +16,7 @@ export default function shelves() {
         }}
         imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
       />
-      <section className="px-4 py-8 page__content">
+      <section className="page__content">
         <LeftArticle
           title="Light Duty Shelves"
           description={[
