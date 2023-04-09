@@ -46,15 +46,6 @@ export default function spares() {
             ]}
             imageSrc={sunset}
           />
-
-          <RightArticle
-            title="Foldable Pallets"
-            description={[
-              `Foldable pallets have supreme strength, easy to install, and top class quality. The pallets sometimes come with steel reinforcement, and it is foldable for convenience during transportation.`,
-              `The pallet structure is available of 800×600 mm and 1200×800 mm and many other dimensions.`,
-            ]}
-            imageSrc={sunset}
-          />
         </>
       }
     />
