@@ -5,7 +5,7 @@ import TabNav from "../../layouts/TabNav";
 import { sunset } from "../../assets";
 import Equipments from "../../components/Equipments";
 
-export function equipments() {
+export default function equipments() {
   return (
     <Equipments
       intro={{

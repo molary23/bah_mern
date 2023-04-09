@@ -3,7 +3,7 @@ import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
 
-export function racking() {
+export default function racking() {
   return (
     <Equipments
       intro={{

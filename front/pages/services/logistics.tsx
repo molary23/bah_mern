@@ -17,7 +17,7 @@ export default function logistics() {
       />
 
       <PageSubIntro heading="Across the nook and cranny of Nigeria, BAH Engineering and Consultants Limited can deliver shelves, racks, reach trucks, narrow trucks, pallets, stackers, weightier, pallet trucks; and we ensure that the products are distributed in the most efficient way." />
-      <RightArticle
+      <LeftArticle
         title="Human Resources"
         description={[
           `Our Company have highly qualified engineers, and our technicians are factory-trained experts. BAH Engineering Consultant management are seasoned professionals, who have garnered experience over the years.`,
@@ -35,7 +35,7 @@ export default function logistics() {
         type="dual"
         backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
       />
-      <LeftArticle
+      <RightArticle
         title="Transportation"
         description={[
           `We are a reputable provider of top notch transport services of equipment’s and engineering products. We also offer direct full-load or part-load haulage to any location and from any location in Nigeria and work closely with many manufacturers, mining and construction companies, oil & gas and engineering companies.`,

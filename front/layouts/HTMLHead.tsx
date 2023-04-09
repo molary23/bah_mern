@@ -2,7 +2,7 @@ import Head from "next/head";
 import { HTMLMetaTag } from "../util/HTMLMetaTag";
 import { useRouter } from "next/router";
 
-function HTMLHead() {
+export default function HTMLHead() {
   const router = useRouter(),
     pathname = router.pathname;
 
@@ -49,5 +49,3 @@ function HTMLHead() {
     </Head>
   );
 }
-
-export default HTMLHead;

@@ -2,7 +2,7 @@ import PageHeading from "../../layouts/PageHeading";
 import PageSubIntro from "../../layouts/PageSubIntro";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 
-const consultanct = () => {
+export default function consultanct() {
   return (
     <section>
       <PageHeading
@@ -26,6 +26,4 @@ const consultanct = () => {
       />
     </section>
   );
-};
-
-export default consultanct;
+}

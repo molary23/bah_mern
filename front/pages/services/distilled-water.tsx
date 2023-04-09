@@ -2,7 +2,7 @@ import PageHeading from "../../layouts/PageHeading";
 import LeftArticle from "../../layouts/LeftArticle";
 import { sunset } from "../../assets";
 
-const distilled = () => {
+export default function distilled() {
   return (
     <section>
       <PageHeading
@@ -24,6 +24,4 @@ const distilled = () => {
       />
     </section>
   );
-};
-
-export default distilled;
+}

@@ -6,8 +6,12 @@
 
 .menu__menu {
   .dropdown {
-    margin-top: 0.25rem;
-    display: none;
+    margin-right: -10rem;
+    margin-top: 2rem;
+    //  display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 2500ms;
   }
 }
 
@@ -16,17 +20,17 @@
   &:focus,
   &:focus-within {
     .dropdown {
-      display: block;
-      /*  margin-top: 0.5rem;
+      // display: block;
+      margin-top: 0rem;
       visibility: visible;
-      opacity: 1;*/
+      opacity: 1;
     }
   }
   &:has(.menu__menu:focus) {
-    display: block;
-    /* margin-top: 0.5rem;
+    // display: block;
+    margin-top: 0rem;
     visibility: visible;
-    opacity: 1;*/
+    opacity: 1;
   }
 }
 

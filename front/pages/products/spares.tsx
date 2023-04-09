@@ -4,7 +4,7 @@ import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
 
-const spares = () => {
+export default function spares() {
   return (
     <Equipments
       intro={{
@@ -59,6 +59,4 @@ const spares = () => {
       }
     />
   );
-};
-
-export default spares;
+}

@@ -4,7 +4,7 @@ import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
 
-const power = () => {
+export default function power() {
   return (
     <Equipments
       intro={{
@@ -62,6 +62,4 @@ const power = () => {
       }
     />
   );
-};
-
-export default power;
+}

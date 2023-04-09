@@ -103,21 +103,22 @@ html {
 }
 
 .menu__menu .dropdown {
-  margin-top: 0.25rem;
-  display: none;
+  margin-right: -10rem;
+  margin-top: 2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 2500ms;
 }
 
 .menu__menu:hover .dropdown, .menu__menu:focus .dropdown, .menu__menu:focus-within .dropdown {
-  display: block;
-  /*  margin-top: 0.5rem;
+  margin-top: 0rem;
   visibility: visible;
-  opacity: 1;*/
+  opacity: 1;
 }
 .menu__menu:has(.menu__menu:focus) {
-  display: block;
-  /* margin-top: 0.5rem;
+  margin-top: 0rem;
   visibility: visible;
-  opacity: 1;*/
+  opacity: 1;
 }
 
 .nav__submenu {
@@ -239,9 +240,6 @@ html {
   }
 }
 @media only screen and (max-width: 768px) {
-  .dropdown {
-    margin-right: -10rem;
-  }
   .dropdown .nav__submenu {
     width: 35rem;
   }
