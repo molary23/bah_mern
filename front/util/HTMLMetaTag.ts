@@ -77,7 +77,8 @@ export const HTMLMetaTag = {
   water: {
     title: "Distilled Water",
     description:
-      "A one stop place for your Warehouse handling equipment purchase and maintenace. We help with logistics in setting up and maintaining a Warehouse",
-    keywords: "Distilled Waters",
+      "We sell Distilled Water that is used for Battery Electrolyte Mixing Water, Industrial Steaming Iron, Laboratory Test and Battery Tops Up",
+    keywords:
+      "Battery Electrolyte, Tops Up, Industrial Steaming Iron, Lab Test",
   },
 };
