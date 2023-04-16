@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { sunset } from "../assets";
+import { sunset } from "../../assets";
+import { RegularObject } from "../../util/Types";
 
-export default function TopSection() {
+export default function TopSection(props: RegularObject) {
   return (
     <section className="h-max bg-white">
       <div className="flex justify-between">

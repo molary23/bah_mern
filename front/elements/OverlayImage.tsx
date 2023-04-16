@@ -14,7 +14,7 @@ export default function OverlayImage(props: ImageProps) {
       />
       <div
         className={`${
-          section === "service" ? "service__overlay" : "client_overlay"
+          section === "Service" ? "service__overlay" : "client_overlay"
         }`}
       >
         <div className="image__text">{text}</div>

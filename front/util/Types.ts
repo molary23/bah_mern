@@ -21,7 +21,7 @@ export interface NavSub {
 export interface ImageProps {
   width: number;
   height: number;
-  src: StaticImageData;
+  src: string;
   alt: string;
   onAction?: () => void;
   className?: string;

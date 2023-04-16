@@ -25,7 +25,7 @@ export default function TabNav(props: TabProp) {
         <ul className="flex flex-wrap">
           {props?.pages.map((tab, index) => {
             return (
-              <li className="mr-2">
+              <li className="mr-2" key={index}>
                 <button
                   className={`"inline-block p-4 rounded-t-lg " ${
                     activeTab === index ? ACTIVE_TAB : INACTIVE_TAB

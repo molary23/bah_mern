@@ -1,14 +1,15 @@
-import ClientsSection from "../layouts/ClientsSection";
-import ServiceSection from "../layouts/ServiceSection";
-import TestimonialSection from "../layouts/TestimonialSection";
-import TopSection from "../layouts/TopSection";
-export default function Home() {
+import ClientsSection from "../layouts/Home/ClientsSection";
+import ServiceSection from "../layouts/Home/ServiceSection";
+import TestimonialSection from "../layouts/Home/TestimonialSection";
+import TopSection from "../layouts/Home/TopSection";
+import { RegularObject } from "../util/Types";
+export default function Home(props: RegularObject) {
   return (
     <>
-      <TopSection />
-      <ServiceSection />
-      <ClientsSection />
-      <TestimonialSection />
+      <TopSection siteURL={props?.siteURL} />
+      <ServiceSection siteURL={props?.siteURL} />
+      <ClientsSection siteURL={props?.siteURL} />
+      <TestimonialSection siteURL={props?.siteURL} />
     </>
   );
 }

@@ -1,8 +1,9 @@
-import { sunset } from "../assets";
-import TestimonyElement from "../elements/TestimonyElement";
-import IntroHeading from "./IntroHeading";
+import { sunset } from "../../assets";
+import TestimonyElement from "../../elements/TestimonyElement";
+import IntroHeading from "../IntroHeading";
+import { RegularObject } from "../../util/Types";
 
-export default function TestimonialSection() {
+export default function TestimonialSection(props: RegularObject) {
   return (
     <section className="h-max py-24 bg-primary sm:px-8">
       <IntroHeading heading="Testimonials" />
