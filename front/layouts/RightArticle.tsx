@@ -22,7 +22,7 @@ export default function RightArticle(props: SectionProp) {
           width={600}
           height={400}
           src={props?.imageSrc}
-          alt="alt"
+          alt={props?.imageAlt}
           className="mx-auto"
         />
       </aside>

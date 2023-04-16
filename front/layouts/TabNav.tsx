@@ -47,7 +47,7 @@ export default function TabNav(props: TabProp) {
             width={600}
             height={400}
             src={props?.content?.[activeTab]?.imageSrc}
-            alt="alt"
+            alt={props?.content?.[activeTab]?.imageAlt}
             className="mx-auto"
           />
         </aside>

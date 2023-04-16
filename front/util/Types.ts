@@ -48,6 +48,7 @@ export type SectionProp = {
   title: string;
   description: string[];
   imageSrc: StaticImageData | string;
+  imageAlt: string;
   type?: string;
   backgroundImage?: string;
 };
