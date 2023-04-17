@@ -1,9 +1,10 @@
 import LeftArticle from "../../layouts/LeftArticle";
-import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
+import { RegularObject } from "../../util/Types";
 
-export default function racking() {
+export default function racking(props: RegularObject) {
+  const SITE_URL = props?.siteURL;
   return (
     <Equipments
       intro={{
@@ -19,7 +20,8 @@ export default function racking() {
               `Drive-in racking systems apply the LIFO (last in, first out) principle for loading and unloading. Drive-through installations are loaded and unloaded according the FIFO (first in, first out) principle. To guide the truck or pallets and to protect the installation we recommend the use of ground rails.`,
               `There are three types of drive-in racks, depending on the load and unload procedure and the accessibility: Single drive-in racking, Double drive-in racking, and Drive through.`,
             ]}
-            imageSrc={sunset}
+            imageSrc={`${SITE_URL}drive_in_racking.jpg`}
+            imageAlt="Drive-in Racking"
           />
           <ParallaxArticle
             title="Selective Racking"
@@ -37,7 +39,8 @@ export default function racking() {
               `Specially constructed lanes of gravity inclined tracks stacked side by side and on top of each other within a pallet rack framework form a solid block of storage that is fed in from one end and unloaded at the other. Consistent loads are stored in each lane, for the same SKU. Automatic rotation is provided rack utilization is often at 90%.`,
               `Wide range of pallets can be accommodated at the design stage; and the flow through racking can secure and safe handling as the pallet truck does not enter the rack.`,
             ]}
-            imageSrc={sunset}
+            imageSrc={`${SITE_URL}flow_racking.jpg`}
+            imageAlt="Flow Through Racking"
           />
           <ParallaxArticle
             title="Gravity Racking"
@@ -52,7 +55,8 @@ export default function racking() {
             forefront, once the preceding item has been removed, otherwise known
             as first in first out (FIFO) racking.`,
             ]}
-            imageSrc={sunset}
+            imageSrc={`${SITE_URL}gravity_rack.jpg`}
+            imageAlt="Gravity Racking"
             type="dual"
             backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
           />
@@ -62,7 +66,8 @@ export default function racking() {
               `A mezzanine storage system can help solve the problem of unutilized empty space in your warehouse. Mezzanine storage systems also easily pay for themselves by doubling or tripling available storage space without the need for expensive building expansions. Free-standing mezzanines provide additional work areas or storage space by utilizing the wasted air space in your warehouse or manufacturing facility.`,
               `Mezzanine storage increases your cubic space while freeing up valuable floor space for other use. Structural steel mezzanines can be configured in a wide range of sizes, floor types, and construction styles to fit almost any space or application, which can also be reconfigured or added on to at a later date.`,
             ]}
-            imageSrc={sunset}
+            imageSrc={`${SITE_URL}mezzanine_racking.jpg`}
+            imageAlt="Mezzanine Racking"
           />
           <ParallaxArticle
             title="Stereoscopic Racking"
@@ -70,7 +75,8 @@ export default function racking() {
               `Our main objective is centered on the need to provide additional services to the customers and inject a new innovation into the growing economy in Nigeria.`,
               `It was during this period we found out that most client buy wrong equipments for use on the stock racking system and we now fel t to normalize this for future clients that passes through us.`,
             ]}
-            imageSrc={sunset}
+            imageSrc={`${SITE_URL}stereoscopic_racking.jpg`}
+            imageAlt="Stereoscopic Racking"
             type="dual"
             backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
           />

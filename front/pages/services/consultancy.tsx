@@ -1,8 +1,10 @@
 import PageHeading from "../../layouts/PageHeading";
 import PageSubIntro from "../../layouts/PageSubIntro";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
+import { RegularObject } from "../../util/Types";
 
-export default function consultanct() {
+export default function consultanct(props: RegularObject) {
+  const SITE_URL = props?.siteURL;
   return (
     <section>
       <PageHeading

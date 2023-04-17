@@ -8,7 +8,7 @@ export type RegularArrayOfObject = [
 ];
 
 export type RegularObject = {
-  [index: string]: string | StaticImageData | number | string[] | any;
+  [index: string]: string | StaticImageData | number | string[];
 };
 
 export interface NavSub {
@@ -48,7 +48,7 @@ export type SectionProp = {
   title: string;
   description: string[];
   imageSrc: StaticImageData | string;
-  imageAlt: string;
+  imageAlt?: string;
   type?: string;
   backgroundImage?: string;
 };

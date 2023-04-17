@@ -1,8 +1,10 @@
 import PageHeading from "../../layouts/PageHeading";
 import LeftArticle from "../../layouts/LeftArticle";
 import { sunset } from "../../assets";
+import { RegularObject } from "../../util/Types";
 
-export default function distilled() {
+export default function distilled(props: RegularObject) {
+  const SITE_URL = props?.siteURL;
   return (
     <section>
       <PageHeading
@@ -18,7 +20,8 @@ export default function distilled() {
           `We provide Battery Top up water, Battery Electrolyte Mixing water.`,
           `We also provide water used for industrial streaming iron and Laboratory uses for tests.`,
         ]}
-        imageSrc={sunset}
+        imageSrc={`${SITE_URL}drive_in_racking.jpg`}
+        imageAlt="Distilled Water"
         type="dual"
         backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
       />
