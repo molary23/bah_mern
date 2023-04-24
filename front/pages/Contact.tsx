@@ -89,11 +89,11 @@ export default function Contact() {
       <article className="w-full h-max my-4 theme__section">
         <div className="fast__contact lg:w-10/12 mx-auto">
           <div className="flex flex-col sm:flex-col gap-y-8 lg:flex-row lg:h-48 justify-between py-8 fast__contact--box px-4">
-            <div className="flex gap-6 justify-items-stretch lg:justify-center w-full lg:gap-4">
-              <div className="flex basis-1/3 place-content-end">
+            <div className="flex justify-evenly lg:justify-center w-full lg:gap-4">
+              <div className="flex w-[30%] lg:basis-1/3 lg:place-content-end">
                 <TbMap2 />
               </div>
-              <div className="flex basis-2/3 place-content-start">
+              <div className="flex w-[70%] lg:basis-2/3 place-content-start">
                 <a
                   href="https://www.google.com/maps/place/BAH+Engineering+Consultant/@6.7531317,3.2126805,17z/data=!3m1!4b1!4m6!3m5!1s0x103b97308126e639:0xa72b73099ff342d8!8m2!3d6.7531317!4d3.2152608!16s%2Fg%2F11h551fllx"
                   target="_blank"
@@ -107,10 +107,10 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex justify-evenly lg:justify-center w-full lg:gap-4">
-              <div className="flex basis-1/3 place-content-end">
+              <div className="flex w-[30%] lg:basis-1/3 lg:place-content-end">
                 <HiOutlineDevicePhoneMobile />
               </div>
-              <div className="flex basis-2/3 place-content-start">
+              <div className="flex w-[70%] lg:basis-2/3 place-content-start">
                 <ul>
                   <li>
                     <a href="tel:+2348029409798">+234 (0) 8029409798</a>
@@ -125,10 +125,10 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex justify-evenly lg:justify-center w-full gap-4">
-              <div className="flex basis-1/3 place-content-end">
+              <div className="flex w-[30%] lg:basis-1/3 lg:place-content-end">
                 <RiMailSendLine />
               </div>
-              <div className="flex basis-2/3 place-content-start">
+              <div className="flex w-[70%] lg:basis-2/3 place-content-start">
                 <ul>
                   <li>
                     <a href="mailto:bahengineeringconsultant@gmail.com">

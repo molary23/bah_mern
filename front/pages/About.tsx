@@ -16,7 +16,7 @@ export default function About() {
         imageUrL=""
       />
       <div className="about__content__all lg:w-full h-fit mx-auto pb-8">
-        <article className="about__content__who h-fit p-12 bg-stone-100 theme__section">
+        <article className="about__content__who h-fit lg:p-12 p-6 bg-stone-100 theme__section">
           <h2 className="text-center font-bold text-3xl lg:text-6xl about__subheading">
             Who we are
           </h2>
@@ -86,7 +86,7 @@ export default function About() {
             </p>
           </div>
         </article>
-        <article className="about__content__how h-fit p-12">
+        <article className="about__content__how h-fit lg:p-12 p-6">
           <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             How We Measure Our Performance
           </h2>
@@ -113,7 +113,7 @@ export default function About() {
           </div>
         </article>
 
-        <article className="about__content__obj h-fit p-12 bg-offBlue theme__section">
+        <article className="about__content__obj h-fit lg:p-12 p-6 bg-offBlue theme__section">
           <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             Our Strategic Objectives
           </h2>
