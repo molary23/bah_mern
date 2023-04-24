@@ -5,7 +5,7 @@ import { RegularObject } from "../../util/Types";
 
 export default function TestimonialSection(props: RegularObject) {
   return (
-    <section className="h-max py-24 bg-primary px-4 sm:px-8 theme__section">
+    <section className="h-max py-24 bg-primary text-white px-4 sm:px-8 theme__section testimony__section">
       <IntroHeading heading="Testimonials" />
       <div className="flex flex-col gap-y-16 md:gap-x-8 sm:flex-row  ">
         <TestimonyElement

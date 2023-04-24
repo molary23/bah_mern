@@ -153,5 +153,12 @@
     text-transform: capitalize;
   }
 }
+
+.testimony__section {
+  svg {
+    font-size: 4em;
+    margin-bottom: 0.2em;
+  }
+}
 @import "responsive.scss";
 @import "theme.scss";
