@@ -5,14 +5,14 @@
   body,
   .scrollMe {
     color: white;
-    background: black;
+    background: $dark-mode;
   }
 
   .theme {
     &__section,
     &__nav {
       color: white;
-      background: black;
+      background: $dark-mode;
       a {
         color: white;
       }
@@ -25,13 +25,13 @@
         background: transparent;
       }
       button {
-        background: black;
+        background: $dark-mode;
         border: 0.1em solid white;
       }
     }
 
     &__header {
-      background: gray;
+      background: rgba(47, 47, 47, 0.8);
     }
   }
   .scrollMe {

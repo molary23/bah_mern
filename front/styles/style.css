@@ -248,11 +248,11 @@ html {
   body,
   .scrollMe {
     color: white;
-    background: black;
+    background: #121212;
   }
   .theme__section, .theme__nav {
     color: white;
-    background: black;
+    background: #121212;
   }
   .theme__section a, .theme__nav a {
     color: white;
@@ -266,11 +266,11 @@ html {
     background: transparent;
   }
   .theme .contact__box button {
-    background: black;
+    background: #121212;
     border: 0.1em solid white;
   }
   .theme__header {
-    background: gray;
+    background: rgba(47, 47, 47, 0.8);
   }
   .scrollMe {
     border: 0.1em solid gray;
