@@ -7,6 +7,7 @@ import { FaPallet } from "react-icons/fa";
 import { BiCabinet } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RegularObject } from "../util/Types";
+import { SITE_CONSTANTS } from "../util/constants";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -14,7 +15,7 @@ const initialMenu = [
   { name: "services", active: false },
 ];
 
-const reducer = (state: RegularObject, action: RegularObject) => {
+const reducer = (state: any, action: RegularObject) => {
   switch (action.type) {
     case "ACTIVATE":
       return state.map((menu: RegularObject) => {
@@ -40,11 +41,11 @@ const Nav = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-between">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-[30%] lg:w-[10%]">
               <a href="/">
                 <img
-                  className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  className=""
+                  src={`${SITE_CONSTANTS.image}/logo_name.png`}
                   alt="BAH Engineering Consultant"
                 />
               </a>
@@ -74,7 +75,7 @@ const Nav = () => {
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
                     <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown"
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown theme__nav"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
@@ -131,7 +132,7 @@ const Nav = () => {
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
                     <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown"
+                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown theme__nav"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"

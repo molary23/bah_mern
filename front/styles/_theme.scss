@@ -1,0 +1,36 @@
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+
+  .theme {
+    &__section,
+    &__nav {
+      color: white;
+      background: black;
+      a {
+        color: white;
+      }
+    }
+    .contact__box {
+      border: 0.1em solid gray;
+      border-radius: 0.5em;
+      input,
+      textarea {
+        background: transparent;
+      }
+      button {
+        background: black;
+        border: 0.1em solid white;
+      }
+    }
+
+    &__header {
+      background: gray;
+    }
+  }
+}

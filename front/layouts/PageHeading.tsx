@@ -9,7 +9,7 @@ export default function PageHeading(props: HeadingProps) {
         className={`w-full py-36 px-12 h-max lg:px-48 lg:py-48 ${
           imageUrL
             ? "bg-gradient-to-r from-zinc-500/[.08] to-zinc-800"
-            : "bg-primary"
+            : "bg-primary theme__header"
         }`}
       >
         <div>

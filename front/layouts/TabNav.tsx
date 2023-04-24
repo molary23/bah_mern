@@ -41,7 +41,7 @@ export default function TabNav(props: TabProp) {
         </ul>
       </div>
 
-      <div className="tab__content flex flex-col sm:flex-row gap-y-4 flex lg:py-20 lg:px-20 h-[40rem] bg-primary text-white py-8">
+      <div className="tab__content flex flex-col sm:flex-row gap-y-4 flex lg:py-20 lg:px-20 h-[40rem] bg-primary text-white py-8 theme__section">
         <aside className="lg:basis-1/2 left__aside">
           <ImageElement
             width={600}

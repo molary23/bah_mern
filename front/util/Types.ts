@@ -8,7 +8,7 @@ export type RegularArrayOfObject = [
 ];
 
 export type RegularObject = {
-  [index: string]: string | StaticImageData | number | string[];
+  [key: string]: any;
 };
 
 export interface NavSub {

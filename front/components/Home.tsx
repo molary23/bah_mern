@@ -1,16 +1,9 @@
 import Footer from "./Footer";
 import Nav from "../layouts/Nav";
 import SubFooter from "./SubFooter";
-import {
-  JSXElementConstructor,
-  ReactComponentElement,
-  ReactElement,
-  ReactNode,
-  useEffect,
-} from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import HTMLHead from "../layouts/HTMLHead";
-import { JsxElement, Symbol } from "typescript";
 
 const Home = ({ children }: any) => {
   const router = useRouter();

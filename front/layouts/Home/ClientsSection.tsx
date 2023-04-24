@@ -7,11 +7,11 @@ export default function ClientsSection(props: RegularObject) {
   return (
     <section className="h-max py-24 bg-Stone-200 sm:px-8 px-4">
       <IntroHeading heading="Our Clients" />
-      <div className="flex flex-wrap">
+      <div className="h-max py-8 sm:w-11/12 mx-auto flex flex-col md:flex-wrap sm:flex-row">
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
+            width={300}
             height={300}
             alt="service 1"
             section="client"
@@ -21,8 +21,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -31,8 +31,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -41,8 +41,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -51,8 +51,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -61,8 +61,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -71,8 +71,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"
@@ -81,8 +81,8 @@ export default function ClientsSection(props: RegularObject) {
         <div className="sm:basis-1/4 flex justify-center">
           <OverlayImage
             src={`${props?.siteURL}home_consulting.jpg`}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="service 1"
             section="client"
             text="Hello service"

@@ -5,9 +5,9 @@ import { RegularObject } from "../../util/Types";
 
 export default function TestimonialSection(props: RegularObject) {
   return (
-    <section className="h-max py-24 bg-primary sm:px-8">
+    <section className="h-max py-24 bg-primary px-4 sm:px-8 theme__section">
       <IntroHeading heading="Testimonials" />
-      <div className="flex flex-col gap-y-16 sm:flex-row  ">
+      <div className="flex flex-col gap-y-16 md:gap-x-8 sm:flex-row  ">
         <TestimonyElement
           testimony="BAH Engineering Consultant is responsive, committed, honest in all
             business transactions and competent in their operational and

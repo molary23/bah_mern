@@ -16,7 +16,7 @@ export default function About() {
         imageUrL=""
       />
       <div className="about__content__all lg:w-full h-fit mx-auto pb-8">
-        <div className="about__content__who h-fit p-12 bg-stone-100">
+        <article className="about__content__who h-fit p-12 bg-stone-100 theme__section">
           <h2 className="text-center font-bold text-3xl lg:text-6xl about__subheading">
             Who we are
           </h2>
@@ -85,8 +85,8 @@ export default function About() {
               CONSULTANT.
             </p>
           </div>
-        </div>
-        <div className="about__content__how h-fit p-12">
+        </article>
+        <article className="about__content__how h-fit p-12">
           <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             How We Measure Our Performance
           </h2>
@@ -111,9 +111,9 @@ export default function About() {
               </li>
             </ul>
           </div>
-        </div>
+        </article>
 
-        <div className="about__content__obj h-fit p-12 bg-offBlue">
+        <article className="about__content__obj h-fit p-12 bg-offBlue theme__section">
           <h2 className="text-center font-bold text-3xl lg:text-6xl page__subheading">
             Our Strategic Objectives
           </h2>
@@ -141,7 +141,7 @@ export default function About() {
               </li>
             </ul>
           </div>
-        </div>
+        </article>
 
         <div className="about__team flex flex-wrap  mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 lg:h-72 lg:py-14 lg:px-12 w-11/12 mx-auto mt-8">
           <div className="our__team lg:flex lg:flex-row w-full mx-auto lg:gap-6 justify-around">

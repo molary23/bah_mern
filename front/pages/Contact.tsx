@@ -86,7 +86,7 @@ export default function Contact() {
         imageUrL=""
       />
 
-      <div className="w-full h-max my-4">
+      <article className="w-full h-max my-4 theme__section">
         <div className="fast__contact lg:w-10/12 mx-auto">
           <div className="flex flex-col sm:flex-col gap-y-8 lg:flex-row lg:h-48 justify-between py-8 fast__contact--box px-4">
             <div className="flex gap-6 justify-items-stretch lg:justify-center w-full lg:gap-4">
@@ -151,7 +151,7 @@ export default function Contact() {
             onSubmit={submitHandler}
           >
             <div className="overflow-hidden shadow lg:rounded-md">
-              <div className="bg-white px-4 py-5 lg:p-6">
+              <div className="bg-white px-4 py-5 lg:p-6 theme__section contact__box">
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 lg:col-span-3">
                     <InputElement
@@ -220,7 +220,7 @@ export default function Contact() {
                   <div>
                     <button
                       type="submit"
-                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:blur-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       <span className="mr-2">Submit</span>
                       <FiSend />
@@ -231,7 +231,7 @@ export default function Contact() {
             </div>
           </form>
         </div>
-      </div>
+      </article>
       {modal && <Modal modal={modal} status={status} onClick={modalHandler} />}
     </section>
   );

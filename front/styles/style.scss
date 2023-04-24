@@ -109,14 +109,14 @@
       position: absolute;
       bottom: 0;
       background: rgb(0, 0, 0);
-      background: rgba(0, 0, 0, 0.5); /* Black see-through */
+      background: rgba(0, 0, 0, 0.5);
       color: #f1f1f1;
       width: 100%;
       transition: 0.5s ease;
       opacity: 0;
       color: white;
-      font-size: 20px;
-      padding: 20px;
+      font-size: 1.2em;
+      padding: 2em;
       text-align: center;
     }
     &:hover .client_overlay {
@@ -125,7 +125,8 @@
     .image__text {
       white-space: nowrap;
       color: white;
-      font-size: 20px;
+      font-size: 1.5em;
+      font-weight: 700;
       position: absolute;
       overflow: hidden;
       top: 50%;
@@ -153,3 +154,4 @@
   }
 }
 @import "responsive.scss";
+@import "theme.scss";

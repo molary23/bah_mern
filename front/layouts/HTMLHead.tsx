@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { HTMLMetaTag } from "../util/HTMLMetaTag";
 import { useRouter } from "next/router";
+import { SITE_CONSTANTS } from "../util/constants";
 
 export default function HTMLHead() {
   const router = useRouter(),
@@ -45,7 +46,7 @@ export default function HTMLHead() {
       <title>{MetaTags?.title}</title>
       <meta name="description" content={MetaTags?.description} />
       <meta name="keywords" content={`${MetaTags?.keywords}, other keywords`} />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={`${SITE_CONSTANTS.image}/favicon.png`} />
     </Head>
   );
 }

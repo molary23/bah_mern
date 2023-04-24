@@ -192,14 +192,14 @@ html {
   position: absolute;
   bottom: 0;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
   width: 100%;
   transition: 0.5s ease;
   opacity: 0;
   color: white;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 1.2em;
+  padding: 2em;
   text-align: center;
 }
 .image__container:hover .client_overlay {
@@ -208,7 +208,8 @@ html {
 .image__container .image__text {
   white-space: nowrap;
   color: white;
-  font-size: 20px;
+  font-size: 1.5em;
+  font-weight: 700;
   position: absolute;
   overflow: hidden;
   top: 50%;
@@ -230,6 +231,11 @@ html {
   text-transform: capitalize;
 }
 
+@media only screen and (max-width: 768px) {
+  .dropdown .nav__submenu {
+    width: 35rem;
+  }
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -238,9 +244,26 @@ html {
     color: white;
     background: black;
   }
-}
-@media only screen and (max-width: 768px) {
-  .dropdown .nav__submenu {
-    width: 35rem;
+  .theme__section, .theme__nav {
+    color: white;
+    background: black;
+  }
+  .theme__section a, .theme__nav a {
+    color: white;
+  }
+  .theme .contact__box {
+    border: 0.1em solid gray;
+    border-radius: 0.5em;
+  }
+  .theme .contact__box input,
+  .theme .contact__box textarea {
+    background: transparent;
+  }
+  .theme .contact__box button {
+    background: black;
+    border: 0.1em solid white;
+  }
+  .theme__header {
+    background: gray;
   }
 }/*# sourceMappingURL=style.css.map */
