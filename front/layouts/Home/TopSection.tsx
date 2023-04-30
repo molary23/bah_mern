@@ -4,8 +4,8 @@ import { RegularObject } from "../../util/Types";
 
 export default function TopSection(props: RegularObject) {
   return (
-    <section className="h-[50em] bg-white bg-no-repeat bg-cover bg-center bg-[url(../assets/images/warehouse_equip.jpg)]">
-      <article className="h-[50em] bg-gradient-to-r from-zinc-500/[.3] to-zinc-800 flex items-center">
+    <section className="h-[50em] bg-white bg-no-repeat bg-cover bg-center bg-[url(/assets/images/home_forklift.jpg)]">
+      <article className="h-[50em] bg-gradient-to-r from-zinc-800 to-zinc-900/[.6] flex items-center">
         <div className="lg:max-w-3xl lg:pl-20 px-4 md:max-w-xl">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-6xl text-white">
             BAH Engineering Consultant
