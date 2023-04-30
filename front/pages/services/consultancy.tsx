@@ -12,7 +12,7 @@ export default function consultanct(props: RegularObject) {
           heading: "Consultancy",
           subHeading: `As a company, we provide comprehensive and full-scope services for major projects. We are ready to offer consultancy service to any company as regards maintenance and repair or valuation of equipment’s; and also on the operations of the equipment.`,
         }}
-        imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+        imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       />
 
       <PageSubIntro heading="Maintenance is necessary for every equipment to achieve the required level of performance, and to keep them running efficiently during at least its usual life cycle; hence, we are the best firm for the Maintenance and Repairs of all your equipments." />
@@ -24,7 +24,7 @@ export default function consultanct(props: RegularObject) {
         ]}
         imageSrc=""
         type="single"
-        backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+        backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
       />
     </section>
   );

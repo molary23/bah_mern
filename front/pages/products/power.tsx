@@ -1,6 +1,5 @@
 import LeftArticle from "../../layouts/LeftArticle";
 import RightArticle from "../../layouts/RightArticle";
-import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
 import { RegularObject } from "../../util/Types";
@@ -13,7 +12,7 @@ export default function power(props: RegularObject) {
         heading: "Power",
         subHeading: `Explore a new source of Power`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       elements={
         <>
           <LeftArticle
@@ -35,7 +34,7 @@ export default function power(props: RegularObject) {
             imageSrc={`${SITE_URL}controllers.jpg`}
             imageAlt="Controllers"
             type="dual"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
           <RightArticle
             title="Inverters"

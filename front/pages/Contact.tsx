@@ -98,6 +98,7 @@ export default function Contact() {
                   href="https://www.google.com/maps/place/BAH+Engineering+Consultant/@6.7531317,3.2126805,17z/data=!3m1!4b1!4m6!3m5!1s0x103b97308126e639:0xa72b73099ff342d8!8m2!3d6.7531317!4d3.2152608!16s%2Fg%2F11h551fllx"
                   target="_blank"
                   rel="noreferrer"
+                  className="hover:underline"
                 >
                   <address>No 2, Akinremi Adekunle Crescent </address>
                   <address>off KM 51/52 Lagos-Abeokuta expressway,</address>

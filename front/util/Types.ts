@@ -54,7 +54,7 @@ export type SectionProp = {
 };
 
 export type TestimonyProps = {
-  image: StaticImageData;
+  image: StaticImageData | string;
   testifier: string;
   testimony: string;
 };

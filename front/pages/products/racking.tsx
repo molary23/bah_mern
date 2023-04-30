@@ -11,7 +11,7 @@ export default function racking(props: RegularObject) {
         heading: "Racking",
         subHeading: `BAH Engineering and Consultant is into the sale of warehouse racking. Drive-in Racking, selective racking, flow through racking, gravity racking, mezzanine racking and stereoscopic racking are all available in our outlet.`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       elements={
         <>
           <LeftArticle
@@ -31,7 +31,7 @@ export default function racking(props: RegularObject) {
             ]}
             imageSrc={""}
             type="single"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
           <LeftArticle
             title="Flow Through Racking"
@@ -58,7 +58,7 @@ export default function racking(props: RegularObject) {
             imageSrc={`${SITE_URL}gravity_rack.jpg`}
             imageAlt="Gravity Racking"
             type="dual"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
           <LeftArticle
             title="Mezzanine Racking"
@@ -78,7 +78,7 @@ export default function racking(props: RegularObject) {
             imageSrc={`${SITE_URL}stereoscopic_racking.jpg`}
             imageAlt="Stereoscopic Racking"
             type="dual"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
         </>
       }

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { sunset } from "../assets";
 import PageHeading from "../layouts/PageHeading";
+import { SITE_CONSTANTS } from "../util/constants";
 const LAST_NAME: string = "Hassan",
   FIRST_MEMBER_NAME: string = "Billy",
   SECOND_MEMBER_NAME: string = "Adetayo";
@@ -159,7 +159,7 @@ export default function About() {
                 <div className="">
                   <Image
                     className="h-24 w-24 rounded-full"
-                    src={sunset}
+                    src={SITE_CONSTANTS.image + "sunset.jpeg"}
                     width={"256"}
                     height={"256"}
                     alt={`${LAST_NAME} ${FIRST_MEMBER_NAME}`}
@@ -177,7 +177,7 @@ export default function About() {
                 <div className="">
                   <Image
                     className="h-24 w-24 rounded-full"
-                    src={sunset}
+                    src={SITE_CONSTANTS.image + "sunset.jpeg"}
                     width={"256"}
                     height={"256"}
                     alt={`${LAST_NAME} ${SECOND_MEMBER_NAME}`}

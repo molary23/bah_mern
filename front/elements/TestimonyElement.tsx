@@ -21,8 +21,8 @@ export default function TestimonyElement(props: TestimonyProps) {
             <Image
               className="h-24 w-24 rounded-full"
               src={image}
-              width={"256"}
-              height={"256"}
+              width={256}
+              height={256}
               alt={`testimonial`}
             />
           </div>

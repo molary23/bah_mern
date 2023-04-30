@@ -1,5 +1,3 @@
-import { dummy, sunset } from "../../assets";
-import ImageElement from "../../elements/ImageElement";
 import OverlayImage from "../../elements/OverlayImage";
 import { RegularObject } from "../../util/Types";
 import IntroHeading from "../IntroHeading";

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { sunset } from "../../assets";
 import { RegularObject } from "../../util/Types";
 
 export default function TopSection(props: RegularObject) {

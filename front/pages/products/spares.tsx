@@ -1,6 +1,5 @@
 import LeftArticle from "../../layouts/LeftArticle";
 import RightArticle from "../../layouts/RightArticle";
-import { sunset } from "../../assets";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import Equipments from "../../components/Equipments";
 import { RegularObject } from "../../util/Types";
@@ -13,7 +12,7 @@ export default function spares(props: RegularObject) {
         heading: "Spares",
         subHeading: `Spare parts are an important feature of logistics engineering and supply chain management, often comprising dedicated spare parts management systems. Forklift Tires, Controllers and batteries are part of what our company sells`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       subHeading="Spare parts are an important feature of logistics engineering and supply chain management, often comprising dedicated spare parts management systems. Forklift Tires, Controllers and batteries are part of what our company sells"
       elements={
         <>
@@ -34,7 +33,7 @@ export default function spares(props: RegularObject) {
             imageSrc={`${SITE_URL}forklift_tire.jpg`}
             imageAlt="Forklift Tires"
             type="dual"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
           <RightArticle
             title="Forklift Controller"

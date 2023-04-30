@@ -1,6 +1,5 @@
 import PageHeading from "../../layouts/PageHeading";
 import LeftArticle from "../../layouts/LeftArticle";
-import { sunset } from "../../assets";
 import { RegularObject } from "../../util/Types";
 
 export default function distilled(props: RegularObject) {
@@ -12,7 +11,7 @@ export default function distilled(props: RegularObject) {
           heading: "Distilled Water",
           subHeading: `As a company, we provide distilled water for multipurpose use.`,
         }}
-        imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+        imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       />
       <LeftArticle
         title="Distilled Water"
@@ -23,7 +22,7 @@ export default function distilled(props: RegularObject) {
         imageSrc={`${SITE_URL}drive_in_racking.jpg`}
         imageAlt="Distilled Water"
         type="dual"
-        backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+        backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
       />
     </section>
   );

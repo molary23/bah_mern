@@ -1,4 +1,3 @@
-import { sunset } from "../../assets";
 import LeftArticle from "../../layouts/LeftArticle";
 import RightArticle from "../../layouts/RightArticle";
 import Equipments from "../../components/Equipments";
@@ -15,7 +14,7 @@ export default function shelves(props: RegularObject) {
           company can be used in homes, business, stores, or elsewhere to hold
           items that are being displayed, stored, or offered for sale`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       elements={
         <>
           <LeftArticle

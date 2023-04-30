@@ -1,4 +1,3 @@
-import RightArticle from "../../layouts/RightArticle";
 import ParallaxArticle from "../../layouts/ParallaxArticle";
 import LeftArticle from "../../layouts/LeftArticle";
 import TabNav from "../../layouts/TabNav";
@@ -14,7 +13,7 @@ export default function equipments(props: RegularObject) {
         heading: "Warehouse Handling Equipments",
         subHeading: `Equipment such as reach trucks, diesel forklifts, liquefied petroleum gas forklifts, narrow aisles, pickers, stackers, manual/semi-electric/electric pallet trucks, weightier pallet trucks are available for sale at BAH Engineering and Consultant.`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       elements={
         <>
           <LeftArticle
@@ -35,7 +34,7 @@ export default function equipments(props: RegularObject) {
             imageSrc={`${SITE_URL}reach_truck_page.jpg`}
             imageAlt="Reach Truck"
             type="dual"
-            backgroundImage="bg-[url(../assets/images/sunset.jpeg)]"
+            backgroundImage="bg-[url(/assets/images/sunset.jpeg)]"
           />
           <LeftArticle
             title="Narrow Trucks"
@@ -132,7 +131,7 @@ export default function equipments(props: RegularObject) {
             imageSrc={`${SITE_URL}weightier.jpg`}
             imageAlt="Weightier"
             type="dual"
-            backgroundImage={"bg-[url(.." + SITE_URL + "sunset.jpeg)]"}
+            backgroundImage={"bg-[url(" + SITE_URL + "sunset.jpeg)]"}
           />
         </>
       }

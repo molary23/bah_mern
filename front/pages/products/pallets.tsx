@@ -1,6 +1,5 @@
 import LeftArticle from "../../layouts/LeftArticle";
 import RightArticle from "../../layouts/RightArticle";
-import { sunset } from "../../assets";
 import Equipments from "../../components/Equipments";
 import { RegularObject } from "../../util/Types";
 
@@ -12,7 +11,7 @@ export default function pallets(props: RegularObject) {
         heading: "Pallets",
         subHeading: `We also produce/sell pallets – wooden pallets, plastic pallets, steel pallets, foldable pallets – which we are highly confident you will be satisfied with.`,
       }}
-      imageUrL="bg-[url(../assets/images/sunset.jpeg)]"
+      imageUrL="bg-[url(/assets/images/sunset.jpeg)]"
       subHeading="We can help you design and construct any type of Pallets. We can help
           you design and construct any type of Pallets. We can help you design
           and construct any type of Pallets."
