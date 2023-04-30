@@ -1,4 +1,5 @@
 import ClientsSection from "../layouts/Home/ClientsSection";
+import ProductSection from "../layouts/Home/ProductSection";
 import ServiceSection from "../layouts/Home/ServiceSection";
 import TestimonialSection from "../layouts/Home/TestimonialSection";
 import TopSection from "../layouts/Home/TopSection";
@@ -8,6 +9,7 @@ export default function Home(props: RegularObject) {
     <>
       <TopSection siteURL={props?.siteURL} />
       <ServiceSection siteURL={props?.siteURL} />
+      <ProductSection siteURL={props?.siteURL} />
       <ClientsSection siteURL={props?.siteURL} />
       <TestimonialSection siteURL={props?.siteURL} />
     </>

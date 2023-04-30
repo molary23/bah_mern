@@ -38,7 +38,7 @@ code {
 html,
 body {
   height: 100%;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -174,35 +174,36 @@ html {
   width: 100%;
   height: auto;
 }
-.image__container .service__overlay {
+.image__container .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #38bdf8;
   overflow: hidden;
   width: 0;
   height: 100%;
   transition: 0.5s ease;
 }
-.image__container:hover .service__overlay {
+.image__container .service__overlay {
+  background-color: #38bdf8;
+}
+.image__container .product__overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.image__container:hover .overlay {
   width: 100%;
 }
-.image__container .client_overlay {
+.image__container .client__overlay {
   position: absolute;
   bottom: 0;
-  background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
   width: 100%;
   transition: 0.5s ease;
   opacity: 0;
-  color: white;
-  font-size: 1.2em;
   padding: 2em;
   text-align: center;
 }
-.image__container:hover .client_overlay {
+.image__container:hover .client__overlay {
   opacity: 1;
 }
 .image__container .image__text {

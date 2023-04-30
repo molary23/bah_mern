@@ -91,35 +91,37 @@
       width: 100%;
       height: auto;
     }
-    .service__overlay {
+    .overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: $primary;
       overflow: hidden;
       width: 0;
       height: 100%;
       transition: 0.5s ease;
     }
-    &:hover .service__overlay {
+    .service__overlay {
+      background-color: $primary;
+    }
+
+    .product__overlay {
+      background-color: $off-black;
+    }
+    &:hover .overlay {
       width: 100%;
     }
-    .client_overlay {
+    .client__overlay {
       position: absolute;
       bottom: 0;
-      background: rgb(0, 0, 0);
-      background: rgba(0, 0, 0, 0.5);
-      color: #f1f1f1;
+      background: $off-black;
       width: 100%;
       transition: 0.5s ease;
       opacity: 0;
-      color: white;
-      font-size: 1.2em;
       padding: 2em;
       text-align: center;
     }
-    &:hover .client_overlay {
+    &:hover .client__overlay {
       opacity: 1;
     }
     .image__text {

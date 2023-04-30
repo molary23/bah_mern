@@ -41,10 +41,10 @@ const Nav = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-between">
-            <div className="flex-shrink-0 w-[30%] lg:w-[10%]">
+            <div className="flex-shrink-0 w-[30%] lg:w-[10%] sm:w-[20%]">
               <a href="/">
                 <img
-                  className=""
+                  className="sm:w-[80%] brand"
                   src={`${SITE_CONSTANTS.image}/logo_name.png`}
                   alt="BAH Engineering Consultant"
                 />

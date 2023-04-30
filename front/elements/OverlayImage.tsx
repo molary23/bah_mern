@@ -13,9 +13,9 @@ export default function OverlayImage(props: ImageProps) {
         className={`image__image ${className ? className : ""}`}
       />
       <div
-        className={`${
-          section === "Service" ? "service__overlay" : "client_overlay"
-        }`}
+        className={`${section === "Service" && "overlay service__overlay"}
+        ${section === "Client" && "client__overlay"}
+        ${section === "Product" && "overlay product__overlay"}`}
       >
         <div className="image__text">{text}</div>
       </div>
