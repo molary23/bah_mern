@@ -12,7 +12,7 @@ export default function ProductSection(props: RegularObject) {
         {products?.products.map((item: RegularObject, i: number) => {
           return (
             <div className="sm:basis-[23.5%] flex justify-center" key={i}>
-              <a href={item.url}>
+              <a href={item.url} target="_blank">
                 <OverlayImage
                   src={`${siteURL}${item.image}`}
                   width={400}
