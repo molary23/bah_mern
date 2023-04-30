@@ -6,13 +6,13 @@ export default function PageHeading(props: HeadingProps) {
   return (
     <div className={imageUrL && `${imageUrL} bg-no-repeat bg-cover bg-center`}>
       <div
-        className={`w-full py-36 px-12 h-max lg:px-48 lg:py-48 ${
+        className={`w-full h-[35em] px-8 sm:px-20 flex items-center ${
           imageUrL
-            ? "bg-gradient-to-r from-zinc-500/[.08] to-zinc-800"
+            ? "bg-gradient-to-r from-zinc-800 to-zinc-900/[.6]"
             : "bg-primary theme__header"
         }`}
       >
-        <div>
+        <div className="lg:max-w-3xl lg:pl-20 px-4 md:max-w-xl">
           <h1 className="lg:text-6xl text-xl md:text-2xl font-bold text-white page__heading">
             {intro.heading}
           </h1>
