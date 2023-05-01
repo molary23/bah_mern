@@ -1,6 +1,4 @@
 import { useState } from "react";
-import LeftArticle from "./LeftArticle";
-import { sunset } from "../assets";
 import ImageElement from "../elements/ImageElement";
 import { TabProp } from "../util/Types";
 export default function TabNav(props: TabProp) {

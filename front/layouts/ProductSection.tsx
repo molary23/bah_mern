@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { useEffect } from "react";
-import { sunset, dummy } from "../assets";
 import IntroHeading from "./IntroHeading";
 const ProductSection = () => {
   useEffect(() => {
