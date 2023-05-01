@@ -14,7 +14,7 @@ export default function maintenance(props: RegularObject) {
           heading: "Maintenance and Repair",
           subHeading: `We are into maintenance and repairs of shelves, racks, reach trucks, narrow trucks, pallets, stackers, weightier, pallet trucks. We perform routine actions which keep devices, equipment, and supporting utilities in working order and prevent trouble from arising.`,
         }}
-        imageUrL="bg-[url(/assets/images/home_power.jpg)]"
+        imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
       />
 
       <PageSubIntro heading="Maintenance is necessary for every equipment to achieve the required level of performance, and to keep them running efficiently during at least its usual life cycle; hence, we are the best firm for the Maintenance and Repairs of all your equipments." />
@@ -36,7 +36,7 @@ export default function maintenance(props: RegularObject) {
         imageSrc={`${SITE_URL}rack_maintenance.jpg`}
         imageAlt="Racks Maintenance and Repair"
         type="dual"
-        backgroundImage="bg-[url(/assets/images/home_power.jpg)]"
+        backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
       />
       <RightArticle
         title="Power System Maintenance and Repair"

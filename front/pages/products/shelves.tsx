@@ -14,7 +14,7 @@ export default function shelves(props: RegularObject) {
           company can be used in homes, business, stores, or elsewhere to hold
           items that are being displayed, stored, or offered for sale`,
       }}
-      imageUrL="bg-[url(/assets/images/home_power.jpg)]"
+      imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
       elements={
         <>
           <LeftArticle

@@ -12,7 +12,7 @@ export default function power(props: RegularObject) {
         heading: "Power",
         subHeading: `Explore a new source of Power`,
       }}
-      imageUrL="bg-[url(/assets/images/home_power.jpg)]"
+      imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
       elements={
         <>
           <LeftArticle
@@ -34,7 +34,7 @@ export default function power(props: RegularObject) {
             imageSrc={`${SITE_URL}controllers.jpg`}
             imageAlt="Controllers"
             type="dual"
-            backgroundImage="bg-[url(/assets/images/home_power.jpg)]"
+            backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
           />
           <RightArticle
             title="Inverters"

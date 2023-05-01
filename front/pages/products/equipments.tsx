@@ -13,7 +13,9 @@ export default function equipments(props: RegularObject) {
         heading: "Warehouse Handling Equipments",
         subHeading: `Equipment such as reach trucks, diesel forklifts, liquefied petroleum gas forklifts, narrow aisles, pickers, stackers, manual/semi-electric/electric pallet trucks, weightier pallet trucks are available for sale at BAH Engineering and Consultant.`,
       }}
-      imageUrL={"bg-[url(/assets/images/warehouse_equip.jpg)]"}
+      imageUrL={
+        "bg-[url(https://bahengineeringconsultant.com//images/warehouse_equip.jpg)]"
+      }
       elements={
         <>
           <LeftArticle
@@ -34,7 +36,9 @@ export default function equipments(props: RegularObject) {
             imageSrc={`${SITE_URL}reach_truck_page.jpg`}
             imageAlt="Reach Truck"
             type="dual"
-            backgroundImage={"bg-[url(/assets/images/reach_truck_bg.jpg)]"}
+            backgroundImage={
+              "bg-[url(https://bahengineeringconsultant.com//images/reach_truck_bg.jpg)]"
+            }
           />
           <LeftArticle
             title="Narrow Trucks"
@@ -131,7 +135,9 @@ export default function equipments(props: RegularObject) {
             imageSrc={`${SITE_URL}weightier.jpg`}
             imageAlt="Weightier"
             type="dual"
-            backgroundImage={"bg-[url(/assets/images/home_power.jpg)]"}
+            backgroundImage={
+              "bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+            }
           />
         </>
       }
