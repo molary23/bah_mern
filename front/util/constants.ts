@@ -1,3 +1,3 @@
 export const SITE_CONSTANTS = {
-  image: "/assets/images/",
+  image: "https://www.bahengineeringconsultant.com/images/",
 };

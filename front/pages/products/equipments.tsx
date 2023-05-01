@@ -131,7 +131,7 @@ export default function equipments(props: RegularObject) {
             imageSrc={`${SITE_URL}weightier.jpg`}
             imageAlt="Weightier"
             type="dual"
-            backgroundImage={"bg-[url(/assets/images/sunset.jpeg)]"}
+            backgroundImage={"bg-[url(/assets/images/home_power.jpg)]"}
           />
         </>
       }

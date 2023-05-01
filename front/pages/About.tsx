@@ -159,7 +159,7 @@ export default function About() {
                 <div className="">
                   <Image
                     className="h-24 w-24 rounded-full"
-                    src={SITE_CONSTANTS.image + "sunset.jpeg"}
+                    src={SITE_CONSTANTS.image + "home_power.jpg"}
                     width={"256"}
                     height={"256"}
                     alt={`${LAST_NAME} ${FIRST_MEMBER_NAME}`}
@@ -177,7 +177,7 @@ export default function About() {
                 <div className="">
                   <Image
                     className="h-24 w-24 rounded-full"
-                    src={SITE_CONSTANTS.image + "sunset.jpeg"}
+                    src={SITE_CONSTANTS.image + "home_power.jpg"}
                     width={"256"}
                     height={"256"}
                     alt={`${LAST_NAME} ${SECOND_MEMBER_NAME}`}
