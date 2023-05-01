@@ -105,6 +105,7 @@ html {
 .menu__menu .dropdown {
   margin-right: -10rem;
   margin-top: 2rem;
+  display: none;
   visibility: hidden;
   opacity: 0;
   transition: all 2500ms;
@@ -114,11 +115,13 @@ html {
   margin-top: 0rem;
   visibility: visible;
   opacity: 1;
+  display: block;
 }
 .menu__menu:has(.menu__menu:focus) {
   margin-top: 0rem;
   visibility: visible;
   opacity: 1;
+  display: block;
 }
 
 .nav__submenu {
