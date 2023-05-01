@@ -8,6 +8,7 @@ import { BiCabinet } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RegularObject } from "../util/Types";
 import { SITE_CONSTANTS } from "../util/constants";
+import Link from "next/link";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -42,30 +43,30 @@ const Nav = () => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-between">
             <div className="flex-shrink-0 w-[30%] lg:w-[10%] sm:w-[20%]">
-              <a href="/">
+              <Link href="/">
                 <img
                   className="sm:w-[80%] brand"
                   src={`${SITE_CONSTANTS.image}/logo_name.png`}
                   alt="BAH Engineering Consultant"
                 />
-              </a>
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
+                <Link
                   href="/"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                   aria-current="page"
                 >
                   Home
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   About Us
-                </a>
+                </Link>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
                     <div>
@@ -168,19 +169,19 @@ const Nav = () => {
                   </div>
                 </div>
 
-                <a
+                <Link
                   href="/contact"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Contact Us
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/showroom"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   eShowroom
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -236,20 +237,20 @@ const Nav = () => {
         id="mobile-menu"
       >
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-          <a
+          <Link
             href="/"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
             aria-current="page"
           >
             Home
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/about"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             About Us
-          </a>
+          </Link>
           <button
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             onClick={() => handleActivate("products")}
@@ -258,42 +259,42 @@ const Nav = () => {
           </button>
           <div className={`md:hidden ${!menus[1].active && "hidden"}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <a
+              <Link
                 href="/products/equipments"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Equipments
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/pallets"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Pallets
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/power"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Power
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/racking"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Racking
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/shelves"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Shelves
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products/spares"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Spares
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -305,46 +306,46 @@ const Nav = () => {
           </button>
           <div className={`md:hidden ${!menus[2].active && "hidden"}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <a
+              <Link
                 href="/services/consultancy"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Consultancy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/distilled-water"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Distilled Water
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/logistics"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Logistics
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/maintenance"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Maintenance & Repair
-              </a>
+              </Link>
             </div>
           </div>
 
-          <a
+          <Link
             href="/contact"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Contact Us
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/showroom"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             eShowroom
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
