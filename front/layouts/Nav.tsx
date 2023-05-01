@@ -62,7 +62,7 @@ const Nav = () => {
                 </Link>
 
                 <Link
-                  href="/about"
+                  href="/home/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   About Us
@@ -170,8 +170,9 @@ const Nav = () => {
                 </div>
 
                 <Link
-                  href="/contact"
+                  href="/home/contact"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  as={"/contact"}
                 >
                   Contact Us
                 </Link>
@@ -246,7 +247,7 @@ const Nav = () => {
           </Link>
 
           <Link
-            href="/about"
+            href="/home/about"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             About Us
@@ -334,8 +335,9 @@ const Nav = () => {
           </div>
 
           <Link
-            href="/contact"
+            href="/home/contact"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            as={"/contact"}
           >
             Contact Us
           </Link>

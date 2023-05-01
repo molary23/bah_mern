@@ -1,14 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import PageHeading from "../layouts/PageHeading";
+import PageHeading from "../../layouts/PageHeading";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { TbMap2 } from "react-icons/tb";
 import { RiMailSendLine } from "react-icons/ri";
 import { FiSend } from "react-icons/fi";
-import { RegularObject } from "../util/Types";
-import InputElement from "../elements/InputElement";
-import Modal from "../layouts/Modal";
+import { RegularObject } from "../../util/Types";
+import InputElement from "../../elements/InputElement";
+import Modal from "../../layouts/Modal";
 
-import useInputValidate from "../hooks/useInputValidate";
+import useInputValidate from "../../hooks/useInputValidate";
 
 const API = "url to submit page";
 
