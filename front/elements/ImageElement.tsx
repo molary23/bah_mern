@@ -1,16 +1,14 @@
 import Image, { ImageProps } from "next/image";
 
-const ImageElement = (props: ImageProps) => {
+export default function ImageElement(props: ImageProps) {
   const { width, height, src, alt, className } = props;
   return (
-    <Image
+    <img
       width={width}
       height={height}
-      src={src}
+      src={src.toString()}
       alt={alt}
       className={className}
     />
   );
-};
-
-export default ImageElement;
+}

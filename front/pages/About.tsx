@@ -157,7 +157,7 @@ export default function About() {
             <div className="our__team--member sm:flex sm:justify-around sm:basis-3/4">
               <div className="about__team--member flex mb-6 gap-4 lg:justify-between lg:gap-3">
                 <div className="">
-                  <Image
+                  <img
                     className="h-24 w-24 rounded-full"
                     src={SITE_CONSTANTS.image + "home_power.jpg"}
                     width={"256"}
@@ -175,7 +175,7 @@ export default function About() {
 
               <div className="about__team--member flex flex mb-6 gap-4 lg:justify-between lg:gap-3">
                 <div className="">
-                  <Image
+                  <img
                     className="h-24 w-24 rounded-full"
                     src={SITE_CONSTANTS.image + "home_power.jpg"}
                     width={"256"}

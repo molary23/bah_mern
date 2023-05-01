@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import HTMLHead from "../layouts/HTMLHead";
 
-const Home = ({ children }: any) => {
+export default function Home({ children }: any) {
   const router = useRouter();
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -28,6 +28,4 @@ const Home = ({ children }: any) => {
       <Footer />
     </>
   );
-};
-
-export default Home;
+}

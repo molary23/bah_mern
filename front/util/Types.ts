@@ -21,7 +21,7 @@ export interface NavSub {
 export interface ImageProps {
   width: number;
   height: number;
-  src: string;
+  src: any;
   alt: string;
   onAction?: () => void;
   className?: string;
@@ -47,14 +47,14 @@ export type HeadingProps = {
 export type SectionProp = {
   title: string;
   description: string[];
-  imageSrc: StaticImageData | string;
+  imageSrc: string;
   imageAlt?: string;
   type?: string;
   backgroundImage?: string;
 };
 
 export type TestimonyProps = {
-  image: StaticImageData | string;
+  image: string;
   testifier: string;
   testimony: string;
 };
