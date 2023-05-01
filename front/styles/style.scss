@@ -6,11 +6,11 @@
 
 .menu__menu {
   .dropdown {
-    margin-right: -10rem;
-    margin-top: 2rem;
-    display: none;
     visibility: hidden;
     opacity: 0;
+    margin-right: -10rem;
+    margin-top: 2rem;
+    //    display: none;
     transition: all 2500ms;
   }
 }
@@ -23,14 +23,14 @@
       margin-top: 0rem;
       visibility: visible;
       opacity: 1;
-      display: block;
+      //  display: block;
     }
   }
   &:has(.menu__menu:focus) {
     margin-top: 0rem;
     visibility: visible;
     opacity: 1;
-    display: block;
+    //  display: block;
   }
 }
 
