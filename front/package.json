@@ -1,5 +1,6 @@
 {
-  "name": "front",
+  "homepage": "https://bah-app.vercel.app",
+  "name": "bah-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {

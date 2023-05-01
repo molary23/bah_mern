@@ -6,9 +6,16 @@ import TopSection from "../layouts/Home/TopSection";
 import { RegularObject } from "../util/Types";
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:3000/products.json"),
-    data = await response.json();
-  return { props: { products: data } };
+  const response = await fetch(
+    "http://bahengineeringconsultant.com/outbox/info.php"
+  );
+
+  const data = await response.json();
+  return {
+    props: {
+      products: data,
+    },
+  };
 }
 
 export default function Home(props: RegularObject) {
