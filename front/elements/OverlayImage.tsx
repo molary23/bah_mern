@@ -5,7 +5,7 @@ export default function OverlayImage(props: ImageProps) {
   const { width, height, src, alt, className, section, text } = props;
   return (
     <div className="image__container">
-      <img
+      <Image
         width={width}
         height={height}
         src={src}

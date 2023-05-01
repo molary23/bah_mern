@@ -17,7 +17,7 @@ export default function TestimonyElement(props: TestimonyProps) {
           <span className="">- {testifier}</span>
         </div>
         <div className="">
-          <img
+          <Image
             className="h-24 w-24 rounded-full"
             src={image}
             width={256}
