@@ -338,7 +338,7 @@ const getProduct = async (req: Request, res: Response) => {
 };
 
 const getAllProducts = async (req: Request, res: Response) => {
-  const pageNumber = Number(req.params.pageNumber);
+  const pageNumber = Number(req.query.pageNumber) || 1;
   const { offset, limit } = paginate(pageNumber, 5),
     status = req.body.status ?? "a";
 

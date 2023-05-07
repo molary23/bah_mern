@@ -11,18 +11,17 @@ import {
   updateImage,
   restockProduct,
 } from "../../controller/productController";
+import { verifyJWT } from "../../middleware/verifyJWT";
 
 const router = express.Router();
 
 /*
 @route GET api/product/all
-@desc get all Categories
+@desc get all Products
 @access private
 */
 
-router
-  .route("/all")
-  .get(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), getAllProducts);
+router.route("/all").get(getAllProducts);
 
 /*
 @route GET api/product/id
@@ -30,9 +29,7 @@ router
 @access private
 */
 
-router
-  .route("/:id")
-  .get(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), getProduct);
+router.route("/:id").get(getProduct);
 
 /*
 @route POST api/product/add
@@ -42,7 +39,11 @@ router
 
 router
   .route("/add")
-  .post(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), createProduct);
+  .post(
+    verifyJWT,
+    verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]),
+    createProduct
+  );
 
 /*
 @route PUT api/product/update
@@ -52,7 +53,11 @@ router
 
 router
   .route("/:id")
-  .put(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), updateProduct);
+  .put(
+    verifyJWT,
+    verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]),
+    updateProduct
+  );
 
 /*
 @route DELETE api/product/:id
@@ -60,7 +65,9 @@ router
 @access private
 */
 
-router.route("/:id").delete(verifyLevels([LEVEL_LIST.admin]), deleteProduct);
+router
+  .route("/:id")
+  .delete(verifyJWT, verifyLevels([LEVEL_LIST.admin]), deleteProduct);
 
 /*
 @route PATCH api/product/id
@@ -68,7 +75,9 @@ router.route("/:id").delete(verifyLevels([LEVEL_LIST.admin]), deleteProduct);
 @access private - Admin
 */
 
-router.route("/:id").patch(verifyLevels([LEVEL_LIST.admin]), restoreProduct);
+router
+  .route("/:id")
+  .patch(verifyJWT, verifyLevels([LEVEL_LIST.admin]), restoreProduct);
 
 /*
 @route PUT api/product/image/id
@@ -78,7 +87,11 @@ router.route("/:id").patch(verifyLevels([LEVEL_LIST.admin]), restoreProduct);
 
 router
   .route("/image/:id")
-  .put(verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]), updateImage);
+  .put(
+    verifyJWT,
+    verifyLevels([LEVEL_LIST.admin, LEVEL_LIST.manager]),
+    updateImage
+  );
 
 /*
 @route POST api/product/restock

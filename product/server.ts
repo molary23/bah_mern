@@ -26,9 +26,10 @@ app.use(fileUpload());
 require("./util/DBRelationships");
 
 // Use apis
+app.use("/api/product", product);
+//Secured API
 app.use(verifyJWT);
 app.use("/api/category", category);
-app.use("/api/product", product);
 
 // Apis that doesn't require JWT Authentication
 

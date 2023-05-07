@@ -19,7 +19,6 @@ export const Stocks = Stock.init(
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
     type: {
       type: DataTypes.ENUM,

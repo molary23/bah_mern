@@ -26,7 +26,6 @@ export const Orders = Order.init(
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
     status: {
       type: DataTypes.ENUM,
