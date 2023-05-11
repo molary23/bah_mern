@@ -1,5 +1,4 @@
 #Upload directory
-
 /uploads/
 
 #vscode
@@ -7,3 +6,9 @@
 
 #logs
 /logs/
+
+#DSStore
+*.DS_Store
+
+#Docker-compose
+docker-compose.yaml
