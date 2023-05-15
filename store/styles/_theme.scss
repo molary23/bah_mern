@@ -1,0 +1,47 @@
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body,
+  .scrollMe {
+    color: white;
+    background: $dark-mode;
+  }
+
+  .theme {
+    &__section,
+    &__nav {
+      color: white;
+      background: $dark-mode;
+      a {
+        color: white;
+      }
+    }
+    .contact__box {
+      border: 0.1em solid gray;
+      border-radius: 0.5em;
+      input,
+      textarea {
+        background: transparent;
+      }
+      button {
+        background: $dark-mode;
+        border: 0.1em solid white;
+      }
+    }
+
+    &__header {
+      background: rgba(47, 47, 47, 0.8);
+    }
+  }
+  .scrollMe {
+    border: 0.1em solid gray;
+    box-shadow: 1px 1px 2px white;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .hidden__element {
+    transition: none;
+  }
+}

@@ -55,7 +55,7 @@ const Nav = () => {
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
                   href="/"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-white px-3 py-2 rounded-md text-sm font-medium"
                   aria-current="page"
                 >
                   Home
@@ -86,37 +86,37 @@ const Nav = () => {
                       <div className="flex flex-wrap justify-around nav__submenu">
                         <NavSubLink
                           title="Equipments"
-                          more="More details about Profile"
+                          more="We have warehouse equipments such as Forklifts, Stackers and Pickers for sale"
                           icon={<GiForklift />}
                           link="/products/equipments"
                         />
                         <NavSubLink
                           title="Pallets"
-                          more="More details about Profile"
+                          more="We produce and sell woodeen, plastic, steel and foldable pallets"
                           icon={<FaPallet />}
                           link="/products/pallets"
                         />
                         <NavSubLink
                           title="Power"
-                          more="More details about Profile"
+                          more="Explore a new source of power with us"
                           icon={<MdLightbulbOutline />}
                           link="/products/power"
                         />
                         <NavSubLink
                           title="Racking"
-                          more="More details about Profile"
+                          more="We sell warehouse racking such as Selective, Flow through, Gravity, mezzanine racking"
                           icon={<BsBookshelf />}
                           link="/products/racking"
                         />
                         <NavSubLink
                           title="Shelves"
-                          more="More details about Profile"
+                          more="We are into the production of shelves ranging from light duty, middle duty and cabinets."
                           icon={<BiCabinet />}
                           link="/products/shelves"
                         />
                         <NavSubLink
                           title="Spares"
-                          more="More details about Profile"
+                          more="Spare parts are an important feature of supply chain management"
                           icon={<GiCartwheel />}
                           link="/products/spares"
                         />
@@ -132,7 +132,6 @@ const Nav = () => {
                         Services
                       </button>
                     </div>
-                    {/* Add sm:hidden here and activate on hover */}
                     <div
                       className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown theme__nav"
                       role="menu"
@@ -143,25 +142,25 @@ const Nav = () => {
                       <div className="flex flex-wrap justify-start nav__submenu">
                         <NavSubLink
                           title="Consultancy"
-                          more="More details about Profile"
+                          more="We offer consultancy service as regards maintenance and valuation of equipments"
                           icon={<GiDiscussion />}
                           link="/services/consultancy"
                         />
                         <NavSubLink
                           title="Distilled Water"
-                          more="More details about Profile"
+                          more="We sell distilled water for warehouse equipments' batteries"
                           icon={<MdOutlineWaterDrop />}
                           link="/services/distilled-water"
                         />
                         <NavSubLink
                           title="Logistics"
-                          more="More details about Profile"
+                          more="We are into purchase, transport, storage, distribution, and warehousing of materials"
                           icon={<TbTruckDelivery />}
                           link="/services/logistics"
                         />
                         <NavSubLink
                           title="Maintenance & Repair"
-                          more="More details about Profile"
+                          more="We are into maintenance and repairs of warehouse equipments"
                           icon={<BsTools />}
                           link="/services/maintenance"
                         />

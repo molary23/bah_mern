@@ -10,7 +10,7 @@ export default function consultanct(props: RegularObject) {
       <PageHeading
         intro={{
           heading: "Consultancy",
-          subHeading: `As a company, we provide comprehensive and full-scope services for major projects. We are ready to offer consultancy service to any company as regards maintenance and repair or valuation of equipment’s; and also on the operations of the equipment.`,
+          subHeading: `As a company, we provide comprehensive and full-scope services for major projects. We are ready to offer consultancy service to any company as regards maintenance and repair or valuation of equipments; and also on the operations of the equipment.`,
         }}
         imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
       />
