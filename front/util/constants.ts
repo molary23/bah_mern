@@ -1,3 +1,5 @@
+const url = "https://www.bahengineeringconsultant.com/";
 export const SITE_CONSTANTS = {
-  image: "https://www.bahengineeringconsultant.com/images/",
+  url,
+  image: `/assets/images/`,
 };

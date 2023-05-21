@@ -41,15 +41,12 @@ export default function HTMLHead() {
     MetaTags = HTMLMetaTag?.water;
   }
 
-  console.log("HTMLHead: Remove the Meta of Robots");
-
   return (
     <Head>
       <title>{MetaTags?.title}</title>
       <meta name="description" content={MetaTags?.description} />
       <meta name="keywords" content={`${MetaTags?.keywords}, other keywords`} />
-      <meta name="robots" content="noindex, nofollow" />
-      <link rel="icon" href={`${SITE_CONSTANTS.image}/favicon.png`} />
+      <link rel="icon" href={`${SITE_CONSTANTS.image}favicon.png`} />
     </Head>
   );
 }

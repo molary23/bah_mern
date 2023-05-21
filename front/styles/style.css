@@ -162,6 +162,11 @@ html {
   height: 1.5rem;
 }
 
+.testimony__section svg {
+  font-size: 4em;
+  margin-bottom: 0.2em;
+}
+
 .image__container {
   position: relative;
   width: 100%;
@@ -229,11 +234,17 @@ html {
   text-transform: capitalize;
 }
 
-.testimony__section svg {
-  font-size: 4em;
-  margin-bottom: 0.2em;
+.btn__submit svg {
+  margin-top: 0.2rem;
 }
-
+.btn__submit .loader svg {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media only screen and (max-width: 768px) {
   .dropdown .nav__submenu {
     width: 35rem;

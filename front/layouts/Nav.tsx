@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { NavSubLink } from "./NavSubLink";
 import { MdLightbulbOutline, MdOutlineWaterDrop } from "react-icons/md";
 import { BsBookshelf, BsTools } from "react-icons/bs";
@@ -9,6 +9,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { RegularObject } from "../util/Types";
 import { SITE_CONSTANTS } from "../util/constants";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -26,17 +27,31 @@ const reducer = (state: any, action: RegularObject) => {
           return menu;
         }
       });
+    case "DEACTIVATE":
+      return initialMenu;
     default:
       return state;
   }
 };
 
 const Nav = () => {
-  const [menus, dispatch] = useReducer(reducer, initialMenu);
+  const [menus, dispatch] = useReducer(reducer, initialMenu),
+    router = useRouter(),
+    pathname = router.pathname;
 
   const handleActivate = (menu: string) => {
     dispatch({ type: "ACTIVATE", name: menu });
   };
+
+  const handleDeactivate = () => {
+    if (!menus[1].active || !menus[2].active) {
+      dispatch({ type: "DEACTIVATE" });
+    }
+  };
+
+  useEffect(() => {
+    handleDeactivate();
+  }, [pathname]);
   return (
     <nav className="bg-gray-800 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -46,7 +61,7 @@ const Nav = () => {
               <Link href="/">
                 <img
                   className="sm:w-[80%] brand"
-                  src={`${SITE_CONSTANTS.image}/logo_name.png`}
+                  src={`${SITE_CONSTANTS.image}logo_name.png`}
                   alt="BAH Engineering Consultant"
                 />
               </Link>
@@ -62,9 +77,8 @@ const Nav = () => {
                 </Link>
 
                 <Link
-                  href="/home/about"
+                  href="/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  as={"/about"}
                 >
                   About Us
                 </Link>
@@ -170,18 +184,17 @@ const Nav = () => {
                 </div>
 
                 <Link
-                  href="/home/contact"
+                  href="/contact"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  as={"/contact"}
                 >
                   Contact Us
                 </Link>
 
                 <Link
-                  href="/"
+                  href="http://store.bahenginerringconsultant.com"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  eShowroom
+                  Store
                 </Link>
               </div>
             </div>
@@ -234,7 +247,7 @@ const Nav = () => {
       </div>
 
       <div
-        className={`md:hidden ${!menus[0].active && "hidden"}`}
+        className={`md:hidden ${!menus[0].active ? "hidden" : ""}`}
         id="mobile-menu"
       >
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
@@ -247,19 +260,18 @@ const Nav = () => {
           </Link>
 
           <Link
-            href="/home/about"
+            href="/about"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            as={"/about"}
           >
             About Us
           </Link>
           <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-start"
             onClick={() => handleActivate("products")}
           >
             Products
           </button>
-          <div className={`md:hidden ${!menus[1].active && "hidden"}`}>
+          <div className={`md:hidden ${!menus[1].active ? "hidden" : ""}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <Link
                 href="/products/equipments"
@@ -301,12 +313,12 @@ const Nav = () => {
           </div>
 
           <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-start"
             onClick={() => handleActivate("services")}
           >
             Services
           </button>
-          <div className={`md:hidden ${!menus[2].active && "hidden"}`}>
+          <div className={`md:hidden ${!menus[2].active ? "hidden" : ""}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <Link
                 href="/services/consultancy"
@@ -336,18 +348,17 @@ const Nav = () => {
           </div>
 
           <Link
-            href="/home/contact"
+            href="/contact"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            as={"/contact"}
           >
             Contact Us
           </Link>
 
           <Link
-            href="/showroom"
+            href="http://store.bahenginerringconsultant.com"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            eShowroom
+            Store
           </Link>
         </div>
       </div>
