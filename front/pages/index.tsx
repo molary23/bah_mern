@@ -4,13 +4,13 @@ import ServiceSection from "../layouts/Home/ServiceSection";
 import TestimonialSection from "../layouts/Home/TestimonialSection";
 import TopSection from "../layouts/Home/TopSection";
 import { RegularObject } from "../util/Types";
+import { SITE_CONSTANTS } from "../util/constants";
 
 export async function getStaticProps() {
   const response = await fetch(
-    "http://bahengineeringconsultant.com/outbox/info.php"
-  );
-
-  const data = await response.json();
+      `https://www.bahengineeringconsultant.com/outbox/products.json`
+    ),
+    data = await response.json();
   return {
     props: {
       products: data,

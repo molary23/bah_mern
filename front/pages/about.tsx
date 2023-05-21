@@ -1,6 +1,6 @@
 import Image from "next/image";
-import PageHeading from "../../layouts/PageHeading";
-import { SITE_CONSTANTS } from "../../util/constants";
+import PageHeading from "../layouts/PageHeading";
+import { SITE_CONSTANTS } from "../util/constants";
 const LAST_NAME: string = "Hassan",
   FIRST_MEMBER_NAME: string = "Billy",
   SECOND_MEMBER_NAME: string = "Adetayo";

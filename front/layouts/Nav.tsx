@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { NavSubLink } from "./NavSubLink";
 import { MdLightbulbOutline, MdOutlineWaterDrop } from "react-icons/md";
 import { BsBookshelf, BsTools } from "react-icons/bs";
@@ -9,6 +9,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { RegularObject } from "../util/Types";
 import { SITE_CONSTANTS } from "../util/constants";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -26,17 +27,31 @@ const reducer = (state: any, action: RegularObject) => {
           return menu;
         }
       });
+    case "DEACTIVATE":
+      return initialMenu;
     default:
       return state;
   }
 };
 
 const Nav = () => {
-  const [menus, dispatch] = useReducer(reducer, initialMenu);
+  const [menus, dispatch] = useReducer(reducer, initialMenu),
+    router = useRouter(),
+    pathname = router.pathname;
 
   const handleActivate = (menu: string) => {
     dispatch({ type: "ACTIVATE", name: menu });
   };
+
+  const handleDeactivate = () => {
+    if (!menus[1].active || !menus[2].active) {
+      dispatch({ type: "DEACTIVATE" });
+    }
+  };
+
+  useEffect(() => {
+    handleDeactivate();
+  }, [pathname]);
   return (
     <nav className="bg-gray-800 sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -46,7 +61,7 @@ const Nav = () => {
               <Link href="/">
                 <img
                   className="sm:w-[80%] brand"
-                  src={`${SITE_CONSTANTS.image}/logo_name.png`}
+                  src={`${SITE_CONSTANTS.image}logo_name.png`}
                   alt="BAH Engineering Consultant"
                 />
               </Link>
@@ -55,16 +70,15 @@ const Nav = () => {
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
                   href="/"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-white px-3 py-2 rounded-md text-sm font-medium"
                   aria-current="page"
                 >
                   Home
                 </Link>
 
                 <Link
-                  href="/home/about"
+                  href="/about"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  as={"/about"}
                 >
                   About Us
                 </Link>
@@ -86,37 +100,37 @@ const Nav = () => {
                       <div className="flex flex-wrap justify-around nav__submenu">
                         <NavSubLink
                           title="Equipments"
-                          more="More details about Profile"
+                          more="We have warehouse equipments such as Forklifts, Stackers and Pickers for sale"
                           icon={<GiForklift />}
                           link="/products/equipments"
                         />
                         <NavSubLink
                           title="Pallets"
-                          more="More details about Profile"
+                          more="We produce and sell woodeen, plastic, steel and foldable pallets"
                           icon={<FaPallet />}
                           link="/products/pallets"
                         />
                         <NavSubLink
                           title="Power"
-                          more="More details about Profile"
+                          more="Explore a new source of power with us"
                           icon={<MdLightbulbOutline />}
                           link="/products/power"
                         />
                         <NavSubLink
                           title="Racking"
-                          more="More details about Profile"
+                          more="We sell warehouse racking such as Selective, Flow through, Gravity, mezzanine racking"
                           icon={<BsBookshelf />}
                           link="/products/racking"
                         />
                         <NavSubLink
                           title="Shelves"
-                          more="More details about Profile"
+                          more="We are into the production of shelves ranging from light duty, middle duty and cabinets."
                           icon={<BiCabinet />}
                           link="/products/shelves"
                         />
                         <NavSubLink
                           title="Spares"
-                          more="More details about Profile"
+                          more="Spare parts are an important feature of supply chain management"
                           icon={<GiCartwheel />}
                           link="/products/spares"
                         />
@@ -132,7 +146,6 @@ const Nav = () => {
                         Services
                       </button>
                     </div>
-                    {/* Add sm:hidden here and activate on hover */}
                     <div
                       className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown theme__nav"
                       role="menu"
@@ -143,25 +156,25 @@ const Nav = () => {
                       <div className="flex flex-wrap justify-start nav__submenu">
                         <NavSubLink
                           title="Consultancy"
-                          more="More details about Profile"
+                          more="We offer consultancy service as regards maintenance and valuation of equipments"
                           icon={<GiDiscussion />}
                           link="/services/consultancy"
                         />
                         <NavSubLink
                           title="Distilled Water"
-                          more="More details about Profile"
+                          more="We sell distilled water for warehouse equipments' batteries"
                           icon={<MdOutlineWaterDrop />}
                           link="/services/distilled-water"
                         />
                         <NavSubLink
                           title="Logistics"
-                          more="More details about Profile"
+                          more="We are into purchase, transport, storage, distribution, and warehousing of materials"
                           icon={<TbTruckDelivery />}
                           link="/services/logistics"
                         />
                         <NavSubLink
                           title="Maintenance & Repair"
-                          more="More details about Profile"
+                          more="We are into maintenance and repairs of warehouse equipments"
                           icon={<BsTools />}
                           link="/services/maintenance"
                         />
@@ -171,18 +184,17 @@ const Nav = () => {
                 </div>
 
                 <Link
-                  href="/home/contact"
+                  href="/contact"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  as={"/contact"}
                 >
                   Contact Us
                 </Link>
 
                 <Link
-                  href="/"
+                  href="http://store.bahenginerringconsultant.com"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  eShowroom
+                  Store
                 </Link>
               </div>
             </div>
@@ -235,7 +247,7 @@ const Nav = () => {
       </div>
 
       <div
-        className={`md:hidden ${!menus[0].active && "hidden"}`}
+        className={`md:hidden ${!menus[0].active ? "hidden" : ""}`}
         id="mobile-menu"
       >
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
@@ -248,19 +260,18 @@ const Nav = () => {
           </Link>
 
           <Link
-            href="/home/about"
+            href="/about"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            as={"/about"}
           >
             About Us
           </Link>
           <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-start"
             onClick={() => handleActivate("products")}
           >
             Products
           </button>
-          <div className={`md:hidden ${!menus[1].active && "hidden"}`}>
+          <div className={`md:hidden ${!menus[1].active ? "hidden" : ""}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <Link
                 href="/products/equipments"
@@ -302,12 +313,12 @@ const Nav = () => {
           </div>
 
           <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-start"
             onClick={() => handleActivate("services")}
           >
             Services
           </button>
-          <div className={`md:hidden ${!menus[2].active && "hidden"}`}>
+          <div className={`md:hidden ${!menus[2].active ? "hidden" : ""}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <Link
                 href="/services/consultancy"
@@ -337,18 +348,17 @@ const Nav = () => {
           </div>
 
           <Link
-            href="/home/contact"
+            href="/contact"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            as={"/contact"}
           >
             Contact Us
           </Link>
 
           <Link
-            href="/showroom"
+            href="http://store.bahenginerringconsultant.com"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            eShowroom
+            Store
           </Link>
         </div>
       </div>

@@ -4,11 +4,11 @@ const nextConfig = {
   swcMinify: true,
   /*output: "export",
   distDir: "dist",
-  trailingSlash: true,*/
+  trailingSlash: true,
 
   images: {
     unoptimized: true,
-  },
+  },*/
 };
 
 module.exports = nextConfig;

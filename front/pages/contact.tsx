@@ -1,16 +1,18 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import PageHeading from "../../layouts/PageHeading";
+import PageHeading from "../layouts/PageHeading";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { TbMap2 } from "react-icons/tb";
 import { RiMailSendLine } from "react-icons/ri";
 import { FiSend } from "react-icons/fi";
-import { RegularObject } from "../../util/Types";
-import InputElement from "../../elements/InputElement";
-import Modal from "../../layouts/Modal";
+import { RegularObject } from "../util/Types";
+import InputElement from "../elements/InputElement";
+import Modal from "../layouts/Modal";
+import { SITE_CONSTANTS } from "../util/constants";
+import { BiLoader } from "react-icons/bi";
 
-import useInputValidate from "../../hooks/useInputValidate";
+import useInputValidate from "../hooks/useInputValidate";
 
-const API = "url to submit page";
+const API = `${SITE_CONSTANTS.url}outbox/send.php`;
 
 export default function Contact() {
   const [inputs, setInputs] = useState<RegularObject>({}),
@@ -29,6 +31,8 @@ export default function Contact() {
     },
     submitHandler = async (e: FormEvent) => {
       e.preventDefault();
+
+      console.log(useInputValidate(inputs, "name"));
 
       if (useInputValidate(inputs, "name")) {
         setErrors({
@@ -52,12 +56,14 @@ export default function Contact() {
         });
       } else {
         setLoading(true);
-
         try {
           const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(inputs),
+            body: JSON.stringify({
+              ...inputs,
+              sendKey: process.env.NEXT_PUBLIC_SECURE_POST_KEY,
+            }),
           };
           const response = await fetch(API, requestOptions);
           const data = await response.json();
@@ -72,6 +78,7 @@ export default function Contact() {
         } finally {
           setLoading(false);
           setModal(true);
+          setErrors({});
         }
       }
     };
@@ -218,13 +225,19 @@ export default function Contact() {
                       ></textarea>
                     </div>
                   </div>
-                  <div>
+                  <div className="col-span-6 lg:col-span-3">
                     <button
                       type="submit"
-                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm hover:blur-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-36 w-full btn__submit"
                     >
                       <span className="mr-2">Submit</span>
-                      <FiSend />
+                      {!loading ? (
+                        <FiSend />
+                      ) : (
+                        <span className="loader">
+                          <BiLoader />
+                        </span>
+                      )}
                     </button>
                   </div>
                 </div>

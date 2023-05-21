@@ -162,11 +162,6 @@ html {
   height: 1.5rem;
 }
 
-.testimony__section svg {
-  font-size: 4em;
-  margin-bottom: 0.2em;
-}
-
 .image__container {
   position: relative;
   width: 100%;
@@ -233,21 +228,12 @@ html {
 .contact__form label {
   text-transform: capitalize;
 }
-.contact__form small {
-  color: tomato;
+
+.testimony__section svg {
+  font-size: 4em;
+  margin-bottom: 0.2em;
 }
 
-.btn__submit svg {
-  margin-top: 0.2rem;
-}
-.btn__submit .loader svg {
-  animation: spin 2s linear infinite;
-}
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
 @media only screen and (max-width: 768px) {
   .dropdown .nav__submenu {
     width: 35rem;
@@ -287,12 +273,6 @@ html {
   .scrollMe {
     border: 0.1em solid gray;
     box-shadow: 1px 1px 2px white;
-  }
-  .dropdown {
-    background-color: rgb(31, 41, 55);
-  }
-  .image__container .client__overlay {
-    background: #121212;
   }
 }
 @media (prefers-reduced-motion) {

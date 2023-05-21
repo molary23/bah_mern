@@ -75,12 +75,6 @@
     height: 1.5rem;
   }
 }
-.testimony__section {
-  svg {
-    font-size: 4em;
-    margin-bottom: 0.2em;
-  }
-}
 
 .image {
   &__container {
@@ -154,36 +148,12 @@
   label {
     text-transform: capitalize;
   }
-  small {
-    color: tomato;
-  }
 }
 
-.btn__submit {
+.testimony__section {
   svg {
-    margin-top: 0.2rem;
-  }
-  .loader svg {
-    -webkit-animation: spin 2s linear infinite;
-    -moz-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-  }
-}
-
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    font-size: 4em;
+    margin-bottom: 0.2em;
   }
 }
 

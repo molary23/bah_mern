@@ -6,7 +6,7 @@ export default function PageHeading(props: HeadingProps) {
   return (
     <div className={imageUrL && `${imageUrL} bg-no-repeat bg-cover bg-center`}>
       <div
-        className={`w-full h-[35em] px-8 sm:px-20 flex items-center ${
+        className={`w-full h-[35em] px-1 sm:px-20 flex items-center ${
           imageUrL
             ? "bg-gradient-to-r from-zinc-800 to-zinc-900/[.6]"
             : "bg-primary theme__header"

@@ -19,14 +19,14 @@ export const HTMLMetaTag = {
     keywords: "Industrial Light Duty, Middle Duty Shelves, Cabinets",
   },
   about: {
-    title: "About Us",
+    title: "About US",
     description:
       "About BAH Engineering Consultancy. We install and maintain industrial shelves, cabinets and racking system",
     keywords:
       "About US, Our Team, Strategy Performance, Objectives, Leadership",
   },
   contact: {
-    title: "Contact Us",
+    title: "Contact US",
     description:
       "Contact us for your Warehouse handling equipment purchase and maintenace. We install and maintain industrial shelves, cabinets and racking system",
     keywords: "Contact Us, Address, Email, Phone Number",
