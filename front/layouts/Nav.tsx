@@ -190,12 +190,13 @@ const Nav = () => {
                   Contact Us
                 </Link>
 
-                <Link
+                <a
                   href="http://store.bahenginerringconsultant.com"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  target="_blank"
                 >
                   Store
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -354,12 +355,13 @@ const Nav = () => {
             Contact Us
           </Link>
 
-          <Link
+          <a
             href="http://store.bahenginerringconsultant.com"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            target="_blank"
           >
             Store
-          </Link>
+          </a>
         </div>
       </div>
     </nav>

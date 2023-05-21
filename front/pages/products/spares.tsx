@@ -12,7 +12,7 @@ export default function spares(props: RegularObject) {
         heading: "Spares",
         subHeading: `Spare parts are an important feature of logistics engineering and supply chain management, often comprising dedicated spare parts management systems. Forklift Tires, Controllers and batteries are part of what our company sells`,
       }}
-      imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+      imageUrL="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
       subHeading="Spare parts are an important feature of logistics engineering and supply chain management, often comprising dedicated spare parts management systems. Forklift Tires, Controllers and batteries are part of what our company sells"
       elements={
         <>
@@ -33,7 +33,7 @@ export default function spares(props: RegularObject) {
             imageSrc={`${SITE_URL}forklift_tire.jpg`}
             imageAlt="Forklift Tires"
             type="dual"
-            backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+            backgroundImage="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
           />
           <RightArticle
             title="Forklift Controller"

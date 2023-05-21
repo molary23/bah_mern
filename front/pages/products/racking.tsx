@@ -11,7 +11,7 @@ export default function racking(props: RegularObject) {
         heading: "Racking",
         subHeading: `BAH Engineering and Consultant is into the sale of warehouse racking. Drive-in Racking, selective racking, flow through racking, gravity racking, mezzanine racking and stereoscopic racking are all available in our outlet.`,
       }}
-      imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+      imageUrL="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
       elements={
         <>
           <LeftArticle
@@ -31,7 +31,7 @@ export default function racking(props: RegularObject) {
             ]}
             imageSrc={""}
             type="single"
-            backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+            backgroundImage="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
           />
           <LeftArticle
             title="Flow Through Racking"
@@ -58,7 +58,7 @@ export default function racking(props: RegularObject) {
             imageSrc={`${SITE_URL}gravity_rack.jpg`}
             imageAlt="Gravity Racking"
             type="dual"
-            backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+            backgroundImage="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
           />
           <LeftArticle
             title="Mezzanine Racking"
@@ -78,7 +78,7 @@ export default function racking(props: RegularObject) {
             imageSrc={`${SITE_URL}stereoscopic_racking.jpg`}
             imageAlt="Stereoscopic Racking"
             type="dual"
-            backgroundImage="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+            backgroundImage="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
           />
         </>
       }

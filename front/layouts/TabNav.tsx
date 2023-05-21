@@ -9,7 +9,7 @@ export default function TabNav(props: TabProp) {
     [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="py-8 lg:p-24">
+    <section className="py-8 lg:p-24 PX-4">
       <h2 className="text-3xl font-bold mb-8 text-center">{props?.title}</h2>
       <p className="text-xl md:text-2xl text-center lg:font-bold mb-8">
         {props?.description?.[0]}

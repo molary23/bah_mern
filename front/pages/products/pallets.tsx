@@ -11,7 +11,7 @@ export default function pallets(props: RegularObject) {
         heading: "Pallets",
         subHeading: `We also produce/sell pallets – wooden pallets, plastic pallets, steel pallets, foldable pallets – which we are highly confident you will be satisfied with.`,
       }}
-      imageUrL="bg-[url(https://bahengineeringconsultant.com//images/home_power.jpg)]"
+      imageUrL="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
       subHeading="We can help you design and construct any type of Pallets. We can help
           you design and construct any type of Pallets. We can help you design
           and construct any type of Pallets."
