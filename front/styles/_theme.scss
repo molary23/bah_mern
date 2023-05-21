@@ -38,6 +38,14 @@
     border: 0.1em solid gray;
     box-shadow: 1px 1px 2px white;
   }
+  .dropdown {
+    background-color: rgb(31 41 55);
+  }
+  .image__container {
+    .client__overlay {
+      background: $dark-mode;
+    }
+  }
 }
 
 @media (prefers-reduced-motion) {

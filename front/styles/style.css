@@ -233,6 +233,9 @@ html {
 .contact__form label {
   text-transform: capitalize;
 }
+.contact__form small {
+  color: tomato;
+}
 
 .btn__submit svg {
   margin-top: 0.2rem;
@@ -284,6 +287,12 @@ html {
   .scrollMe {
     border: 0.1em solid gray;
     box-shadow: 1px 1px 2px white;
+  }
+  .dropdown {
+    background-color: rgb(31, 41, 55);
+  }
+  .image__container .client__overlay {
+    background: #121212;
   }
 }
 @media (prefers-reduced-motion) {

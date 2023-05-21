@@ -9,7 +9,7 @@ export default function useInputValidate(
 ): boolean {
   return (
     !Object.keys(object).includes(value) ||
-    useEmptyCheck(object?.value) ||
-    !useTypeCheck(object?.value, type)
+    useEmptyCheck(object?.[value]) ||
+    !useTypeCheck(object?.[value], type)
   );
 }

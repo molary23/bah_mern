@@ -32,6 +32,8 @@ export default function Contact() {
     submitHandler = async (e: FormEvent) => {
       e.preventDefault();
 
+      console.log(useInputValidate(inputs, "name"));
+
       if (useInputValidate(inputs, "name")) {
         setErrors({
           name: "Please enter a valid name",
@@ -60,7 +62,7 @@ export default function Contact() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               ...inputs,
-              sendKey: process.env.REACT_APP_SECURE_POST_KEY,
+              sendKey: process.env.NEXT_PUBLIC_SECURE_POST_KEY,
             }),
           };
           const response = await fetch(API, requestOptions);
@@ -76,6 +78,7 @@ export default function Contact() {
         } finally {
           setLoading(false);
           setModal(true);
+          setErrors({});
         }
       }
     };
@@ -228,7 +231,7 @@ export default function Contact() {
                       className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-36 w-full btn__submit"
                     >
                       <span className="mr-2">Submit</span>
-                      {loading ? (
+                      {!loading ? (
                         <FiSend />
                       ) : (
                         <span className="loader">
