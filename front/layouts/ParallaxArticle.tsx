@@ -26,7 +26,7 @@ export default function ParallaxArticle(props: SectionProp) {
           )}
         </aside>
         <aside className="lg:basis-1/2 lg:py-12 hidden__element left__aside">
-          {props?.type !== "single" ? (
+          {props?.type !== "single" && (
             <ImageElement
               width={600}
               height={400}
@@ -34,7 +34,7 @@ export default function ParallaxArticle(props: SectionProp) {
               alt={props?.imageAlt!}
               className="mx-auto"
             />
-          ) : null}
+          )}
         </aside>
       </article>
     </section>

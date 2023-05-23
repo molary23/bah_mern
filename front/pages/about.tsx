@@ -150,8 +150,7 @@ export default function About() {
                 Meet Our Leadership
               </h2>
               <p className="our__team--para text-center lg:text-left mb-8">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Praesentium reiciendis aperiam consequatur aspernatur quia
+                Our team is lead by the following honourable personalities.
               </p>
             </div>
             <div className="our__team--member sm:flex sm:justify-around sm:basis-3/4">

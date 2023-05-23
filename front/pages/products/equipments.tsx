@@ -53,10 +53,7 @@ export default function equipments(props: RegularObject) {
             title="Pallet Trucks"
             pages={["Manual", "Semi Electric", "Electric"]}
             description={[
-              `Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat
-        assumenda exercitationem recusandae delectus amet sed quisquam fugit,
-        facilis quos. Ad voluptates cum laudantium unde sed veritatis totam
-        beatae quae.`,
+              `We can deliver to you Manual, Semi-Electric and Electric Pallet Trucks.`,
             ]}
             content={[
               {

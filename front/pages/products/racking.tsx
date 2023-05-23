@@ -73,7 +73,7 @@ export default function racking(props: RegularObject) {
             title="Stereoscopic Racking"
             description={[
               `Our main objective is centered on the need to provide additional services to the customers and inject a new innovation into the growing economy in Nigeria.`,
-              `It was during this period we found out that most client buy wrong equipments for use on the stock racking system and we now fel t to normalize this for future clients that passes through us.`,
+              `It was during this period we found out that most client buy wrong equipments for use on the stock racking system and we now felt to normalize this for future clients that passes through us.`,
             ]}
             imageSrc={`${SITE_URL}stereoscopic_racking.jpg`}
             imageAlt="Stereoscopic Racking"

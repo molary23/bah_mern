@@ -7,16 +7,16 @@ export default function TestimonyElement(props: TestimonyProps) {
   return (
     <div className="w-10/12 mx-auto">
       <div className="mb-4">
-        <p className="mb-4 text-justify">
+        <div className="mb-4 text-justify">
           <FaQuoteLeft />
-          <span>{testimony}</span>
-        </p>
+          <p>{testimony}</p>
+        </div>
       </div>
       <div className="testifier flex flex-col items-end">
         <div className="mb-4 ">
-          <span className="">- {testifier}</span>
+          <p>- {testifier}</p>
         </div>
-        <div className="">
+        <div>
           <Image
             className="h-24 w-24 rounded-full"
             src={image}

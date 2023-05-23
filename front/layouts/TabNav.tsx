@@ -10,16 +10,19 @@ export default function TabNav(props: TabProp) {
 
   return (
     <section className="pt-8 lg:p-24 PX-4">
-      <h2 className="text-3xl font-bold mb-8 text-center">{props?.title}</h2>
-      <p className="text-xl md:text-2xl text-center lg:font-bold mb-8">
-        {props?.description?.[0]}
-      </p>
-      {props?.description?.[1] && (
-        <p className="md:text-xl text-lg text-center lg:font-bold mb-8">
-          {props?.description?.[1]}
+      <article>
+        <h2 className="text-3xl font-bold mb-8 text-center">{props?.title}</h2>
+        <p className="text-xl md:text-2xl text-center lg:font-bold mb-8">
+          {props?.description?.[0]}
         </p>
-      )}
-      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 flex flex-fill place-content-center">
+
+        {props?.description?.[1] && (
+          <p className="md:text-xl text-lg text-center lg:font-bold mb-8">
+            {props?.description?.[1]}
+          </p>
+        )}
+      </article>
+      <nav className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 flex flex-fill place-content-center">
         <ul className="flex flex-wrap">
           {props?.pages.map((tab, index) => {
             return (
@@ -37,7 +40,7 @@ export default function TabNav(props: TabProp) {
             );
           })}
         </ul>
-      </div>
+      </nav>
 
       <section className="tab__content flex flex-col sm:flex-row gap-y-4 flex lg:py-20 lg:px-20 px-4 h-[40rem] bg-primary text-white py-8 theme__section">
         <aside className="lg:basis-1/2 left__aside">
@@ -49,7 +52,7 @@ export default function TabNav(props: TabProp) {
             className="mx-auto"
           />
         </aside>
-        <article className="lg:basis-1/2 left__article">
+        <article className="lg:basis-1/2 left__article px-4">
           <h2 className="text-3xl font-bold mb-4 lg:mb-8 lg:text-left text-center">{`${props?.pages?.[activeTab]} ${props?.title}`}</h2>
           <p className="text-xl md:text-2xl mb-3 lg:mb-6 text-justify">
             {props?.content?.[activeTab]?.text?.[0]}

@@ -28,7 +28,7 @@ export default function power(props: RegularObject) {
           <ParallaxArticle
             title="Controllers"
             description={[
-              `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum at inventore, nemo repellendus ut eum iure architecto suscipit reiciendis itaque dolorum fugit, molestiae explicabo distinctio, tempore veniam saepe ipsam nesciunt.
+              `Controller provides smooth precise control of motor speed and torque..
 `,
             ]}
             imageSrc={`${SITE_URL}controllers.jpg`}
