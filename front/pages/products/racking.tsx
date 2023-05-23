@@ -9,7 +9,7 @@ export default function racking(props: RegularObject) {
     <Equipments
       intro={{
         heading: "Racking",
-        subHeading: `BAH Engineering and Consultant is into the sale of warehouse racking. Drive-in Racking, selective racking, flow through racking, gravity racking, mezzanine racking and stereoscopic racking are all available in our outlet.`,
+        subHeading: `BAH Engineering and Consultant is into the sale of warehouse racking. Drive-in Racking, selective racking, flow-through racking, gravity racking, mezzanine racking and stereoscopic racking are all available in our outlet.`,
       }}
       imageUrL="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
       elements={
@@ -17,7 +17,7 @@ export default function racking(props: RegularObject) {
           <LeftArticle
             title="Drive-in Racking"
             description={[
-              `Drive-in racking systems apply the LIFO (last in, first out) principle for loading and unloading. Drive-through installations are loaded and unloaded according the FIFO (first in, first out) principle. To guide the truck or pallets and to protect the installation we recommend the use of ground rails.`,
+              `Drive-in racking systems apply the LIFO (last in, first out) principle for loading and unloading. Drive-through installations are loaded and unloaded according to the FIFO (first in, first out) principle. To guide the truck or pallets and to protect the installation we recommend the use of ground rails.`,
               `There are three types of drive-in racks, depending on the load and unload procedure and the accessibility: Single drive-in racking, Double drive-in racking, and Drive through.`,
             ]}
             imageSrc={`${SITE_URL}drive_in_racking.jpg`}
@@ -26,8 +26,8 @@ export default function racking(props: RegularObject) {
           <ParallaxArticle
             title="Selective Racking"
             description={[
-              `Selective racking is one of the most common types of racking system for warehouses. It has the lowest storage capacity of pallet and also has the lowest cost per square meter when it comes to racking.`,
-              `However, when it comes to high volume storage that is greater than 3000 pallets, it is often considered to be the most expensive solution.`,
+              `Selective racking is one of the most common types of racking systems for warehouses. It has the lowest storage capacity of pallets and the lowest cost per square meter when it comes to racking.`,
+              `However, when it comes to high-volume storage that is greater than 3000 pallets, it is often considered to be the most expensive solution.`,
             ]}
             imageSrc={""}
             type="single"
@@ -36,8 +36,8 @@ export default function racking(props: RegularObject) {
           <LeftArticle
             title="Flow Through Racking"
             description={[
-              `Specially constructed lanes of gravity inclined tracks stacked side by side and on top of each other within a pallet rack framework form a solid block of storage that is fed in from one end and unloaded at the other. Consistent loads are stored in each lane, for the same SKU. Automatic rotation is provided rack utilization is often at 90%.`,
-              `Wide range of pallets can be accommodated at the design stage; and the flow through racking can secure and safe handling as the pallet truck does not enter the rack.`,
+              `Specially constructed lanes of gravity-inclined tracks stacked side by side and on top of each other within a pallet rack framework form a solid block of storage that is fed in from one end and unloaded at the other. Consistent loads are stored in each lane, for the same SKU. Automatic rotation is provided rack utilization is often at 90%.`,
+              `A wide range of pallets can be accommodated at the design stage, and the flow through racking can be secure and safe to handle as the pallet truck does not enter the rack.`,
             ]}
             imageSrc={`${SITE_URL}flow_racking.jpg`}
             imageAlt="Flow Through Racking"
@@ -45,15 +45,8 @@ export default function racking(props: RegularObject) {
           <ParallaxArticle
             title="Gravity Racking"
             description={[
-              `Gravity Racking is a storage system that relies on gravity flow to
-            load, organize, and retrieve stored cartons or pallets within a
-            warehouse. Maximizing space and efficiency, gravity flow racks will
-            save your business money, improve your productivity, and increase
-            safety for your employees.`,
-              `Gravity racks act as non-powered, downward-sloped storage conveyors,
-            which allow for all subsequent pallets or cartons to move to the
-            forefront, once the preceding item has been removed, otherwise known
-            as first in first out (FIFO) racking.`,
+              `Gravity Racking is a storage system that relies on gravity flow to load, organize, and retrieve stored cartons or pallets within a warehouse. Maximizing space and efficiency, gravity flow racks will save your business money, improve your productivity, and increase safety for your employees.`,
+              `Gravity racks act as non-powered, downward-sloped storage conveyors, which allow for all subsequent pallets or cartons to move to the forefront, once the preceding item has been removed, otherwise known as first in first out (FIFO) racking.`,
             ]}
             imageSrc={`${SITE_URL}gravity_rack.jpg`}
             imageAlt="Gravity Racking"
@@ -64,7 +57,7 @@ export default function racking(props: RegularObject) {
             title="Mezzanine Racking"
             description={[
               `A mezzanine storage system can help solve the problem of unutilized empty space in your warehouse. Mezzanine storage systems also easily pay for themselves by doubling or tripling available storage space without the need for expensive building expansions. Free-standing mezzanines provide additional work areas or storage space by utilizing the wasted air space in your warehouse or manufacturing facility.`,
-              `Mezzanine storage increases your cubic space while freeing up valuable floor space for other use. Structural steel mezzanines can be configured in a wide range of sizes, floor types, and construction styles to fit almost any space or application, which can also be reconfigured or added on to at a later date.`,
+              `Mezzanine storage increases your cubic space while freeing up valuable floor space for other use. Structural steel mezzanines can be configured in a wide range of sizes, floor types, and construction styles to fit almost any space or application, which can also be reconfigured or added later.`,
             ]}
             imageSrc={`${SITE_URL}mezzanine_racking.jpg`}
             imageAlt="Mezzanine Racking"
@@ -72,8 +65,8 @@ export default function racking(props: RegularObject) {
           <ParallaxArticle
             title="Stereoscopic Racking"
             description={[
-              `Our main objective is centered on the need to provide additional services to the customers and inject a new innovation into the growing economy in Nigeria.`,
-              `It was during this period we found out that most client buy wrong equipments for use on the stock racking system and we now felt to normalize this for future clients that passes through us.`,
+              `Our main objective is centred on the need to provide additional services to the customers and inject innovation into the growing economy in Nigeria.`,
+              `It was during this period we found out that most clients buy the wrong pieces of equipment for use on the stock racking system and we now felt to normalize this for future clients that pass through us.`,
             ]}
             imageSrc={`${SITE_URL}stereoscopic_racking.jpg`}
             imageAlt="Stereoscopic Racking"
