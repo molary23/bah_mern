@@ -9,7 +9,7 @@ export default function TabNav(props: TabProp) {
     [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="py-8 lg:p-24 PX-4">
+    <section className="pt-8 lg:p-24 PX-4">
       <h2 className="text-3xl font-bold mb-8 text-center">{props?.title}</h2>
       <p className="text-xl md:text-2xl text-center lg:font-bold mb-8">
         {props?.description?.[0]}
@@ -39,7 +39,7 @@ export default function TabNav(props: TabProp) {
         </ul>
       </div>
 
-      <div className="tab__content flex flex-col sm:flex-row gap-y-4 flex lg:py-20 lg:px-20 h-[40rem] bg-primary text-white py-8 theme__section">
+      <section className="tab__content flex flex-col sm:flex-row gap-y-4 flex lg:py-20 lg:px-20 px-4 h-[40rem] bg-primary text-white py-8 theme__section">
         <aside className="lg:basis-1/2 left__aside">
           <ImageElement
             width={600}
@@ -60,7 +60,7 @@ export default function TabNav(props: TabProp) {
             </p>
           )}
         </article>
-      </div>
+      </section>
     </section>
   );
 }

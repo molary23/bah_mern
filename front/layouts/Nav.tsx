@@ -191,7 +191,7 @@ const Nav = () => {
                 </Link>
 
                 <a
-                  href="http://store.bahenginerringconsultant.com"
+                  href="http://store.bahengineeringconsultant.com"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   target="_blank"
                 >
@@ -254,7 +254,7 @@ const Nav = () => {
         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <Link
             href="/"
-            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-white block px-3 py-2 rounded-md text-base font-medium"
             aria-current="page"
           >
             Home
@@ -356,7 +356,7 @@ const Nav = () => {
           </Link>
 
           <a
-            href="http://store.bahenginerringconsultant.com"
+            href="http://store.bahengineeringconsultant.com"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             target="_blank"
           >

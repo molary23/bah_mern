@@ -45,7 +45,7 @@ export default function HTMLHead() {
     <Head>
       <title>{MetaTags?.title}</title>
       <meta name="description" content={MetaTags?.description} />
-      <meta name="keywords" content={`${MetaTags?.keywords}, other keywords`} />
+      <meta name="keywords" content={`${MetaTags?.keywords}`} />
       <link rel="icon" href={`${SITE_CONSTANTS.image}favicon.png`} />
     </Head>
   );

@@ -31,9 +31,6 @@ export default function Contact() {
     },
     submitHandler = async (e: FormEvent) => {
       e.preventDefault();
-
-      console.log(useInputValidate(inputs, "name"));
-
       if (useInputValidate(inputs, "name")) {
         setErrors({
           name: "Please enter a valid name",
