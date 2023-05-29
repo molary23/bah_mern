@@ -23,7 +23,7 @@ export default function racking(props: RegularObject) {
             imageSrc={`${SITE_URL}drive_in_racking.jpg`}
             imageAlt="Drive-in Racking"
           />
-          <ParallaxArticle
+          {/*  <ParallaxArticle
             title="Selective Racking"
             description={[
               `Selective racking is one of the most common types of racking systems for warehouses. It has the lowest storage capacity of pallets and the lowest cost per square meter when it comes to racking.`,
@@ -32,7 +32,7 @@ export default function racking(props: RegularObject) {
             imageSrc={""}
             type="single"
             backgroundImage="bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
-          />
+          /> */}
           <LeftArticle
             title="Flow Through Racking"
             description={[

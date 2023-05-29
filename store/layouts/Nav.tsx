@@ -9,6 +9,10 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { RegularObject } from "../util/Types";
 import { SITE_CONSTANTS } from "../util/constants";
 import Link from "next/link";
+import NavMobileSubLink from "./NavMobileSubLink";
+import { RiArrowDropDownFill } from "react-icons/ri";
+import { IoSearchOutline } from "react-icons/io5";
+import InputGroup from "./InputGroup";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -60,19 +64,11 @@ const Nav = () => {
                 >
                   Home
                 </Link>
-
-                <Link
-                  href="/home/about"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  as={"/about"}
-                >
-                  About Us
-                </Link>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
                     <div>
-                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Product
+                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex">
+                        Categories <RiArrowDropDownFill />
                       </button>
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
@@ -124,66 +120,26 @@ const Nav = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
-                  <div className="relative">
-                    <div>
-                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Services
-                      </button>
-                    </div>
-                    <div
-                      className="absolute right-0 z-10 mt-2 w-max h-max origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-4 lg:p-8 dropdown theme__nav"
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby="user-menu-button"
-                      tabIndex={-1}
-                    >
-                      <div className="flex flex-wrap justify-start nav__submenu">
-                        <NavSubLink
-                          title="Consultancy"
-                          more="We offer consultancy service as regards maintenance and valuation of equipments"
-                          icon={<GiDiscussion />}
-                          link="/services/consultancy"
-                        />
-                        <NavSubLink
-                          title="Distilled Water"
-                          more="We sell distilled water for warehouse equipments' batteries"
-                          icon={<MdOutlineWaterDrop />}
-                          link="/services/distilled-water"
-                        />
-                        <NavSubLink
-                          title="Logistics"
-                          more="We are into purchase, transport, storage, distribution, and warehousing of materials"
-                          icon={<TbTruckDelivery />}
-                          link="/services/logistics"
-                        />
-                        <NavSubLink
-                          title="Maintenance & Repair"
-                          more="We are into maintenance and repairs of warehouse equipments"
-                          icon={<BsTools />}
-                          link="/services/maintenance"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+              </div>
+            </div>
+            <div className="w-96 flex items-center justify-end">
+              <InputGroup />
+              {true ? (
                 <Link
                   href="/home/contact"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   as={"/contact"}
                 >
-                  Contact Us
+                  Login
                 </Link>
-
+              ) : (
                 <Link
                   href="/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  eShowroom
+                  Register
                 </Link>
-              </div>
+              )}
             </div>
           </div>
 
@@ -245,93 +201,21 @@ const Nav = () => {
           >
             Home
           </Link>
-
-          <Link
-            href="/home/about"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            as={"/about"}
-          >
-            About Us
-          </Link>
           <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex"
             onClick={() => handleActivate("products")}
           >
-            Products
+            Categories <RiArrowDropDownFill />
           </button>
           <div className={`md:hidden ${!menus[1].active && "hidden"}`}>
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <Link
-                href="/products/equipments"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Equipments
-              </Link>
-              <Link
-                href="/products/pallets"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Pallets
-              </Link>
-              <Link
-                href="/products/power"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Power
-              </Link>
-              <Link
-                href="/products/racking"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Racking
-              </Link>
-              <Link
-                href="/products/shelves"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Shelves
-              </Link>
-              <Link
-                href="/products/spares"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Spares
-              </Link>
-            </div>
-          </div>
-
-          <button
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            onClick={() => handleActivate("services")}
-          >
-            Services
-          </button>
-          <div className={`md:hidden ${!menus[2].active && "hidden"}`}>
-            <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <Link
-                href="/services/consultancy"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Consultancy
-              </Link>
-              <Link
-                href="/services/distilled-water"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Distilled Water
-              </Link>
-              <Link
-                href="/services/logistics"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Logistics
-              </Link>
-              <Link
-                href="/services/maintenance"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Maintenance & Repair
-              </Link>
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
+              <NavMobileSubLink title="Equipments" />
             </div>
           </div>
 
@@ -340,14 +224,14 @@ const Nav = () => {
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             as={"/contact"}
           >
-            Contact Us
+            Login
           </Link>
 
           <Link
             href="/showroom"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            eShowroom
+            Register
           </Link>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { RegularObject } from "../util/Types";
 import { SITE_CONSTANTS } from "../util/constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { RiArrowDropDownFill } from "react-icons/ri";
 
 const initialMenu = [
   { name: "mobile", active: false },
@@ -85,8 +86,8 @@ const Nav = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
                     <div>
-                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Product
+                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex">
+                        Product <RiArrowDropDownFill />
                       </button>
                     </div>
                     {/* Add sm:hidden here and activate on hover */}
@@ -142,8 +143,8 @@ const Nav = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 menu__menu">
                   <div className="relative">
                     <div>
-                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Services
+                      <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex">
+                        Services <RiArrowDropDownFill />
                       </button>
                     </div>
                     <div
