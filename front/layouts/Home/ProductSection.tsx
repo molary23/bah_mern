@@ -4,8 +4,7 @@ import { RegularObject } from "../../util/Types";
 import IntroHeading from "../IntroHeading";
 
 export default function ProductSection(props: RegularObject) {
-  const [products, setProducts] = useState<RegularObject>({}),
-    [error, setError] = useState<boolean>(false),
+  const [products, setProducts] = useState<RegularObject>([]),
     { siteURL } = props,
     SECTION_TITLE = "Product";
 
@@ -13,12 +12,12 @@ export default function ProductSection(props: RegularObject) {
     fetch(`https://www.bahengineeringconsultant.com/outbox/info.php`)
       .then((response) => response.json())
       .then((data) => setProducts(data.products))
-      .catch(() => setError(true));
+      .catch((error) => console.warn("Failed to fetch Products ", error));
   }, []);
 
   return (
     <>
-      {!error && (
+      {products?.length > 0 && (
         <section className="h-max bg-offBlue py-24 home__page__service theme__section">
           <IntroHeading heading="Our Products" />
           <article className="h-max px-4 py-24 sm:w-11/12 mx-auto flex flex-col md:flex-wrap sm:gap-3 gap-y-4 sm:flex-row ">
