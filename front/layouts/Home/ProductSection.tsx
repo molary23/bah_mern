@@ -4,16 +4,59 @@ import { RegularObject } from "../../util/Types";
 import IntroHeading from "../IntroHeading";
 
 export default function ProductSection(props: RegularObject) {
-  const [products, setProducts] = useState<RegularObject>([]),
-    { siteURL } = props,
+  //const [products, setProducts] = useState<RegularObject>([]),
+  const { siteURL } = props,
     SECTION_TITLE = "Product";
-
+  /*
   useEffect(() => {
     fetch(`https://www.bahengineeringconsultant.com/outbox/info.php`)
       .then((response) => response.json())
       .then((data) => setProducts(data.products))
       .catch((error) => console.warn("Failed to fetch Products ", error));
-  }, []);
+  }, []);*/
+
+  const products = [
+    {
+      name: "Forklift",
+      url: "https://bahengineeringconsultant.com/products/equipments",
+      image: "forklift.jpg",
+    },
+    {
+      name: "DC Bulb",
+      url: "https://bahengineeringconsultant.com/products/power",
+      image: "dcbulb.jpg",
+    },
+    {
+      name: "Cabinet",
+      url: "https://bahengineeringconsultant.com/products/racking",
+      image: "cabinet.jpg",
+    },
+    {
+      name: "Stacker",
+      url: "https://bahengineeringconsultant.com/products/equipments",
+      image: "electric_stacker.jpg",
+    },
+    {
+      name: "Foldable Pallet",
+      url: "https://bahengineeringconsultant.com/products/pallets",
+      image: "foldable_pallet.jpg",
+    },
+    {
+      name: "Forklift Battery",
+      url: "https://bahengineeringconsultant.com/products/spares",
+      image: "forklift_battery.jpg",
+    },
+    {
+      name: "Weightier",
+      url: "https://bahengineeringconsultant.com/products/equipments",
+      image: "weightier.jpg",
+    },
+    {
+      name: "Light Duty Shelf",
+      url: "https://bahengineeringconsultant.com/products/sehlves",
+      image: "light_duty_shelf.jpg",
+    },
+  ];
 
   return (
     <>
