@@ -38,8 +38,8 @@ export default function HTMLHead() {
       metaTags = HTMLMetaTag?.logistics;
     } else if (pathname === "/services/consultancy") {
       metaTags = HTMLMetaTag?.consultancy;
-    } else if (pathname === "/services/distilled-water") {
-      metaTags = HTMLMetaTag?.water;
+    } else if (pathname === "/services/sales-lease") {
+      metaTags = HTMLMetaTag?.lease;
     }
 
     let descriptionMeta = document.createElement("meta"),

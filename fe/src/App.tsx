@@ -1,6 +1,6 @@
 import "./styles/style.css";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 import OutletComponent from "./components/Outlet";
 
@@ -15,7 +15,7 @@ import Shelves from "./pages/products/shelves";
 import Spares from "./pages/products/spares";
 
 import Consultancy from "./pages/services/consultancy";
-import Distilled from "./pages/services/distilled-water";
+import Sales from "./pages/services/sales-lease";
 import Logistics from "./pages/services/logistics";
 import Maintenance from "./pages/services/maintenance";
 import NotFound from "./pages/404";
@@ -23,7 +23,7 @@ import NotFound from "./pages/404";
 function App() {
   return (
     <Routes>
-      <Route path="" element={<OutletComponent />}>
+      <Route element={<OutletComponent />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -36,7 +36,7 @@ function App() {
         <Route path="/products/spares" element={<Spares />} />
 
         <Route path="/services/consultancy" element={<Consultancy />} />
-        <Route path="/services/distilled-water" element={<Distilled />} />
+        <Route path="/services/sales-lease" element={<Sales />} />
         <Route path="/services/logistics" element={<Logistics />} />
         <Route path="/services/maintenance" element={<Maintenance />} />
 

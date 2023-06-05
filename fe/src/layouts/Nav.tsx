@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavSubLink } from "./NavSubLink";
-import { MdLightbulbOutline, MdOutlineWaterDrop } from "react-icons/md";
+import { MdLightbulbOutline } from "react-icons/md";
 import { BsBookshelf, BsTools } from "react-icons/bs";
 import { GiCartwheel, GiForklift, GiDiscussion } from "react-icons/gi";
 import { FaPallet } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { SITE_CONSTANTS } from "../util/constants";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { RiArrowDropDownFill } from "react-icons/ri";
+import { RiArrowDropDownFill, RiExchangeLine } from "react-icons/ri";
 
 const Nav = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false),
@@ -150,10 +150,10 @@ const Nav = () => {
                           link="/services/consultancy"
                         />
                         <NavSubLink
-                          title="Distilled Water"
-                          more="We sell distilled water for warehouse equipments' batteries"
-                          icon={<MdOutlineWaterDrop />}
-                          link="/services/distilled-water"
+                          title="Sales & Leasing"
+                          more="We provide warehouse equipments for sales and some for leasing."
+                          icon={<RiExchangeLine />}
+                          link="/services/sales-lease"
                         />
                         <NavSubLink
                           title="Logistics"
@@ -320,7 +320,7 @@ const Nav = () => {
                 Consultancy
               </Link>
               <Link
-                to="/services/distilled-water"
+                to="/services/sales-lease"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Distilled Water

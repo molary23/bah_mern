@@ -74,8 +74,8 @@ export const HTMLMetaTag = {
       "A one stop place for your Warehouse handling equipment purchase and maintenace. We help with logistics in setting up and maintaining a Warehouse",
     keywords: "Our Services: Installation, Maintenance, Repair, Logistics",
   },
-  water: {
-    title: "Distilled Water",
+  lease: {
+    title: "Sales & Leasing",
     description:
       "We sell Distilled Water that is used for Battery Electrolyte Mixing Water, Industrial Steaming Iron, Laboratory Test and Battery Tops Up",
     keywords:
