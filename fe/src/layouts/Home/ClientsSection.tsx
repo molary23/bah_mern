@@ -91,6 +91,26 @@ export default function ClientsSection(props: RegularObject) {
             text="Evans Medical"
           />
         </div>
+        <div className="sm:basis-1/4 flex justify-center">
+          <OverlayImage
+            src={`${siteURL}baun.png`}
+            width={300}
+            height={300}
+            alt={`${clientDetails} Baun Limited`}
+            section={SECTION_TITLE}
+            text="Baun Limited"
+          />
+        </div>
+        <div className="sm:basis-1/4 flex justify-center">
+          <OverlayImage
+            src={`${siteURL}srmsl.png`}
+            width={300}
+            height={300}
+            alt={`${clientDetails} Secured Records Management Solutions Limited`}
+            section={SECTION_TITLE}
+            text="SRMSL"
+          />
+        </div>
       </div>
     </section>
   );

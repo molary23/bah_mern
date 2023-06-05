@@ -29,10 +29,6 @@
         border: 0.1em solid white;
       }
     }
-
-    &__header {
-      background: rgba(47, 47, 47, 0.8);
-    }
   }
   .scrollMe {
     border: 0.1em solid gray;
@@ -45,6 +41,9 @@
     .client__overlay {
       background: $dark-mode;
     }
+  }
+  .error__section {
+    background-image: url("https://bahengineeringconsultant.com/images/404-dark.png");
   }
 }
 

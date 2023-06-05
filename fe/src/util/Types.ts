@@ -41,6 +41,7 @@ interface Intro {
 export type HeadingProps = {
   intro: Intro;
   imageUrL?: string;
+  cover?: boolean;
 };
 
 export type SectionProp = {

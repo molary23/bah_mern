@@ -15,7 +15,6 @@ import useInputValidate from "../hooks/useInputValidate";
 const API = `${SITE_CONSTANTS.url}outbox/send.php`;
 
 export default function Contact() {
-  console.log(process.env.REACT_SECURE_POST_KEY);
   const [inputs, setInputs] = useState<RegularObject>({}),
     [errors, setErrors] = useState<RegularObject>({}),
     [loading, setLoading] = useState<boolean>(false),
@@ -65,7 +64,7 @@ export default function Contact() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               ...inputs,
-              sendKey: process.env.REACT_SECURE_POST_KEY,
+              sendKey: process.env.REACT_APP_SECURE_POST_KEY,
             }),
           };
           const response = await fetch(API, requestOptions);
@@ -93,7 +92,10 @@ export default function Contact() {
           heading: "Contact Us",
           subHeading: `We are only a Buzz away`,
         }}
-        imageUrL=""
+        imageUrL={
+          "bg-[url(https://bahengineeringconsultant.com/images/contactus.png)]"
+        }
+        cover={false}
       />
 
       <article className="w-full h-max my-4 theme__section">
@@ -231,7 +233,7 @@ export default function Contact() {
                   <div className="col-span-6 lg:col-span-3">
                     <button
                       type="submit"
-                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-36 w-full btn__submit"
+                      className="inline-flex justify-center rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-36 w-full btn__submit hover:bg-transparent  hover:text-primary border-transparent border hover:border-solid hover:border-primary transition-all duration-300 ease-in-out"
                     >
                       <span className="mr-2">Submit</span>
                       {!loading ? (

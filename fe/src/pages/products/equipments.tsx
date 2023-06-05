@@ -124,19 +124,6 @@ export default function Equipment(props: RegularObject) {
               },
             ]}
           />
-          <ParallaxArticle
-            title="Weightier"
-            description={[
-              `A reach truck is a narrow-aisle, right-angle stacking truck designed for unit load handling with rack interface. These lift trucks are meant to operate in narrow aisles and are best for storing and retrieving pallets in racks.`,
-              `They are equipped with a pantograph mechanism and can shelve pallets one or two-deep. This version is known as a deep-reach lift truck. These lift trucks are designed to maximize unit load capacity by narrowing aisles and promoting product throughput. Reach trucks are categorized as Class 2 lift trucks in material handling.`,
-            ]}
-            imageSrc={`${SITE_URL}weightier.jpg`}
-            imageAlt="Weightier"
-            type="dual"
-            backgroundImage={
-              "bg-[url(https://bahengineeringconsultant.com/images/home_power.jpg)]"
-            }
-          />
         </>
       }
     />

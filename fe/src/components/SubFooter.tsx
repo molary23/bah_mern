@@ -82,7 +82,11 @@ export default function SubFooter() {
         <div className="footer__right basis-1/3">
           <h3 className="mb-4 text-xl font-bold">Connect with Us</h3>
           <div className="footer__social flex gap-x-3">
-            <a href="//facebook.com/" target="_blank" rel="noreferrer noopener">
+            <a
+              href="https://facebook.com/bah-engineering-consultant"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <AiFillFacebook />
             </a>
             <a href="skype:name?chat" target="_blank" rel="noreferrer noopener">
@@ -96,7 +100,7 @@ export default function SubFooter() {
               <AiFillLinkedin />
             </a>
             <a
-              href="//wa.me/+2348029409798"
+              href="htpps://wa.me/+2348032448088"
               target="_blank"
               rel="noopener noreferrer"
             >

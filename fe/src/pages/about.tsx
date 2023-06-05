@@ -13,7 +13,9 @@ export default function About() {
           heading: "About Us",
           subHeading: `We are only a Buzz away`,
         }}
-        imageUrL=""
+        imageUrL={
+          "bg-[url(https://bahengineeringconsultant.com/images/aboutus.png)]"
+        }
       />
       <div className="about__content__all lg:w-full h-fit mx-auto pb-8">
         <article className="about__content__who h-fit lg:p-12 p-6 bg-stone-100 theme__section">
