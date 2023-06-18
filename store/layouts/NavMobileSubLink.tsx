@@ -1,13 +1,22 @@
-import Link from "next/link";
 import { RegularObject } from "../util/Types";
 
 export default function NavMobileSubLink(props: RegularObject) {
+  const { title, link, count } = props;
   return (
-    <Link
-      href="/products/equipments"
-      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-    >
-      {props?.title}
-    </Link>
+    <div className="cursor-pointer">
+      <a
+        href={link}
+        className="block px-8 py-2 text-sm text-gray-700 hover:bg-slate-200"
+        role="menuitem"
+        tabIndex={-1}
+      >
+        <div className="flex justify-between">
+          <div className="category_name">{title}</div>
+          <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
+            {count ? count : 0}
+          </span>
+        </div>
+      </a>
+    </div>
   );
 }

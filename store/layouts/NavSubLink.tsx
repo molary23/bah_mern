@@ -1,21 +1,20 @@
 import { NavSub } from "../util/Types";
 
 export const NavSubLink = (props: NavSub) => {
-  const { title, more, icon, link } = props;
+  const { title, link, count } = props;
   return (
-    <div className="basis-1/3 mb-4 cursor-pointer">
+    <div className="cursor-pointer">
       <a
         href={link}
-        className="block px-4 py-2 text-sm text-gray-700"
+        className="block px-8 py-2 text-sm text-gray-700 hover:bg-slate-200"
         role="menuitem"
         tabIndex={-1}
       >
-        <div className="flex items-center gap-3">
-          <div className="nav__submenu--icon">{icon}</div>
-          <div className="nav__submenu--title">
-            <h2 className="text-1xl font-bold mt-4">{title}</h2>
-            <p>{more}</p>
-          </div>
+        <div className="flex justify-between">
+          <div className="category_name">{title}</div>
+          <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
+            {count ? count : 0}
+          </span>
         </div>
       </a>
     </div>

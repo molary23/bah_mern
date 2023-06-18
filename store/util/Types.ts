@@ -13,9 +13,8 @@ export type RegularObject = {
 
 export interface NavSub {
   title: string;
-  more: string;
-  icon: ReactNode;
   link: string;
+  count?: number;
 }
 
 export interface ImageProps {
