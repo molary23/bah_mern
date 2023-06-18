@@ -120,6 +120,20 @@ const Nav = () => {
                     </div>
                   </div>
                 </div>
+                <Link
+                  href="https://www.bahengineeringconsultant.com/about"
+                  className="text-white px-3 py-2 rounded-md text-sm font-medium"
+                  aria-current="page"
+                >
+                  About Us
+                </Link>
+                <Link
+                  href="https://www.bahengineeringconsultant.com/contact"
+                  className="text-white px-3 py-2 rounded-md text-sm font-medium"
+                  aria-current="page"
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
             <div className="w-96 flex items-center justify-end">
@@ -218,6 +232,20 @@ const Nav = () => {
               <NavMobileSubLink title="Equipments" />
             </div>
           </div>
+          <Link
+            href="https://www.bahengineeringconsultant.com/about"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            aria-current="page"
+          >
+            About Us
+          </Link>
+          <Link
+            href="https://www.bahengineeringconsultant.com/contact"
+            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            aria-current="page"
+          >
+            Contact Us
+          </Link>
 
           <Link
             href="/home/contact"
