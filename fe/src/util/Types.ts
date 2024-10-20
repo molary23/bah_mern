@@ -26,6 +26,7 @@ export interface ImageProps {
   className?: string;
   section?: string;
   text?: string;
+  url?: string;
 }
 
 export type IntroProps = {

@@ -1,7 +1,7 @@
 import { ImageProps } from "../util/Types";
 
 export default function OverlayImage(props: ImageProps) {
-  const { width, height, src, alt, className, section, text } = props;
+  const { width, height, src, alt, className, section, text, url } = props;
   return (
     <div className="image__container">
       <img
@@ -16,7 +16,9 @@ export default function OverlayImage(props: ImageProps) {
         ${section === "Client" && "client__overlay"}
         ${section === "Product" && "overlay product__overlay"}`}
       >
-        <div className="image__text">{text}</div>
+        <div className="image__text">
+          <a href={url}>{text}</a>
+        </div>
       </div>
     </div>
   );
