@@ -113,7 +113,7 @@ html {
   margin-top: 0.15rem;
   transition: transform 500ms;
 }
-.menu__menu button:hover svg {
+.menu__menu button:hover svg, .menu__menu button:active svg {
   transform: rotate(180deg);
 }
 

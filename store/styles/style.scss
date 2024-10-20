@@ -17,7 +17,8 @@
       margin-top: 0.15rem;
       transition: transform 500ms;
     }
-    &:hover {
+    &:hover,
+    &:active {
       svg {
         transform: rotate(180deg);
       }
@@ -55,13 +56,10 @@
   }
 }
 
+.left__aside,
+.left__article,
 .right__aside,
 .right__article {
-  transition: all 5s;
-}
-
-.left__aside,
-.left__article {
   transition: all 5s;
 }
 

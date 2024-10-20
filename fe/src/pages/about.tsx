@@ -1,8 +1,19 @@
 import PageHeading from "../layouts/PageHeading";
 import { useOutletContext } from "react-router-dom";
-const LAST_NAME: string = "Hassan",
-  FIRST_MEMBER_NAME: string = "Billy",
-  SECOND_MEMBER_NAME: string = "Adetayo";
+
+const leaders = [
+  {
+    name: "Hassan Billy",
+    qualification: "Msc, PMP, FHG",
+    img: "home_power.jpg",
+  },
+  {
+    name: "Abdulhammed Hamzat",
+    qualification: "Msc, MNSE, R.Engr(COREN)",
+    img: "home_power.jpg",
+  },
+  { name: "Hassan Adetayo", qualification: "Bsc", img: "home_power.jpg" },
+];
 
 export default function About() {
   const SITE_URL = useOutletContext();
@@ -145,7 +156,7 @@ export default function About() {
           </div>
         </article>
 
-        <div className="about__team flex flex-wrap  mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 lg:h-72 lg:py-14 lg:px-12 w-11/12 mx-auto mt-8">
+        <div className="about__team flex flex-wrap  mx-auto justify-between border border-gray-100 rounded-md h-full py-10 px-6 lg:h-72 lg:py-14 lg:px-12 w-11/12 mt-8">
           <div className="our__team lg:flex lg:flex-row w-full mx-auto lg:gap-6 justify-around">
             <div className="our__team--intro mb-6 lg:basis-1/4">
               <h2 className="our__team--heading mb-4 text-3xl font-black text-center lg:text-left">
@@ -156,41 +167,30 @@ export default function About() {
               </p>
             </div>
             <div className="our__team--member sm:flex sm:justify-around sm:basis-3/4">
-              <div className="about__team--member flex mb-6 gap-4 lg:justify-between lg:gap-3">
-                <div className="">
-                  <img
-                    className="h-24 w-24 rounded-full"
-                    src={SITE_URL + "home_power.jpg"}
-                    width={"256"}
-                    height={"256"}
-                    alt={`${LAST_NAME} ${FIRST_MEMBER_NAME}`}
-                  />
-                </div>
-                <div className="team_member--name mt-6">
-                  <h3 className="about__team--name font-bold">
-                    {`${LAST_NAME} ${FIRST_MEMBER_NAME}`}
-                  </h3>
-                  <small className="team__member--title">Msc, PMP, FHG</small>
-                </div>
-              </div>
-
-              <div className="about__team--member flex flex mb-6 gap-4 lg:justify-between lg:gap-3">
-                <div className="">
-                  <img
-                    className="h-24 w-24 rounded-full"
-                    src={SITE_URL + "home_power.jpg"}
-                    width={"256"}
-                    height={"256"}
-                    alt={`${LAST_NAME} ${SECOND_MEMBER_NAME}`}
-                  />
-                </div>
-                <div className="team_member--name mt-6">
-                  <h3 className="about__team--name font-bold">
-                    {`${LAST_NAME} ${SECOND_MEMBER_NAME}`}
-                  </h3>
-                  <small className="team__member--title">Msc, PMP, FHG</small>
-                </div>
-              </div>
+              {leaders.map((l, i) => {
+                return (
+                  <div
+                    className="about__team--member flex mb-6 gap-4 lg:justify-between lg:gap-3"
+                    key={i}
+                  >
+                    <div className="">
+                      <img
+                        className="h-24 w-24 rounded-full"
+                        src={SITE_URL + l.img}
+                        width={"256"}
+                        height={"256"}
+                        alt={l.name}
+                      />
+                    </div>
+                    <div className="team_member--name mt-6">
+                      <h3 className="about__team--name font-bold">{l.name}</h3>
+                      <small className="team__member--title">
+                        {l.qualification}
+                      </small>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
